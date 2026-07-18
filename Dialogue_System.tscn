@@ -1,0 +1,67 @@
+[gd_scene format=3 uid="uid://doayi0ae8263f"]
+
+[ext_resource type="FontFile" uid="uid://xaq0o2laqakn" path="res://ChiKareGo.ttf" id="1_rmxhg"]
+[ext_resource type="Script" uid="uid://bsdmfr11x3h84" path="res://dialogue_system.gd" id="1_yqreq"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_yqreq"]
+bg_color = Color(0.09803922, 0.09803922, 0.09803922, 1)
+border_width_left = 3
+border_width_top = 3
+border_width_right = 3
+border_width_bottom = 3
+expand_margin_left = 3.0
+expand_margin_top = 3.0
+expand_margin_right = 3.0
+expand_margin_bottom = 3.0
+
+[node name="CanvasLayer" type="CanvasLayer" unique_id=1831172654]
+script = ExtResource("1_yqreq")
+
+[node name="PanelContainer" type="PanelContainer" parent="." unique_id=2030432869]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -225.0
+offset_top = -75.0
+offset_right = 225.0
+offset_bottom = 75.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_yqreq")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="PanelContainer" unique_id=1524088792]
+layout_mode = 2
+
+[node name="SpeakerMargin" type="MarginContainer" parent="PanelContainer/HBoxContainer" unique_id=1846324875]
+layout_mode = 2
+theme_override_constants/margin_right = 15
+
+[node name="SpeakerParent" type="Control" parent="PanelContainer/HBoxContainer/SpeakerMargin" unique_id=1265093285]
+custom_minimum_size = Vector2(70, 0)
+layout_mode = 2
+
+[node name="Sprite2D" type="Sprite2D" parent="PanelContainer/HBoxContainer/SpeakerMargin/SpeakerParent" unique_id=1601480323]
+position = Vector2(42, 70)
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer/HBoxContainer" unique_id=1163193167]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="RichTextLabel" type="RichTextLabel" parent="PanelContainer/HBoxContainer/VBoxContainer" unique_id=1841451929]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_fonts/normal_font = ExtResource("1_rmxhg")
+bbcode_enabled = true
+scroll_active = false
+autowrap_mode = 2
+visible_characters_behavior = 1
+
+[node name="ButtonContainer" type="HBoxContainer" parent="PanelContainer/HBoxContainer/VBoxContainer" unique_id=366022596]
+visible = false
+layout_mode = 2
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="." unique_id=1688654320]
+position = Vector2(330, 238)
+max_polyphony = 1000

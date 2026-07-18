@@ -1,0 +1,138 @@
+[gd_scene format=3 uid="uid://i2mv6qm0dy5g"]
+
+[ext_resource type="Script" uid="uid://lgu2caa86vgw" path="res://Levels/intro.gd" id="1_d556c"]
+[ext_resource type="PackedScene" uid="uid://bk5cub14yf6d" path="res://dialogue_area_2d.tscn" id="2_kgeka"]
+[ext_resource type="Script" uid="uid://dkpwxghjd7ry8" path="res://DialogueExportResource.gd" id="3_dt4lh"]
+[ext_resource type="Script" uid="uid://q2hfxekwglu3" path="res://DialogueTextResource.gd" id="4_rks4u"]
+[ext_resource type="AudioStream" uid="uid://b1iyperftamvw" path="res://talk.wav" id="5_nh2cg"]
+[ext_resource type="Texture2D" uid="uid://bvy2baarpw3u" path="res://REAL_info_side.png" id="6_dt4lh"]
+[ext_resource type="Script" uid="uid://80kl10p8d3vr" path="res://player.gd" id="6_ja504"]
+[ext_resource type="Texture2D" uid="uid://baa3dj36ytw40" path="res://REAL_neutral.png" id="7_rks4u"]
+[ext_resource type="Texture2D" uid="uid://4q335xxs2p" path="res://icon.svg" id="7_wnude"]
+[ext_resource type="Texture2D" uid="uid://d3pg4lk1nuh35" path="res://REAL_question.png" id="8_nh2cg"]
+[ext_resource type="Texture2D" uid="uid://di3aa2tou5axn" path="res://REAL_exclamation-removebg-preview.png" id="9_ja504"]
+
+[sub_resource type="Resource" id="Resource_golbo"]
+script = ExtResource("4_rks4u")
+text = "In the year 2067, college admissions reached an all-time high level of competitiveness."
+text_speed = 14.0
+text_sound = ExtResource("5_nh2cg")
+metadata/_custom_type_script = "uid://q2hfxekwglu3"
+
+[sub_resource type="Resource" id="Resource_kgeka"]
+script = ExtResource("4_rks4u")
+text = "Students began training for the application process like it was a sport, and only the most performative survived."
+text_speed = 14.0
+text_sound = ExtResource("5_nh2cg")
+metadata/_custom_type_script = "uid://q2hfxekwglu3"
+
+[sub_resource type="Resource" id="Resource_dt4lh"]
+script = ExtResource("4_rks4u")
+text = "Rudimentary projects weren't enough to demonstrate merit anymore, giving some the bright idea to create things with much more...        impact."
+text_speed = 14.0
+text_sound = ExtResource("5_nh2cg")
+metadata/_custom_type_script = "uid://q2hfxekwglu3"
+
+[sub_resource type="Resource" id="Resource_rks4u"]
+script = ExtResource("4_rks4u")
+text = "Their hearts were not truly in this ideation process, though, leading some to cause more harm than good."
+text_speed = 14.0
+text_sound = ExtResource("5_nh2cg")
+metadata/_custom_type_script = "uid://q2hfxekwglu3"
+
+[sub_resource type="Resource" id="Resource_nh2cg"]
+script = ExtResource("4_rks4u")
+text = "You, though...     were not part of this heartlessness."
+text_speed = 14.0
+text_sound = ExtResource("5_nh2cg")
+metadata/_custom_type_script = "uid://q2hfxekwglu3"
+
+[sub_resource type="Resource" id="Resource_ja504"]
+script = ExtResource("4_rks4u")
+speaker_img = ExtResource("6_dt4lh")
+speaker_img_rest_frame = 1
+text = "Thus, you created me: R.E.A.L. the Reactive Empathetic Assistance Logic model."
+text_speed = 14.0
+text_sound = ExtResource("5_nh2cg")
+metadata/_custom_type_script = "uid://q2hfxekwglu3"
+
+[sub_resource type="Resource" id="Resource_wnude"]
+script = ExtResource("4_rks4u")
+speaker_img = ExtResource("7_rks4u")
+text = "Not everyone's like you, though; Especially not the kids at your school."
+text_speed = 14.0
+text_sound = ExtResource("5_nh2cg")
+metadata/_custom_type_script = "uid://q2hfxekwglu3"
+
+[sub_resource type="Resource" id="Resource_4tna5"]
+script = ExtResource("4_rks4u")
+speaker_img = ExtResource("8_nh2cg")
+text = "I mean, seriously, what's a kid like you doing at a school called \"Larper High School for the Performative?\""
+text_speed = 14.0
+text_sound = ExtResource("5_nh2cg")
+metadata/_custom_type_script = "uid://q2hfxekwglu3"
+
+[sub_resource type="Resource" id="Resource_v6nf2"]
+script = ExtResource("4_rks4u")
+speaker_img = ExtResource("9_ja504")
+text = "One of your classmates decided it'd be a good idea to make bombs and give them to underprivileged kids so they could \"fight back,\" and now the whole world's in a state of anarchy!"
+text_speed = 14.0
+text_sound = ExtResource("5_nh2cg")
+metadata/_custom_type_script = "uid://q2hfxekwglu3"
+
+[sub_resource type="Resource" id="Resource_gr7rr"]
+script = ExtResource("4_rks4u")
+speaker_img = ExtResource("7_rks4u")
+text = "Point is, things aren't looking too good right now, and I know it's confusing. But if you listen to me, we can fix this mess."
+text_speed = 14.0
+text_sound = ExtResource("5_nh2cg")
+metadata/_custom_type_script = "uid://q2hfxekwglu3"
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_v6nf2"]
+size = Vector2(1152, 648.5)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_gr7rr"]
+size = Vector2(32.25, 31)
+
+[node name="Intro" type="Node" unique_id=1088035300]
+script = ExtResource("1_d556c")
+
+[node name="Camera2D" type="Camera2D" parent="." unique_id=426921344]
+position = Vector2(578, 324)
+
+[node name="ColorRect" type="ColorRect" parent="." unique_id=294073879]
+z_index = -1
+offset_right = 1153.0
+offset_bottom = 650.0
+color = Color(0.0011974451, 0.0011974451, 0.0011974451, 1)
+
+[node name="DialogueArea2D" parent="." unique_id=1615248638 instance=ExtResource("2_kgeka")]
+activate_instant = true
+box_placement = 1
+dialogue = Array[ExtResource("3_dt4lh")]([SubResource("Resource_golbo"), SubResource("Resource_kgeka"), SubResource("Resource_dt4lh"), SubResource("Resource_rks4u"), SubResource("Resource_nh2cg"), SubResource("Resource_ja504"), SubResource("Resource_wnude"), SubResource("Resource_4tna5"), SubResource("Resource_v6nf2"), SubResource("Resource_gr7rr")])
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DialogueArea2D" unique_id=1781149125]
+position = Vector2(577, 324.75)
+shape = SubResource("RectangleShape2D_v6nf2")
+
+[node name="Player" type="CharacterBody2D" parent="." unique_id=1042370523 groups=["player"]]
+visible = false
+position = Vector2(1, 1)
+script = ExtResource("6_ja504")
+
+[node name="Sprite2D" type="Sprite2D" parent="Player" unique_id=1140213113]
+z_index = 1
+position = Vector2(17.5, 605.5)
+scale = Vector2(0.25781247, 0.2421877)
+texture = ExtResource("7_wnude")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Player" unique_id=2076332667]
+z_index = 1
+position = Vector2(17.875, 605.5)
+shape = SubResource("RectangleShape2D_gr7rr")
+
+[node name="Camera2D" type="Camera2D" parent="Player" unique_id=1847554335]
+position = Vector2(22, 508)
+zoom = Vector2(2.5, 2.5)
+position_smoothing_enabled = true
+position_smoothing_speed = 7.0

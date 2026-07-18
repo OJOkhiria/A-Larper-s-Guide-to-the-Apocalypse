@@ -1,0 +1,25 @@
+[gd_scene format=3 uid="uid://bsusofe1hdgx"]
+
+[ext_resource type="Script" uid="uid://dvqrwolhht2pe" path="res://ui/hud.gd" id="1_37p78"]
+[ext_resource type="Texture2D" uid="uid://02dsxsjjavwp" path="res://ui/pixel-art_by_filereadynow_ai_2026-07-17 01_47_21 (1).png" id="2_546lt"]
+[ext_resource type="Texture2D" uid="uid://boom75ub6jdbd" path="res://ui/pixel-art_by_filereadynow_ai_2026-07-17 01_47_21.png" id="3_7ihmi"]
+
+[node name="HUD" type="CanvasLayer" unique_id=665291530]
+layer = 10
+script = ExtResource("1_37p78")
+full_heart_texture = ExtResource("2_546lt")
+empty_heart_texture = ExtResource("3_7ihmi")
+
+[node name="HealthHUD" type="Control" parent="." unique_id=1041927311]
+layout_mode = 3
+anchors_preset = 0
+offset_left = 20.0
+offset_top = 40.0
+offset_right = 60.0
+offset_bottom = 80.0
+
+[node name="Hearts" type="HBoxContainer" parent="HealthHUD" unique_id=1580543901]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+theme_override_constants/separation = 6

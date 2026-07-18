@@ -1,0 +1,55 @@
+[gd_scene format=3 uid="uid://wgl7k3lgpodk"]
+
+[ext_resource type="Script" uid="uid://b7ox6rgsg14ly" path="res://ui/game_over_overlay.gd" id="1_facph"]
+[ext_resource type="Shader" uid="uid://c21ncot4rvrmv" path="res://game_over_overlay.gdshader" id="2_o1u5n"]
+[ext_resource type="FontFile" uid="uid://xaq0o2laqakn" path="res://ChiKareGo.ttf" id="3_kq304"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_v8lvw"]
+shader = ExtResource("2_o1u5n")
+shader_parameter/blur_amount = 5.0
+
+[node name="GameOverOverlay" type="CanvasLayer" unique_id=1936500417]
+script = ExtResource("1_facph")
+
+[node name="BlurRect" type="ColorRect" parent="." unique_id=59992143]
+material = SubResource("ShaderMaterial_v8lvw")
+custom_minimum_size = Vector2(1152, 648)
+anchors_preset = -1
+offset_right = 1152.0
+offset_bottom = 648.0
+
+[node name="CenterContainer" type="CenterContainer" parent="BlurRect" unique_id=2057111353]
+layout_mode = 0
+offset_right = 1152.0
+offset_bottom = 648.0
+
+[node name="PanelContainer" type="PanelContainer" parent="BlurRect/CenterContainer" unique_id=1969245617]
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="BlurRect/CenterContainer/PanelContainer" unique_id=1082132117]
+custom_minimum_size = Vector2(500, 250)
+layout_mode = 2
+theme_override_constants/separation = 20
+
+[node name="MarginContainer" type="MarginContainer" parent="BlurRect/CenterContainer/PanelContainer/VBoxContainer" unique_id=762441668]
+layout_mode = 2
+theme_override_constants/margin_bottom = 50
+
+[node name="Label" type="Label" parent="BlurRect/CenterContainer/PanelContainer/VBoxContainer" unique_id=2036327868]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("3_kq304")
+text = "You got out-larped! :("
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="RespawnButton" type="Button" parent="BlurRect/CenterContainer/PanelContainer/VBoxContainer" unique_id=12752318]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_fonts/font = ExtResource("3_kq304")
+text = "RESPAWN"
+
+[node name="MenuButton" type="Button" parent="BlurRect/CenterContainer/PanelContainer/VBoxContainer" unique_id=1967831949]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_fonts/font = ExtResource("3_kq304")
+text = "MAIN MENU"

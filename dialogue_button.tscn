@@ -1,0 +1,21 @@
+[gd_scene format=3 uid="uid://drdoqgc15cpkn"]
+
+[ext_resource type="FontFile" uid="uid://xaq0o2laqakn" path="res://ChiKareGo.ttf" id="1_nsd07"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_7mnm1"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_q4nkq"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_jobrc"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_88l0r"]
+
+[node name="DialogueButton" type="Button" unique_id=1957938839]
+offset_right = 8.0
+offset_bottom = 8.0
+size_flags_horizontal = 3
+theme_override_fonts/font = ExtResource("1_nsd07")
+theme_override_styles/normal = SubResource("StyleBoxEmpty_7mnm1")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_q4nkq")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_jobrc")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_88l0r")
