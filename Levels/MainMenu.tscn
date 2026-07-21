@@ -5,6 +5,7 @@
 [ext_resource type="Texture2D" uid="uid://ba2kkgp2kk380" path="res://pixel-art_by_filereadynow_ai_2026-07-20 14_23_19 (1).png" id="2_65ows"]
 [ext_resource type="Texture2D" uid="uid://bxdx1q64quke2" path="res://pixel-art_by_filereadynow_ai_2026-07-20 14_23_19 (2).png" id="2_gerv3"]
 [ext_resource type="Script" uid="uid://dwoahc2bbvyh2" path="res://Levels/fade_rect.gd" id="2_hr4vk"]
+[ext_resource type="Texture2D" uid="uid://dgi0v18l8twd" path="res://pixel-art_by_filereadynow_ai_2026-07-20 14_23_19 (4).png" id="3_17ajd"]
 [ext_resource type="FontFile" uid="uid://b7wwpls0rmqff" path="res://Adventurer.ttf" id="4_2ld8x"]
 [ext_resource type="FontFile" uid="uid://xaq0o2laqakn" path="res://DialogueSystem/ChiKareGo.ttf" id="5_ooo5j"]
 
@@ -51,6 +52,7 @@ layout_mode = 0
 offset_right = 40.0
 offset_bottom = 40.0
 mouse_filter = 2
+texture = ExtResource("3_17ajd")
 
 [node name="FrontCoverPivot" type="Control" parent="BookPivot" unique_id=1727096091]
 layout_mode = 1
