@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://doayi0ae8263f"]
 
-[ext_resource type="FontFile" uid="uid://xaq0o2laqakn" path="res://ChiKareGo.ttf" id="1_rmxhg"]
-[ext_resource type="Script" uid="uid://bsdmfr11x3h84" path="res://dialogue_system.gd" id="1_yqreq"]
+[ext_resource type="FontFile" uid="uid://xaq0o2laqakn" path="res://DialogueSystem/ChiKareGo.ttf" id="1_rmxhg"]
+[ext_resource type="Script" uid="uid://bsdmfr11x3h84" path="res://DialogueSystem/dialogue_system.gd" id="1_yqreq"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_yqreq"]
 bg_color = Color(0.09803922, 0.09803922, 0.09803922, 1)

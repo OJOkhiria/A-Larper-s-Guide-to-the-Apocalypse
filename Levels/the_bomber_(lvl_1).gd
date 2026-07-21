@@ -12,6 +12,7 @@ var player_detected: bool = false
 
 
 func _ready() -> void:
+	sprite.play("idle")
 	$DetectionArea.body_entered.connect(_on_detection_area_body_entered)
 	$DetectionArea.body_exited.connect(_on_detection_area_body_exited)
 
@@ -20,15 +21,17 @@ func _ready() -> void:
 	throw_cooldown.timeout.connect(_throw_bomb)
 
 
-func _on_body_entered(body: Node2D) -> void:
+func _on_detection_area_body_entered(body: Node2D) -> void:
 	if not body.is_in_group("player"):
 		return
 
 	player = body
 	player_detected = true
+	sprite.play("throw")
 	throw_cooldown.start()
 
-	_throw_bomb()
+	# Do not instantiate the bomb while physics queries are flushing.
+	_throw_bomb.call_deferred()
 
 
 func _on_detection_area_body_exited(body: Node2D) -> void:
@@ -38,6 +41,7 @@ func _on_detection_area_body_exited(body: Node2D) -> void:
 	player = null
 	player_detected = false
 	throw_cooldown.stop()
+	sprite.play("idle")
 
 
 func _throw_bomb() -> void:
@@ -48,16 +52,23 @@ func _throw_bomb() -> void:
 		push_warning("No bomb scene assigned to enemy.")
 		return
 
-	sprite.play("throw")
-
 	var bomb := bomb_scene.instantiate() as Bomb
+
+	if bomb == null:
+		push_warning("Bomb scene root must use the Bomb script.")
+		return
+
+	# Add it outside the enemy so it does not inherit enemy transforms.
 	get_tree().current_scene.add_child(bomb)
 
 	bomb.global_position = bomb_spawn_point.global_position
 
-	var direction := global_position.direction_to(player.global_position)
-	bomb.launch(direction)
+	# Positive means player is right; negative means player is left.
+	var horizontal_direction: float = sign(
+		player.global_position.x - bomb_spawn_point.global_position.x
+	)
 
+	if horizontal_direction == 0.0:
+		horizontal_direction = 1.0
 
-func _on_detection_area_body_entered(body: Node2D) -> void:
-	pass # Replace with function body.
+	bomb.launch(horizontal_direction)

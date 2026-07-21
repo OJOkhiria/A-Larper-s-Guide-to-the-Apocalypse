@@ -14,7 +14,7 @@ func load_level(index: int) -> void:
 		get_tree().change_scene_to_file(LEVELS[index])
 	else:
 		print("No more levels! Redirecting to Main Menu...")
-		get_tree().change_scene_to_file("res://Levels/MainMenu.tscn")
+		get_tree().change_scene_to_file("res://levels/MainMenu.tscn")
 
 func load_next_level() -> void:
 	load_level(current_level_index + 1)

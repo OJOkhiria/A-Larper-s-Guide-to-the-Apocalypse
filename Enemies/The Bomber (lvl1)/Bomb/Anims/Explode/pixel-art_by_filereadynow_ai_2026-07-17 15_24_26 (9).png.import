@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://brqtnxln7p0kr"
-path="res://.godot/imported/PlayerModel(jump).png-553deb76ec48a508daf4525fa43510d0.ctex"
+uid="uid://vnu2hnciw301"
+path="res://.godot/imported/pixel-art_by_filereadynow_ai_2026-07-17 15_24_26 (9).png-ab938bb99a9fef2fc856ef5a98acb2dd.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://PlayerModels/PlayerModel(jump).png"
-dest_files=["res://.godot/imported/PlayerModel(jump).png-553deb76ec48a508daf4525fa43510d0.ctex"]
+source_file="res://Enemies/The Bomber (lvl1)/Bomb/Anims/Explode/pixel-art_by_filereadynow_ai_2026-07-17 15_24_26 (9).png"
+dest_files=["res://.godot/imported/pixel-art_by_filereadynow_ai_2026-07-17 15_24_26 (9).png-ab938bb99a9fef2fc856ef5a98acb2dd.ctex"]
 
 [params]
 

@@ -1,7 +1,7 @@
 extends Node
 
 @onready var intro_dialogue: Area2D = $DialogueArea2D
-@onready var player: CharacterBody2D = $Player
+@onready var player: CharacterBody2D = $Player_Intro
 
 
 func _ready() -> void:

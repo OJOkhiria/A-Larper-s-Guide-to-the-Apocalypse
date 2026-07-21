@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://drdoqgc15cpkn"]
 
-[ext_resource type="FontFile" uid="uid://xaq0o2laqakn" path="res://ChiKareGo.ttf" id="1_nsd07"]
+[ext_resource type="FontFile" uid="uid://xaq0o2laqakn" path="res://DialogueSystem/ChiKareGo.ttf" id="1_nsd07"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_7mnm1"]
 

@@ -3,16 +3,23 @@ extends CharacterBody2D
 const SPEED: float = 300.0
 const JUMP_VELOCITY: float = -475.0
 
-@onready var health: Node = $Health
+@onready var health: Node = get_node_or_null("Health")
 
-@onready var animated_sprite: AnimatedSprite2D = $Sprite2D
+@onready var animated_sprite: AnimatedSprite2D = $AnimatedSprite2D
 
 var controls_enabled: bool = true
 var is_dead: bool = false
 
 
 func _ready() -> void:
-	health.died.connect(_on_health_died)
+	if health == null:
+		push_error("Player could not find its Health node.")
+		return
+
+	if health.has_signal("died"):
+		health.died.connect(_on_health_died)
+	else:
+		push_error("Health node does not have a died signal.")
 
 
 func set_controls_enabled(enabled: bool) -> void:
@@ -66,7 +73,3 @@ func _on_health_died(death_source: Node = null) -> void:
 	velocity = Vector2.ZERO
 
 	GameOver.show_game_over()
-
-
-func _on_detection_area_body_exited(body: Node2D) -> void:
-	pass # Replace with function body.

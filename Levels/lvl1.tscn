@@ -7,19 +7,20 @@
 [ext_resource type="Texture2D" uid="uid://ccpifndlwqdac" path="res://Lvl1Bck.png" id="4_1bvp3"]
 [ext_resource type="Texture2D" uid="uid://celkaehf2l7st" path="res://PlayerModels/pixel-art_by_filereadynow_ai_2026-07-16 20_09_05.png" id="4_fr3s5"]
 [ext_resource type="Script" uid="uid://dho5u66n3qum8" path="res://Health.gd" id="4_p01d0"]
-[ext_resource type="Texture2D" uid="uid://d32r1g03tq7r1" path="res://PlayerModels/PlayerModel.res" id="5_0ma7k"]
+[ext_resource type="Texture2D" uid="uid://d32r1g03tq7r1" path="res://PlayerModels/PlayerModel.png" id="5_0ma7k"]
 [ext_resource type="Texture2D" uid="uid://bv5q2k3obwci6" path="res://PlayerModels/pixel-art_by_filereadynow_ai_2026-07-15 21_43_59.png" id="5_b7ok2"]
-[ext_resource type="PackedScene" uid="uid://bk5cub14yf6d" path="res://dialogue_area_2d.tscn" id="5_tg51p"]
-[ext_resource type="Script" uid="uid://dkpwxghjd7ry8" path="res://DialogueExportResource.gd" id="6_cnj6n"]
+[ext_resource type="PackedScene" uid="uid://bk5cub14yf6d" path="res://DialogueSystem/dialogue_area_2d.tscn" id="5_tg51p"]
+[ext_resource type="Script" uid="uid://dkpwxghjd7ry8" path="res://DialogueSystem/DialogueExportResource.gd" id="6_cnj6n"]
 [ext_resource type="Texture2D" uid="uid://d25vhlnyjljan" path="res://PlayerModels/pixel-art_by_filereadynow_ai_2026-07-16 20_09_05 (1).png" id="6_qwvbv"]
 [ext_resource type="Texture2D" uid="uid://c4bu5o4cshtbn" path="res://PlayerModels/pixel-art_by_filereadynow_ai_2026-07-15 21_43_59 (1).png" id="7_0ma7k"]
-[ext_resource type="Script" uid="uid://q2hfxekwglu3" path="res://DialogueTextResource.gd" id="7_fvgg0"]
+[ext_resource type="Script" uid="uid://q2hfxekwglu3" path="res://DialogueSystem/DialogueTextResource.gd" id="7_fvgg0"]
 [ext_resource type="Texture2D" uid="uid://di3aa2tou5axn" path="res://REAL_exclamation-removebg-preview.png" id="8_p01d0"]
 [ext_resource type="AudioStream" uid="uid://b1iyperftamvw" path="res://talk.wav" id="9_6ot8x"]
 [ext_resource type="Script" uid="uid://b2q2t7xwlh7y5" path="res://Levels/the_bomber_(lvl_1).gd" id="10_avaaf"]
 [ext_resource type="Texture2D" uid="uid://5wwr3wtoejs7" path="res://Enemies/The Bomber (lvl1)/Models/pixel-art_by_filereadynow_ai_2026-07-17 15_24_26 (2).png" id="10_qwuwr"]
 [ext_resource type="Texture2D" uid="uid://36f7lwut6sxk" path="res://Enemies/The Bomber (lvl1)/Models/pixel-art_by_filereadynow_ai_2026-07-17 15_24_26 (1).png" id="11_avaaf"]
 [ext_resource type="Texture2D" uid="uid://baa3dj36ytw40" path="res://REAL_neutral.png" id="11_fvgg0"]
+[ext_resource type="PackedScene" uid="uid://bl88onnvv263j" path="res://Enemies/The Bomber (lvl1)/Bomb/bomb.tscn" id="11_kmsxj"]
 [ext_resource type="Texture2D" uid="uid://b0s1yxl0rg4ju" path="res://Enemies/The Bomber (lvl1)/Models/pixel-art_by_filereadynow_ai_2026-07-17 15_24_26 (3).png" id="11_rf3a3"]
 [ext_resource type="Texture2D" uid="uid://cvmngi4ycdr6f" path="res://Enemies/The Bomber (lvl1)/Models/pixel-art_by_filereadynow_ai_2026-07-17 15_24_26 (4).png" id="12_kmsxj"]
 [ext_resource type="Texture2D" uid="uid://bit56apljt88m" path="res://Enemies/The Bomber (lvl1)/Models/pixel-art_by_filereadynow_ai_2026-07-17 15_24_26 (5).png" id="13_5ntyq"]
@@ -33,7 +34,7 @@ animations = [{
 "duration": 1.0,
 "texture": ExtResource("5_0ma7k")
 }],
-"loop": true,
+"loop": 1,
 "name": &"idle",
 "speed": 5.0
 }, {
@@ -41,7 +42,7 @@ animations = [{
 "duration": 1.0,
 "texture": ExtResource("3_0ma7k")
 }],
-"loop": true,
+"loop": 1,
 "name": &"jump",
 "speed": 5.0
 }, {
@@ -58,7 +59,7 @@ animations = [{
 "duration": 1.0,
 "texture": ExtResource("7_0ma7k")
 }],
-"loop": true,
+"loop": 1,
 "name": &"run",
 "speed": 5.0
 }]
@@ -68,6 +69,17 @@ size = Vector2(34, 77)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_5rnc8"]
 animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("10_qwuwr")
+}, {
+"duration": 1.0,
+"texture": ExtResource("11_avaaf")
+}],
+"loop": 1,
+"name": &"idle",
+"speed": 5.0
+}, {
 "frames": [{
 "duration": 1.0,
 "texture": ExtResource("11_rf3a3")
@@ -81,19 +93,8 @@ animations = [{
 "duration": 1.0,
 "texture": ExtResource("14_v7f56")
 }],
-"loop": true,
-"name": &"bomb_throw",
-"speed": 5.0
-}, {
-"frames": [{
-"duration": 1.0,
-"texture": ExtResource("10_qwuwr")
-}, {
-"duration": 1.0,
-"texture": ExtResource("11_avaaf")
-}],
-"loop": true,
-"name": &"idle",
+"loop": 1,
+"name": &"throw",
 "speed": 5.0
 }]
 
@@ -510,23 +511,23 @@ size = Vector2(162, 87)
 [node name="BottomRight" type="Marker2D" parent="." unique_id=732517933]
 position = Vector2(1152, 648)
 
-[node name="Player" type="CharacterBody2D" parent="." unique_id=1176159441 groups=["player"]]
+[node name="Player(Lvl1)" type="CharacterBody2D" parent="." unique_id=1176159441 groups=["player"]]
 position = Vector2(1, 1)
 script = ExtResource("1_h2yge")
 
-[node name="Sprite2D" type="AnimatedSprite2D" parent="Player" unique_id=68647467]
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Player(Lvl1)" unique_id=68647467]
 z_index = 1
 position = Vector2(17.5, 605.5)
 scale = Vector2(0.25781247, 0.2421877)
 sprite_frames = SubResource("SpriteFrames_0ma7k")
 animation = &"idle"
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Player" unique_id=656056684]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Player(Lvl1)" unique_id=656056684]
 z_index = 1
 position = Vector2(11, 598.5)
 shape = SubResource("RectangleShape2D_7mycd")
 
-[node name="Camera2D" type="Camera2D" parent="Player" unique_id=147484526 node_paths=PackedStringArray("top_left", "bottom_right")]
+[node name="Camera2D" type="Camera2D" parent="Player(Lvl1)" unique_id=147484526 node_paths=PackedStringArray("top_left", "bottom_right")]
 position = Vector2(208, 514)
 zoom = Vector2(2.5, 2.5)
 limit_left = -20
@@ -539,19 +540,20 @@ script = ExtResource("3_cnj6n")
 top_left = NodePath("../../TopLeft")
 bottom_right = NodePath("../../BottomRight")
 
-[node name="Health" type="Node" parent="Player" unique_id=1219425922]
+[node name="Health" type="Node" parent="Player(Lvl1)" unique_id=1219425922]
 script = ExtResource("4_p01d0")
 use_player_data = true
 
 [node name="The Bomber (lvl 1)" type="CharacterBody2D" parent="." unique_id=643991390]
 script = ExtResource("10_avaaf")
+bomb_scene = ExtResource("11_kmsxj")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="The Bomber (lvl 1)" unique_id=1235553158]
 z_index = 1
 position = Vector2(729.00006, 579.99994)
 scale = Vector2(0.26, 0.26)
 sprite_frames = SubResource("SpriteFrames_5rnc8")
-animation = &"idle"
+animation = &"throw"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="The Bomber (lvl 1)" unique_id=2102604750]
 z_index = 1
@@ -566,8 +568,12 @@ z_index = 1
 position = Vector2(747.5, 560.5)
 shape = SubResource("RectangleShape2D_f7bkp")
 
+[node name="BombSpawnPoint" type="Marker2D" parent="The Bomber (lvl 1)" unique_id=1137012620]
+position = Vector2(695, 540)
+
+[node name="ThrowCooldown" type="Timer" parent="The Bomber (lvl 1)" unique_id=376597857]
+
 [node name="TileMapLayer" type="TileMapLayer" parent="." unique_id=486826454]
-z_index = 1
 tile_map_data = PackedByteArray("AAAAACcAAAAIAAUAAAABACcAAAAIAAUAAAACACcAAAAIAAUAAAADACcAAAAIAAUAAAAEACcAAAAIAAUAAAAFACcAAAAIAAUAAAAGACcAAAAIAAUAAAAHACcAAAAIAAUAAAAIACcAAAAIAAUAAAAJACcAAAAIAAUAAAAKACcAAAAIAAUAAAALACcAAAAIAAUAAAAMACcAAAAIAAUAAAANACcAAAAIAAUAAAAOACcAAAAIAAUAAAAPACcAAAAIAAUAAAAQACcAAAAIAAUAAAARACcAAAAIAAUAAAASACcAAAAIAAUAAAATACcAAAAIAAUAAAAUACcAAAAIAAUAAAAVACcAAAAIAAUAAAAWACcAAAAIAAUAAAAXACcAAAAIAAUAAAAYACcAAAAIAAUAAGAZACcAAAAIAAUAAGAaACcAAAAIAAUAAGAbACcAAAAIAAUAAGAcACcAAAAIAAUAAGAdACcAAAAIAAUAAGAeACcAAAAIAAUAAGAfACcAAAAIAAUAAGAgACcAAAAIAAUAAGAhACcAAAAIAAUAAGAiACcAAAAIAAUAAGAjACcAAAAIAAUAAGAkACcAAAAIAAUAAGAlACcAAAAIAAUAAGAmACcAAAAIAAUAAGAnACcAAAAIAAUAAGAoACcAAAAIAAUAAGApACcAAAAIAAUAAGAqACcAAAAIAAUAAGArACcAAAAIAAUAAGAsACcAAAAIAAUAAGAtACcAAAAIAAUAAGAuACcAAAAIAAUAAGAvACcAAAAIAAUAAGAwACcAAAAIAAUAAGAxACcAAAAIAAUAAGAyACcAAAAIAAUAAGAzACcAAAAIAAUAAGA0ACcAAAAIAAUAAGA1ACcAAAAIAAUAAGA2ACcAAAAIAAUAAGA3ACcAAAAIAAUAAGA4ACcAAAAIAAUAAGA5ACcAAAAIAAUAAGA6ACcAAAAIAAUAAGA7ACcAAAAIAAUAAGA8ACcAAAAIAAUAAGA9ACcAAAAIAAUAAGA+ACcAAAAIAAUAAGA/ACcAAAAIAAUAAGBAACcAAAAIAAUAAGBBACcAAAAIAAUAAGBCACcAAAAIAAUAAGBDACcAAAAIAAUAAGBEACcAAAAIAAUAAGBFACcAAAAIAAUAAGBGACcAAAAIAAUAAGBHACcAAAAIAAUAAGAYACAAAAAGAAUAAAAZACAAAAAGAAUAAAAaACAAAAAGAAUAAAAbACAAAAAGAAUAAAAcACAAAAAGAAUAAAAcAB8AAAAGAAUAAAAeAB8AAAAGAAUAAAAdAB8AAAAGAAUAAAAeAB4AAAAGAAUAAAAfAB4AAAAGAAUAAAAfAB0AAAAGAAUAAAAgAB0AAAAGAAUAAAAhABwAAAAGAAUAAAAiABwAAAAGAAUAAAApABkAAAAGAAUAAAAoABkAAAAGAAUAAAAnABkAAAAGAAUAAAAmABkAAAAGAAUAAAAlABkAAAAGAAUAAAAkABkAAAAGAAUAAAAjABoAAAAGAAUAAAAiABsAAAAGAAUAAAAjABUAAAAGAAUAAAAiABUAAAAGAAUAAAAhABQAAAAGAAUAAAAgABQAAAAGAAUAAAAfABQAAAAGAAUAAAAfABMAAAAGAAUAAAAeABMAAAAGAAUAAAAdABMAAAAGAAUAAAAdABIAAAAGAAUAAAAcABIAAAAGAAUAAAAbABEAAAAGAAUAAAAbABAAAAAGAAUAAAAaABAAAAAGAAUAAAAZABAAAAAGAAUAAAAYABAAAAAGAAUAAAAXABAAAAAGAAUAAAAXAA8AAAAGAAUAAAAWAA8AAAAGAAUAAAAVAA8AAAAGAAUAAAAUAA8AAAAGAAUAAAAUAA4AAAAGAAUAAAATAA4AAAAGAAUAAAASAA4AAAAGAAUAAAARAA4AAAAGAAUAAAARAA0AAAAGAAUAAAAQAA0AAAAGAAUAAAAPAA0AAAAGAAUAAAAOAA0AAAAGAAUAAAAOAAwAAAAGAAUAAAANAAwAAAAGAAUAAAAMAAwAAAAGAAUAAAAHAAsAAAAGAAUAAAAIAAsAAAAGAAUAAAAJAAsAAAAGAAUAAAAKAAsAAAAGAAUAAAALAAsAAAAGAAUAAAAMAAsAAAAGAAUAAAADAAQAAAAGAAUAAGAEAAQAAAAGAAUAAGAFAAQAAAAGAAUAAGAGAAQAAAAGAAUAAGAHAAQAAAAGAAUAAGAIAAQAAAAGAAUAAGAJAAQAAAAGAAUAAGAKAAQAAAAGAAUAAGAKAAMAAAAGAAUAAGALAAMAAAAGAAUAAGAMAAMAAAAGAAUAAGANAAMAAAAGAAUAAGAMAAIAAAAGAAUAAGANAAIAAAAGAAUAAGAOAAIAAAAGAAUAAGAPAAIAAAAGAAUAAGATAAQAAAAGAAUAAGAUAAQAAAAGAAUAAGAVAAQAAAAGAAUAAGAWAAQAAAAGAAUAAGAXAAQAAAAGAAUAAGAYAAQAAAAGAAUAAGAZAAQAAAAGAAUAAGAcAAgAAAAGAAUAAAAdAAgAAAAGAAUAAAAeAAgAAAAGAAUAAAAfAAgAAAAGAAUAAAAgAAgAAAAGAAUAAAAhAAgAAAAGAAUAAAAiAAgAAAAGAAUAAAAlAA0AAAAGAAUAAAAmAA0AAAAGAAUAAAAnAA0AAAAGAAUAAAAoAA0AAAAGAAUAAAApAA0AAAAGAAUAAAAqAA0AAAAGAAUAAAArAA0AAAAGAAUAAAAqAAwAAAAGAAUAAAArAAwAAAAGAAUAAAAsAAwAAAAGAAUAAAAsAAsAAAAGAAUAAAAtAAsAAAAGAAUAAAAuAAsAAAAGAAUAAAAuAAoAAAAGAAUAAAAvAAoAAAAGAAUAAAAuAAMAAAAGAAUAAAAvAAMAAAAGAAUAAAAwAAMAAAAGAAUAAAAxAAMAAAAGAAUAAAAyAAMAAAAGAAUAAAAzAA0AAAAGAAUAAAA0AA0AAAAGAAUAAAA1AA0AAAAGAAUAAAA2AA0AAAAGAAUAAAA3AA0AAAAGAAUAAAA4AA0AAAAGAAUAAAA5AA0AAAAGAAUAAAA2AAYAAAAGAAUAAAA3AAYAAAAGAAUAAAA4AAYAAAAGAAUAAAA5AAYAAAAGAAUAAAA6AAYAAAAGAAUAAAA7AAYAAAAGAAUAAAA8AAYAAAAGAAUAAAA8AAcAAAAGAAUAAAA4ABIAAAAGAAUAAAA5ABIAAAAGAAUAAAA6ABIAAAAGAAUAAAA7ABIAAAAGAAUAAAA8ABIAAAAGAAUAAAA9ABIAAAAGAAUAAAA+ABIAAAAGAAUAAAA8ABUAAAAGAAUAAAA7ABUAAAAGAAUAAAA9ABUAAAAGAAUAAAA+ABUAAAAGAAUAAAA/ABUAAAAGAAUAAAA+ABkAAAAGAAUAAAA/ABkAAAAGAAUAAABAABkAAAAGAAUAAABBABkAAAAGAAUAAABCABkAAAAGAAUAAABDABkAAAAGAAUAAABEABkAAAAGAAUAAABFABkAAAAGAAUAAABGABkAAAAGAAUAAABHABkAAAAGAAUAAABIABkAAAAGAAUAAABJABkAAAAGAAUAAABKABkAAAAGAAUAAABLABkAAAAGAAUAAABIACcAAAAGAAQAAABJACcAAAAGAAQAAABKACcAAAAGAAQAAABLACcAAAAGAAQAAAA=")
 tile_set = SubResource("TileSet_5vw27")
 
@@ -606,6 +612,3 @@ position = Vector2(730, 550)
 
 [node name="HUD" parent="." unique_id=1161330053 instance=ExtResource("18_0ma7k")]
 heart_size = Vector2(128, 128)
-
-[connection signal="body_entered" from="The Bomber (lvl 1)/DetectionArea" to="The Bomber (lvl 1)" method="_on_detection_area_body_entered"]
-[connection signal="body_exited" from="The Bomber (lvl 1)/DetectionArea" to="The Bomber (lvl 1)" method="_on_detection_area_body_exited"]

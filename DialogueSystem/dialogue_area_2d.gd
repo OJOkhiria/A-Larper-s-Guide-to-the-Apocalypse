@@ -1,6 +1,6 @@
 extends Area2D
 
-const DialogueSystemPreload = preload("res://Dialogue_System.tscn")
+const DialogueSystemPreload = preload("res://DialogueSystem/Dialogue_System.tscn")
 var active_camera: Camera2D
 
 enum BoxPlacement {
@@ -95,10 +95,11 @@ func _activate_dialogue() -> void:
 
 	get_parent().add_child(new_dialogue)
 	if pan_before_dialogue:
-		DialogueBus.dialogue_finished.connect(
-		_return_camera,
-		CONNECT_ONE_SHOT
-	)
+		if not DialogueBus.dialogue_finished.is_connected(_return_camera):
+			DialogueBus.dialogue_finished.connect(
+			_return_camera,
+			CONNECT_ONE_SHOT
+		)
 	
 	if new_dialogue.has_method("set_box_placement"):
 		new_dialogue.call("set_box_placement", box_placement, desired_dialogue_pos)

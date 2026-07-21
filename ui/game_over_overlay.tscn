@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://b7ox6rgsg14ly" path="res://ui/game_over_overlay.gd" id="1_facph"]
 [ext_resource type="Shader" uid="uid://c21ncot4rvrmv" path="res://game_over_overlay.gdshader" id="2_o1u5n"]
-[ext_resource type="FontFile" uid="uid://xaq0o2laqakn" path="res://ChiKareGo.ttf" id="3_kq304"]
+[ext_resource type="FontFile" uid="uid://xaq0o2laqakn" path="res://DialogueSystem/ChiKareGo.ttf" id="3_kq304"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_v8lvw"]
 shader = ExtResource("2_o1u5n")

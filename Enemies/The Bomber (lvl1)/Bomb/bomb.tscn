@@ -1,0 +1,124 @@
+[gd_scene format=3 uid="uid://bl88onnvv263j"]
+
+[ext_resource type="Script" uid="uid://c2lkurh0hdby1" path="res://Enemies/The Bomber (lvl1)/Bomb/bomb.gd" id="1_wc587"]
+[ext_resource type="Texture2D" uid="uid://di1nksnxy2uv6" path="res://Enemies/The Bomber (lvl1)/Bomb/Anims/Explode/pixel-art_by_filereadynow_ai_2026-07-17 15_24_26 (7).png" id="2_2oun8"]
+[ext_resource type="Texture2D" uid="uid://bpw7onndg5x4e" path="res://Enemies/The Bomber (lvl1)/Bomb/Anims/Explode/pixel-art_by_filereadynow_ai_2026-07-17 15_24_26 (8).png" id="3_cu2x7"]
+[ext_resource type="Texture2D" uid="uid://vnu2hnciw301" path="res://Enemies/The Bomber (lvl1)/Bomb/Anims/Explode/pixel-art_by_filereadynow_ai_2026-07-17 15_24_26 (9).png" id="4_xre40"]
+[ext_resource type="Texture2D" uid="uid://gm6h6t7byv3j" path="res://Enemies/The Bomber (lvl1)/Bomb/Anims/Explode/pixel-art_by_filereadynow_ai_2026-07-17 15_24_26 (14).png" id="5_82krs"]
+[ext_resource type="Texture2D" uid="uid://cdiyftjt0piw7" path="res://Enemies/The Bomber (lvl1)/Bomb/Anims/Explode/pixel-art_by_filereadynow_ai_2026-07-17 15_24_26 (10).png" id="6_y4l2j"]
+[ext_resource type="Texture2D" uid="uid://wcgcgpbv8r81" path="res://Enemies/The Bomber (lvl1)/Bomb/Anims/Explode/pixel-art_by_filereadynow_ai_2026-07-17 15_24_26 (11).png" id="7_lo4m1"]
+[ext_resource type="Texture2D" uid="uid://sjt0wfr5qm76" path="res://Enemies/The Bomber (lvl1)/Bomb/Anims/Explode/pixel-art_by_filereadynow_ai_2026-07-17 15_24_26 (12).png" id="8_w2vos"]
+[ext_resource type="Texture2D" uid="uid://v0ynvevjbpf6" path="res://Enemies/The Bomber (lvl1)/Bomb/Anims/Explode/pixel-art_by_filereadynow_ai_2026-07-17 15_24_26 (13).png" id="9_qalwm"]
+[ext_resource type="Texture2D" uid="uid://bvq68eo1syxd5" path="res://Enemies/The Bomber (lvl1)/Bomb/Anims/Flying/pixel-art_by_filereadynow_ai_2026-07-17 15_24_26 (7).png" id="10_i7a05"]
+[ext_resource type="Texture2D" uid="uid://bih38p6v72dos" path="res://Enemies/The Bomber (lvl1)/Bomb/Anims/Flying/pixel-art_by_filereadynow_ai_2026-07-17 15_24_26 (8).png" id="11_cp2us"]
+[ext_resource type="Texture2D" uid="uid://dxg1jqv3k0enc" path="res://Enemies/The Bomber (lvl1)/Bomb/Anims/Flying/pixel-art_by_filereadynow_ai_2026-07-17 15_24_26 (10).png" id="12_5f16r"]
+[ext_resource type="Texture2D" uid="uid://cssp5ek1vbcd5" path="res://Enemies/The Bomber (lvl1)/Bomb/Anims/Flying/pixel-art_by_filereadynow_ai_2026-07-17 15_24_26 (11).png" id="13_x246g"]
+[ext_resource type="Texture2D" uid="uid://4udjs2m7ud66" path="res://Enemies/The Bomber (lvl1)/Bomb/Anims/Flying/pixel-art_by_filereadynow_ai_2026-07-17 15_24_26 (9).png" id="14_y6x4l"]
+[ext_resource type="Texture2D" uid="uid://b4o1hrhhigt4x" path="res://Enemies/The Bomber (lvl1)/Bomb/Anims/Flying/pixel-art_by_filereadynow_ai_2026-07-17 15_24_26 (12).png" id="15_m3kqv"]
+[ext_resource type="Texture2D" uid="uid://cd54o1orw541q" path="res://Enemies/The Bomber (lvl1)/Bomb/Anims/Landed/pixel-art_by_filereadynow_ai_2026-07-17 15_24_26 (13).png" id="16_qwm6g"]
+[ext_resource type="Texture2D" uid="uid://ovy023jmf4ax" path="res://Enemies/The Bomber (lvl1)/Bomb/Anims/Landed/pixel-art_by_filereadynow_ai_2026-07-17 15_24_26 (14).png" id="17_qvuyr"]
+[ext_resource type="Texture2D" uid="uid://dtfrrgbyl66iy" path="res://Enemies/The Bomber (lvl1)/Bomb/Anims/Landed/pixel-art_by_filereadynow_ai_2026-07-17 15_24_26 (15).png" id="18_wmi7l"]
+[ext_resource type="Texture2D" uid="uid://bqydlte1txipt" path="res://Enemies/The Bomber (lvl1)/Bomb/Anims/Landed/pixel-art_by_filereadynow_ai_2026-07-17 15_24_26 (16).png" id="19_d5ndp"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_gd7ww"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_2oun8")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_cu2x7")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_xre40")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_82krs")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_y4l2j")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_lo4m1")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_w2vos")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_qalwm")
+}],
+"loop": 1,
+"name": &"explode",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("10_i7a05")
+}, {
+"duration": 1.0,
+"texture": ExtResource("11_cp2us")
+}, {
+"duration": 1.0,
+"texture": ExtResource("12_5f16r")
+}, {
+"duration": 1.0,
+"texture": ExtResource("13_x246g")
+}, {
+"duration": 1.0,
+"texture": ExtResource("14_y6x4l")
+}, {
+"duration": 1.0,
+"texture": ExtResource("15_m3kqv")
+}],
+"loop": 1,
+"name": &"flying",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("16_qwm6g")
+}, {
+"duration": 1.0,
+"texture": ExtResource("17_qvuyr")
+}, {
+"duration": 1.0,
+"texture": ExtResource("18_wmi7l")
+}, {
+"duration": 1.0,
+"texture": ExtResource("19_d5ndp")
+}],
+"loop": 1,
+"name": &"landed",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_0u83k"]
+size = Vector2(260, 249)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_r0vmc"]
+size = Vector2(301, 301)
+
+[node name="bomb" type="CharacterBody2D" unique_id=132141947]
+script = ExtResource("1_wc587")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=595960428]
+position = Vector2(14.500008, -67)
+scale = Vector2(0.89, 0.7933333)
+sprite_frames = SubResource("SpriteFrames_gd7ww")
+animation = &"landed"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1948482830]
+position = Vector2(3, -65.5)
+shape = SubResource("RectangleShape2D_0u83k")
+
+[node name="ExplosionArea" type="Area2D" parent="." unique_id=1977289237]
+position = Vector2(10, -27)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ExplosionArea" unique_id=18310848]
+position = Vector2(-6.5, -37.5)
+shape = SubResource("RectangleShape2D_r0vmc")
+disabled = true
+
+[node name="FuseTimer" type="Timer" parent="." unique_id=1073886675]
+
+[node name="LifetimeTimer" type="Timer" parent="." unique_id=151973273]

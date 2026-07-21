@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://bk5cub14yf6d"]
 
-[ext_resource type="Script" uid="uid://dr2owixrcyn4r" path="res://dialogue_area_2d.gd" id="1_dagns"]
+[ext_resource type="Script" uid="uid://dr2owixrcyn4r" path="res://DialogueSystem/dialogue_area_2d.gd" id="1_dagns"]
 
 [node name="DialogueArea2D" type="Area2D" unique_id=1615248638]
 script = ExtResource("1_dagns")

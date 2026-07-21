@@ -1,7 +1,7 @@
 extends CanvasLayer
 
-@onready var respawn_button: Button = $CenterContainer/PanelContainer/VBoxContainer/RespawnButton
-@onready var menu_button: Button = $CenterContainer/PanelContainer/VBoxContainer/MenuButton
+@onready var respawn_button: Button = $BlurRect/CenterContainer/PanelContainer/VBoxContainer/RespawnButton
+@onready var menu_button: Button = $BlurRect/CenterContainer/PanelContainer/VBoxContainer/MenuButton
 
 func _ready() -> void:
 	process_mode = Node.PROCESS_MODE_ALWAYS
@@ -13,3 +13,7 @@ func _on_respawn_pressed() -> void:
 
 func _on_menu_pressed() -> void:
 	GameOver.return_to_main_menu()
+
+
+func _on_respawn_button_pressed() -> void:
+	pass # Replace with function body.

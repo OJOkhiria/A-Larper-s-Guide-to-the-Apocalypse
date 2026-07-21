@@ -2,13 +2,13 @@
 
 importer="font_data_dynamic"
 type="FontFile"
-uid="uid://xaq0o2laqakn"
-path="res://.godot/imported/ChiKareGo.ttf-e1760845b6759789e3aefc25c0a2c3da.fontdata"
+uid="uid://b7wwpls0rmqff"
+path="res://.godot/imported/Adventurer.ttf-0ff6cfa56d4214197791d18814355ce0.fontdata"
 
 [deps]
 
-source_file="res://ChiKareGo.ttf"
-dest_files=["res://.godot/imported/ChiKareGo.ttf-e1760845b6759789e3aefc25c0a2c3da.fontdata"]
+source_file="res://Adventurer.ttf"
+dest_files=["res://.godot/imported/Adventurer.ttf-0ff6cfa56d4214197791d18814355ce0.fontdata"]
 
 [params]
 
@@ -22,7 +22,7 @@ msdf_size=48
 allow_system_fallback=true
 force_autohinter=false
 modulate_color_glyphs=false
-hinting=1
+hinting=3
 subpixel_positioning=4
 keep_rounding_remainders=true
 oversampling=0.0

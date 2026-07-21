@@ -1,6 +1,6 @@
 extends Node
 
-const GAME_OVER_SCENE := preload("res://ui/GameOverOverlay.tscn")
+const GAME_OVER_SCENE := preload("res://ui/game_over_overlay.tscn")
 
 var overlay: CanvasLayer = null
 
