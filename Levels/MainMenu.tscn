@@ -10,6 +10,7 @@
 [ext_resource type="AudioStream" uid="uid://ctgwlxs331hmh" path="res://PageFlip.mp3" id="3_uty7f"]
 [ext_resource type="FontFile" uid="uid://b7wwpls0rmqff" path="res://Adventurer.ttf" id="4_2ld8x"]
 [ext_resource type="FontFile" uid="uid://xaq0o2laqakn" path="res://DialogueSystem/ChiKareGo.ttf" id="5_ooo5j"]
+[ext_resource type="Texture2D" uid="uid://c2j0awpx14yj5" path="res://pixel-art_by_filereadynow_ai_2026-07-21 14_13_33.png" id="7_pdswe"]
 
 [node name="MainMenu" type="Control" unique_id=603751745]
 layout_mode = 3
@@ -76,10 +77,12 @@ anchor_right = 8.593
 anchor_bottom = 9.505
 offset_right = -15.720032
 offset_bottom = 10.799988
+theme_override_constants/margin_left = 10
 theme_override_constants/margin_top = 10
 
 [node name="VBoxContainer" type="VBoxContainer" parent="BookPivot/BackAndPages/ControlsPage/MarginContainer" unique_id=871724296]
 layout_mode = 2
+theme_override_constants/separation = 15
 
 [node name="ControlsTitle" type="Label" parent="BookPivot/BackAndPages/ControlsPage/MarginContainer/VBoxContainer" unique_id=1895363830]
 layout_mode = 2
@@ -88,6 +91,28 @@ theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_fonts/font = ExtResource("4_2ld8x")
 theme_override_font_sizes/font_size = 30
 text = "Controls"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="BookPivot/BackAndPages/ControlsPage/MarginContainer/VBoxContainer" unique_id=53446587]
+custom_minimum_size = Vector2(0, 175)
+layout_mode = 2
+
+[node name="WASD" type="TextureRect" parent="BookPivot/BackAndPages/ControlsPage/MarginContainer/VBoxContainer/HBoxContainer" unique_id=1106165558]
+layout_mode = 2
+texture = ExtResource("7_pdswe")
+expand_mode = 2
+
+[node name="WASDText" type="Label" parent="BookPivot/BackAndPages/ControlsPage/MarginContainer/VBoxContainer/HBoxContainer" unique_id=24751420]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("5_ooo5j")
+text = "W - Jump
+
+A/D - Movement
+
+S - Crouch
+
+Left Mouse Button -
+Use Items"
 
 [node name="ContinueButton" type="Button" parent="BookPivot/BackAndPages/ControlsPage/MarginContainer/VBoxContainer" unique_id=42815891]
 custom_minimum_size = Vector2(100, 50)
@@ -163,7 +188,8 @@ layout_mode = 2
 theme_override_fonts/font = ExtResource("4_2ld8x")
 theme_override_font_sizes/font_size = 32
 text = "A Larper's Guide 
-to the Apocalypse"
+to the Apocalypse
+by OJ"
 horizontal_alignment = 1
 
 [node name="PlayButton" type="Button" parent="BookPivot/FrontCoverPivot/FrontCover/CoverContent/VBoxContainer" unique_id=1430943313]
