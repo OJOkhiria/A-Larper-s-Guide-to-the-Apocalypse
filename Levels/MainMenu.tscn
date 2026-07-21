@@ -5,6 +5,7 @@
 [ext_resource type="Texture2D" uid="uid://b6mklos5jsect" path="res://pixel-art_by_filereadynow_ai_2026-07-20 14_23_19 (1).png" id="2_65ows"]
 [ext_resource type="Texture2D" uid="uid://daukrugch87eg" path="res://pixel-art_by_filereadynow_ai_2026-07-20 14_23_19 (2).png" id="2_gerv3"]
 [ext_resource type="Script" uid="uid://dwoahc2bbvyh2" path="res://Levels/fade_rect.gd" id="2_hr4vk"]
+[ext_resource type="AudioStream" uid="uid://doyevkvvaiimp" path="res://freesound_community-thud-bassy-bump2-108323-[AudioTrimmer.com].mp3" id="2_xun1b"]
 [ext_resource type="Texture2D" uid="uid://dlk20x5x6kl1v" path="res://pixel-art_by_filereadynow_ai_2026-07-20 14_23_19 (4).png" id="3_17ajd"]
 [ext_resource type="FontFile" uid="uid://b7wwpls0rmqff" path="res://Adventurer.ttf" id="4_2ld8x"]
 [ext_resource type="FontFile" uid="uid://xaq0o2laqakn" path="res://DialogueSystem/ChiKareGo.ttf" id="5_ooo5j"]
@@ -26,6 +27,8 @@ mouse_filter = 2
 color = Color(0, 0, 0, 1)
 
 [node name="BookThud" type="AudioStreamPlayer2D" parent="." unique_id=691119345]
+stream = ExtResource("2_xun1b")
+volume_db = 7.0
 
 [node name="BookPivot" type="Control" parent="." unique_id=1903167568]
 layout_mode = 1

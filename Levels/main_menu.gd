@@ -75,8 +75,8 @@ $BookPivot/BackAndPages/ControlsPage
 @onready var fade_rect: ColorRect = \
 	$FadeLayer/FadeRect
 
-@onready var book_thud: AudioStreamPlayer = \
-	get_node_or_null("BookThud") as AudioStreamPlayer
+@onready var book_thud: AudioStreamPlayer2D = \
+	get_node_or_null("BookThud") as AudioStreamPlayer2D
 
 
 var final_book_position: Vector2
