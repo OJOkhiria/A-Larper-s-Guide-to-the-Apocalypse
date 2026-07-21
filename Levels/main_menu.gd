@@ -137,7 +137,6 @@ func _configure_button(button: Button) -> void:
 	button.focus_mode = Control.FOCUS_ALL
 
 func _initialize_menu() -> void:
-	# Wait for the Control-node layout to calculate its sizes.
 	await get_tree().process_frame
 	await get_tree().process_frame
 
@@ -150,10 +149,9 @@ func _initialize_menu() -> void:
 
 	menu_initialized = true
 
-	if not transition_started:
-		play_button.disabled = false
-		settings_button.disabled = false
-		play_button.grab_focus()
+	play_button.disabled = false
+	settings_button.disabled = false
+	play_button.grab_focus()
 
 
 func _prepare_layout() -> void:
@@ -326,8 +324,11 @@ func _play_book_impact() -> void:
 		0.055
 	)
 
-	await squash_tween.finished
+	# Wait for the shorter tween first.
 	await shake_tween.finished
+
+	# The squash tween is still running at this point.
+	await squash_tween.finished
 
 	book_pivot.position = final_book_position
 	book_pivot.scale = Vector2.ONE
