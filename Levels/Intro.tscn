@@ -11,7 +11,14 @@
 [ext_resource type="Texture2D" uid="uid://di3aa2tou5axn" path="res://REAL_exclamation-removebg-preview.png" id="9_ja504"]
 [ext_resource type="Script" uid="uid://80kl10p8d3vr" path="res://player.gd" id="10_ja504"]
 [ext_resource type="Script" uid="uid://dho5u66n3qum8" path="res://Health.gd" id="11_ja504"]
+[ext_resource type="Texture2D" uid="uid://d32r1g03tq7r1" path="res://PlayerModels/PlayerModel.png" id="12_6ocyv"]
 [ext_resource type="Script" uid="uid://b8oaxr7h2apa6" path="res://Levels/intro_fade.gd" id="12_wnude"]
+[ext_resource type="Texture2D" uid="uid://d1om6pjvcs2ag" path="res://PlayerModels/pixel-art_by_filereadynow_ai_2026-07-17 15_24_26.png" id="13_t8xs2"]
+[ext_resource type="Texture2D" uid="uid://celkaehf2l7st" path="res://PlayerModels/pixel-art_by_filereadynow_ai_2026-07-16 20_09_05.png" id="14_l8bc4"]
+[ext_resource type="Texture2D" uid="uid://bv5q2k3obwci6" path="res://PlayerModels/pixel-art_by_filereadynow_ai_2026-07-15 21_43_59.png" id="15_hf6e7"]
+[ext_resource type="Texture2D" uid="uid://d25vhlnyjljan" path="res://PlayerModels/pixel-art_by_filereadynow_ai_2026-07-16 20_09_05 (1).png" id="16_ussjm"]
+[ext_resource type="Texture2D" uid="uid://c4bu5o4cshtbn" path="res://PlayerModels/pixel-art_by_filereadynow_ai_2026-07-15 21_43_59 (1).png" id="17_abasx"]
+[ext_resource type="Script" uid="uid://be53l74160rtt" path="res://Levels/camera_2d.gd" id="18_51c6c"]
 
 [sub_resource type="Resource" id="Resource_golbo"]
 script = ExtResource("4_rks4u")
@@ -92,26 +99,54 @@ metadata/_custom_type_script = "uid://q2hfxekwglu3"
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_v6nf2"]
 size = Vector2(1152, 648.5)
 
-[sub_resource type="SpriteFrames" id="SpriteFrames_yu314"]
+[sub_resource type="SpriteFrames" id="SpriteFrames_frr8k"]
 animations = [{
 "frames": [],
+"loop": 1,
+"name": &"crouch",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("12_6ocyv")
+}],
 "loop": 1,
 "name": &"idle",
 "speed": 5.0
 }, {
-"frames": [],
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("13_t8xs2")
+}],
 "loop": 1,
 "name": &"jump",
 "speed": 5.0
 }, {
-"frames": [],
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("14_l8bc4")
+}, {
+"duration": 1.0,
+"texture": ExtResource("15_hf6e7")
+}, {
+"duration": 1.0,
+"texture": ExtResource("16_ussjm")
+}, {
+"duration": 1.0,
+"texture": ExtResource("17_abasx")
+}],
 "loop": 1,
 "name": &"run",
 "speed": 5.0
 }]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_gr7rr"]
-size = Vector2(32.25, 31)
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_8shru"]
+size = Vector2(34, 77)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_chrng"]
+size = Vector2(34, 51)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_e3msw"]
 
 [node name="Intro" type="Node" unique_id=1088035300]
 script = ExtResource("1_d556c")
@@ -134,33 +169,6 @@ dialogue = Array[ExtResource("3_dt4lh")]([SubResource("Resource_golbo"), SubReso
 position = Vector2(577, 324.75)
 shape = SubResource("RectangleShape2D_v6nf2")
 
-[node name="Player_Intro" type="CharacterBody2D" parent="." unique_id=1042370523 groups=["player"]]
-visible = false
-position = Vector2(1, 1)
-script = ExtResource("10_ja504")
-
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Player_Intro" unique_id=408874521]
-z_index = 1
-position = Vector2(17.5, 605.5)
-scale = Vector2(0.25781247, 0.2421877)
-sprite_frames = SubResource("SpriteFrames_yu314")
-animation = &"run"
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Player_Intro" unique_id=2076332667]
-z_index = 1
-position = Vector2(17.875, 605.5)
-shape = SubResource("RectangleShape2D_gr7rr")
-
-[node name="Camera2D" type="Camera2D" parent="Player_Intro" unique_id=1847554335]
-position = Vector2(22, 508)
-zoom = Vector2(2.5, 2.5)
-position_smoothing_enabled = true
-position_smoothing_speed = 7.0
-
-[node name="Health" type="Node" parent="Player_Intro" unique_id=1347966931]
-script = ExtResource("11_ja504")
-metadata/_custom_type_script = "uid://dho5u66n3qum8"
-
 [node name="TransitionLayer" type="CanvasLayer" parent="." unique_id=1380607179]
 
 [node name="FadeRect" type="ColorRect" parent="TransitionLayer" unique_id=100974777]
@@ -168,3 +176,47 @@ offset_right = 1152.0
 offset_bottom = 648.0
 color = Color(0, 0, 0, 1)
 script = ExtResource("12_wnude")
+
+[node name="Player_Intro" type="CharacterBody2D" parent="." unique_id=2106874177 groups=["player"]]
+visible = false
+position = Vector2(1, 1)
+script = ExtResource("10_ja504")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Player_Intro" unique_id=301266679]
+z_index = 1
+position = Vector2(17.5, 605.5)
+scale = Vector2(0.25781247, 0.2421877)
+sprite_frames = SubResource("SpriteFrames_frr8k")
+animation = &"crouch"
+
+[node name="StandingCollision" type="CollisionShape2D" parent="Player_Intro" unique_id=1492970049]
+z_index = 1
+position = Vector2(11, 598.5)
+shape = SubResource("RectangleShape2D_8shru")
+
+[node name="CrouchingCollision" type="CollisionShape2D" parent="Player_Intro" unique_id=1017377697]
+z_index = 1
+position = Vector2(11, 611.5)
+shape = SubResource("RectangleShape2D_chrng")
+disabled = true
+
+[node name="StandingClearance" type="ShapeCast2D" parent="Player_Intro" unique_id=525233005]
+shape = SubResource("RectangleShape2D_e3msw")
+target_position = Vector2(10, 576)
+
+[node name="Camera2D" type="Camera2D" parent="Player_Intro" unique_id=408722138 node_paths=PackedStringArray("top_left", "bottom_right")]
+position = Vector2(208, 514)
+zoom = Vector2(2.5, 2.5)
+limit_left = 15
+limit_top = 13
+limit_right = 1148
+limit_bottom = 645
+position_smoothing_enabled = true
+position_smoothing_speed = 7.0
+script = ExtResource("18_51c6c")
+top_left = NodePath("")
+bottom_right = NodePath("")
+
+[node name="Health" type="Node" parent="Player_Intro" unique_id=1971941932]
+script = ExtResource("11_ja504")
+use_player_data = true

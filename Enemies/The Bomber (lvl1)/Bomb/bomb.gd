@@ -9,6 +9,7 @@ extends CharacterBody2D
 @export var fuse_time: float = 1.5
 @export var maximum_lifetime: float = 8.0
 @export var explosion_duration: float = 0.15
+@export var death_source_id: StringName = &"bomber_bomb"
 
 @onready var sprite: AnimatedSprite2D = $AnimatedSprite2D
 @onready var fuse_timer: Timer = $FuseTimer
@@ -158,7 +159,7 @@ func _damage_body(body: Node) -> void:
 	var health := body.get_node_or_null("Health")
 
 	if health != null and health.has_method("take_damage"):
-		health.take_damage(damage)
+		health.take_damage(damage, self)
 	elif body.has_method("take_damage"):
 		body.take_damage(damage)
 
@@ -215,3 +216,6 @@ func _set_bomb_state(new_state: BombState) -> void:
 				"disabled",
 				false
 			)
+
+func get_death_source_id() -> StringName:
+	return death_source_id

@@ -309,7 +309,7 @@ func _connect_health_signal() -> void:
 
 
 func _on_health_died(
-	_death_source: Node = null
+	death_source: Node = null
 ) -> void:
 	if is_dead:
 		return
@@ -318,4 +318,45 @@ func _on_health_died(
 	controls_enabled = false
 	velocity = Vector2.ZERO
 
+	var source_id: StringName = \
+		_resolve_death_source_id(death_source)
+
+	PlayerData.set_pending_death_source(
+		source_id
+	)
+
 	GameOver.show_game_over()
+
+func _resolve_death_source_id(
+	death_source: Node
+) -> StringName:
+	if (
+		death_source == null
+		or not is_instance_valid(death_source)
+	):
+		return &"unknown"
+
+	if death_source.has_method(
+		&"get_death_source_id"
+	):
+		var returned_value: Variant = death_source.call(
+			&"get_death_source_id"
+		)
+
+		return StringName(
+			str(returned_value)
+		)
+
+	# Optional fallbacks for older hazards that have not yet
+	# received get_death_source_id().
+	if death_source.is_in_group(
+		&"bomber_bombs"
+	):
+		return &"bomber_bomb"
+
+	if death_source.is_in_group(
+		&"spikes"
+	):
+		return &"spikes"
+
+	return &"unknown"

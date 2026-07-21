@@ -12,8 +12,10 @@ func _on_respawn_pressed() -> void:
 	GameOver.respawn_current_level()
 
 func _on_menu_pressed() -> void:
-	GameOver.return_to_main_menu()
+	PlayerData.clear_pending_death_source()
 
+	get_tree().paused = false
 
-func _on_respawn_button_pressed() -> void:
-	pass # Replace with function body.
+	get_tree().change_scene_to_file(
+		"res://menus/MainMenu.tscn"
+	)

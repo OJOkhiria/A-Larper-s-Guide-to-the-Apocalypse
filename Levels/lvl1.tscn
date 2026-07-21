@@ -27,6 +27,9 @@
 [ext_resource type="Script" uid="uid://bgu5nf4rque13" path="res://Levels/area_2d.gd" id="13_5rnc8"]
 [ext_resource type="Texture2D" uid="uid://u6sh1dsfitnv" path="res://Enemies/The Bomber (lvl1)/Models/pixel-art_by_filereadynow_ai_2026-07-17 15_24_26 (6).png" id="14_v7f56"]
 [ext_resource type="PackedScene" uid="uid://bsusofe1hdgx" path="res://ui/hud.tscn" id="18_0ma7k"]
+[ext_resource type="Script" uid="uid://5mnj0ck1m7n0" path="res://DialogueSystem/respawn_dialogue_controller.gd" id="28_5ntyq"]
+[ext_resource type="PackedScene" uid="uid://doayi0ae8263f" path="res://DialogueSystem/Dialogue_System.tscn" id="29_jytrn"]
+[ext_resource type="Texture2D" uid="uid://clyjketh411lr" path="res://Screenshot 2026-07-21 at 6.07.31 PM-Photoroom.png" id="30_awtfi"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_0ma7k"]
 animations = [{
@@ -514,6 +517,30 @@ metadata/_custom_type_script = "uid://q2hfxekwglu3"
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_fr3s5"]
 size = Vector2(162, 87)
 
+[sub_resource type="Resource" id="Resource_v7f56"]
+script = ExtResource("7_fvgg0")
+speaker_img = ExtResource("30_awtfi")
+text = "You tried to fight him, didn't you?"
+text_speed = 14.0
+text_sound = ExtResource("9_6ot8x")
+metadata/_custom_type_script = "uid://q2hfxekwglu3"
+
+[sub_resource type="Resource" id="Resource_h6diq"]
+script = ExtResource("7_fvgg0")
+speaker_img = ExtResource("30_awtfi")
+text = "You kids need to learn to stop biting off more than you can chew."
+text_speed = 14.0
+text_sound = ExtResource("9_6ot8x")
+metadata/_custom_type_script = "uid://q2hfxekwglu3"
+
+[sub_resource type="Resource" id="Resource_jvm1p"]
+script = ExtResource("7_fvgg0")
+speaker_img = ExtResource("30_awtfi")
+text = "Sometimes, instead of taking to straightforward, cool-looking path that people tell you about, you need to find your own path."
+text_speed = 14.0
+text_sound = ExtResource("9_6ot8x")
+metadata/_custom_type_script = "uid://q2hfxekwglu3"
+
 [node name="Lvl1" type="Node" unique_id=518403287]
 
 [node name="TopLeft" type="Marker2D" parent="." unique_id=642363423]
@@ -633,3 +660,8 @@ position = Vector2(730, 550)
 
 [node name="HUD" parent="." unique_id=1161330053 instance=ExtResource("18_0ma7k")]
 heart_size = Vector2(128, 128)
+
+[node name="RespawnDialogueController" type="Node" parent="." unique_id=1424525574]
+script = ExtResource("28_5ntyq")
+dialogue_system_scene = ExtResource("29_jytrn")
+bomber_bomb_dialogue = Array[ExtResource("6_cnj6n")]([SubResource("Resource_v7f56"), SubResource("Resource_h6diq"), SubResource("Resource_jvm1p")])
