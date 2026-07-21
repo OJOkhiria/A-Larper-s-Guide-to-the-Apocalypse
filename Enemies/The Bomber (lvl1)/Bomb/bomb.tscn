@@ -93,30 +93,37 @@ animations = [{
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_0u83k"]
-size = Vector2(260, 249)
+size = Vector2(30, 46)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_r0vmc"]
-size = Vector2(301, 301)
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_yu314"]
+size = Vector2(30, 25.5)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_rxotw"]
 
 [node name="bomb" type="CharacterBody2D" unique_id=132141947]
 script = ExtResource("1_wc587")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=595960428]
-position = Vector2(14.500008, -67)
-scale = Vector2(0.89, 0.7933333)
+position = Vector2(9.000004, -70.00001)
+scale = Vector2(0.42666665, 0.42166668)
 sprite_frames = SubResource("SpriteFrames_gd7ww")
 animation = &"landed"
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1948482830]
-position = Vector2(3, -65.5)
+[node name="FlyingCollision" type="CollisionShape2D" parent="." unique_id=1948482830]
+position = Vector2(3, -80)
 shape = SubResource("RectangleShape2D_0u83k")
+
+[node name="LandedCollision" type="CollisionShape2D" parent="." unique_id=1479898985]
+position = Vector2(3, -65.75)
+shape = SubResource("RectangleShape2D_yu314")
+disabled = true
 
 [node name="ExplosionArea" type="Area2D" parent="." unique_id=1977289237]
 position = Vector2(10, -27)
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="ExplosionArea" unique_id=18310848]
+[node name="ExplosionCollision" type="CollisionShape2D" parent="ExplosionArea" unique_id=18310848]
 position = Vector2(-6.5, -37.5)
-shape = SubResource("RectangleShape2D_r0vmc")
+shape = SubResource("CircleShape2D_rxotw")
 disabled = true
 
 [node name="FuseTimer" type="Timer" parent="." unique_id=1073886675]

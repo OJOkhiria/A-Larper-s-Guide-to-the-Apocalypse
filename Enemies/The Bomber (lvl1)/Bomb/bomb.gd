@@ -11,18 +11,43 @@ extends CharacterBody2D
 @export var explosion_duration: float = 0.15
 
 @onready var sprite: AnimatedSprite2D = $AnimatedSprite2D
-@onready var body_collision: CollisionShape2D = $CollisionShape2D
-@onready var explosion_area: Area2D = $ExplosionArea
-@onready var explosion_collision: CollisionShape2D = \
-	$ExplosionArea/CollisionShape2D
 @onready var fuse_timer: Timer = $FuseTimer
 @onready var lifetime_timer: Timer = $LifetimeTimer
+
+@onready var flying_collision: CollisionShape2D = \
+	$FlyingCollision
+
+@onready var landed_collision: CollisionShape2D = \
+	$LandedCollision
+
+@onready var explosion_area: Area2D = \
+	$ExplosionArea
+
+@onready var explosion_collision: CollisionShape2D = \
+	$ExplosionArea/ExplosionCollision
+	
+@export var starting_explosion_radius: float = 8.0
+@export var maximum_explosion_radius: float = 72.0
+
+@onready var explosion_shape: CircleShape2D = \
+	explosion_collision.shape as CircleShape2D
 
 var has_exploded: bool = false
 var damaged_bodies: Array[Node] = []
 
+enum BombState {
+	FLYING,
+	LANDED,
+	EXPLODING
+}
+
+var current_state: BombState = BombState.FLYING
 
 func _ready() -> void:
+	current_state = BombState.FLYING
+
+	flying_collision.set_deferred("disabled", false)
+	landed_collision.set_deferred("disabled", true)
 	explosion_collision.set_deferred("disabled", true)
 
 	explosion_area.body_entered.connect(
@@ -39,7 +64,10 @@ func _ready() -> void:
 	lifetime_timer.timeout.connect(queue_free)
 	lifetime_timer.start()
 
-	sprite.animation_finished.connect(_on_animation_finished)
+	sprite.animation_finished.connect(
+		_on_animation_finished
+	)
+
 	sprite.play("flying")
 
 
@@ -56,7 +84,7 @@ func launch(horizontal_direction: float) -> void:
 
 
 func _physics_process(delta: float) -> void:
-	if has_exploded:
+	if current_state == BombState.EXPLODING:
 		return
 
 	velocity.y += gravity * delta
@@ -69,35 +97,50 @@ func _physics_process(delta: float) -> void:
 			ground_friction * delta
 		)
 
-		if sprite.animation != "landed":
+		if current_state == BombState.FLYING:
+			_set_bomb_state(BombState.LANDED)
 			sprite.play("landed")
 
 
 func explode() -> void:
-	if has_exploded:
+	if current_state == BombState.EXPLODING:
 		return
 
-	has_exploded = true
+	_set_bomb_state(BombState.EXPLODING)
+
 	velocity = Vector2.ZERO
 	damaged_bodies.clear()
 
-	body_collision.set_deferred("disabled", true)
-	explosion_collision.set_deferred("disabled", false)
-
+	explosion_shape.radius = starting_explosion_radius
 	sprite.play("explode")
 
-	# Keep the area active briefly so body_entered can fire.
-	await get_tree().create_timer(explosion_duration).timeout
+	await get_tree().physics_frame
 
-	explosion_collision.set_deferred("disabled", true)
+	var radius_tween := create_tween()
+	radius_tween.tween_property(
+		explosion_shape,
+		"radius",
+		maximum_explosion_radius,
+		explosion_duration
+	).set_trans(Tween.TRANS_QUAD).set_ease(
+		Tween.EASE_OUT
+	)
 
-	# Fallback in case the player was already inside when enabled.
+	await radius_tween.finished
+
 	for body in explosion_area.get_overlapping_bodies():
 		_damage_body(body)
 
+	explosion_collision.set_deferred(
+		"disabled",
+		true
+	)
 
-func _on_explosion_area_body_entered(body: Node2D) -> void:
-	if not has_exploded:
+
+func _on_explosion_area_body_entered(
+	body: Node2D
+) -> void:
+	if current_state != BombState.EXPLODING:
 		return
 
 	_damage_body(body)
@@ -116,16 +159,59 @@ func _damage_body(body: Node) -> void:
 
 	if health != null and health.has_method("take_damage"):
 		health.take_damage(damage)
-		print("Bomb damaged player through Health node.")
 	elif body.has_method("take_damage"):
 		body.take_damage(damage)
-		print("Bomb damaged player through player script.")
-	else:
-		push_warning(
-			"Player detected, but no take_damage method was found."
-		)
 
 
 func _on_animation_finished() -> void:
 	if sprite.animation == "explode":
 		queue_free()
+
+func _set_bomb_state(new_state: BombState) -> void:
+	if current_state == new_state:
+		return
+
+	current_state = new_state
+
+	match current_state:
+		BombState.FLYING:
+			flying_collision.set_deferred(
+				"disabled",
+				false
+			)
+			landed_collision.set_deferred(
+				"disabled",
+				true
+			)
+			explosion_collision.set_deferred(
+				"disabled",
+				true
+			)
+
+		BombState.LANDED:
+			flying_collision.set_deferred(
+				"disabled",
+				true
+			)
+			landed_collision.set_deferred(
+				"disabled",
+				false
+			)
+			explosion_collision.set_deferred(
+				"disabled",
+				true
+			)
+
+		BombState.EXPLODING:
+			flying_collision.set_deferred(
+				"disabled",
+				true
+			)
+			landed_collision.set_deferred(
+				"disabled",
+				true
+			)
+			explosion_collision.set_deferred(
+				"disabled",
+				false
+			)
