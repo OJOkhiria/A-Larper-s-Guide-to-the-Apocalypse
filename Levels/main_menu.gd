@@ -78,6 +78,7 @@ $BookPivot/BackAndPages/ControlsPage
 @onready var book_thud: AudioStreamPlayer2D = \
 	get_node_or_null("BookThud") as AudioStreamPlayer2D
 
+@onready var page_flip: AudioStreamPlayer2D = get_node_or_null("PageFlip") as AudioStreamPlayer2D
 
 var final_book_position: Vector2
 var transition_started: bool = false
@@ -528,6 +529,7 @@ func _on_play_pressed() -> void:
 	await _show_controls_page()
 
 func _open_book() -> void:
+	page_flip.play()
 	var content_tween := create_tween()
 
 	content_tween.tween_property(
@@ -556,7 +558,7 @@ func _open_book() -> void:
 	)
 
 	await opening_tween.finished
-
+	
 	_apply_book_open_progress(1.0)
 
 
