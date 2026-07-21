@@ -2,7 +2,7 @@ extends Control
 
 
 @export_file("*.tscn") var intro_scene_path: String = \
-	"res://levels/Intro.tscn"
+	"res://Levels/Intro.tscn"
 
 @export var page_size: Vector2 = Vector2(600.0, 600.0)
 @export var open_book_margin: float = 24.0
@@ -83,6 +83,7 @@ $BookPivot/BackAndPages/ControlsPage
 var final_book_position: Vector2
 var transition_started: bool = false
 var menu_initialized: bool = false
+var awaiting_controls_continue: bool = false
 
 const COVER_SIZE := Vector2(410.0, 470.0)
 const PAGE_SIZE := Vector2(330.0, 390.0)
@@ -135,6 +136,12 @@ func _connect_signals() -> void:
 		settings_back_button.pressed.connect(
 			_on_settings_back_pressed
 		)
+	if not controls_continue_button.pressed.is_connected(
+	_on_controls_continue_pressed
+	):
+		controls_continue_button.pressed.connect(
+		_on_controls_continue_pressed
+	)
 
 
 func _configure_mouse_input() -> void:
@@ -422,7 +429,9 @@ func _set_initial_state() -> void:
 	pages.position = PAGE_INSET
 	pages.size = PAGE_SIZE
 	pages.scale = Vector2.ONE
-
+	
+	_set_cover_input_enabled(true)
+	_set_controls_input_enabled(false)
 	controls_page.position = PAGE_INSET
 	controls_page.size = PAGE_SIZE
 	controls_page.visible = false
@@ -518,12 +527,17 @@ func _on_play_pressed() -> void:
 		return
 
 	transition_started = true
+	awaiting_controls_continue = false
 
 	play_button.disabled = true
 	settings_button.disabled = true
 
 	if settings_panel != null:
 		settings_panel.visible = false
+
+	# Immediately stop the front-cover branch from blocking
+	# the controls page.
+	_set_cover_input_enabled(false)
 
 	await _open_book()
 	await _show_controls_page()
@@ -562,22 +576,41 @@ func _open_book() -> void:
 	_apply_book_open_progress(1.0)
 
 
-func _fade_to_black() -> void:
-	fade_rect.mouse_filter = Control.MOUSE_FILTER_STOP
+func _fade_to_black() -> bool:
+	# Fetch the node again instead of trusting a potentially stale reference.
+	var current_fade_rect := get_node_or_null(
+		"FadeLayer/FadeRect"
+	) as ColorRect
+
+	if current_fade_rect == null:
+		push_error(
+			"MainMenu FadeLayer/FadeRect was freed or could not be found. "
+			+ "Remove any fade-out script that calls queue_free() from it."
+		)
+		return false
+
+	current_fade_rect.visible = true
+	current_fade_rect.mouse_filter = Control.MOUSE_FILTER_STOP
+	current_fade_rect.modulate = Color(
+		1.0,
+		1.0,
+		1.0,
+		0.0
+	)
 
 	var fade_tween := create_tween()
 	fade_tween.set_trans(Tween.TRANS_SINE)
 	fade_tween.set_ease(Tween.EASE_IN_OUT)
 
 	fade_tween.tween_property(
-		fade_rect,
+		current_fade_rect,
 		"modulate:a",
 		1.0,
 		fade_duration
 	)
 
 	await fade_tween.finished
-
+	return true
 
 func _restore_menu_after_failed_transition() -> void:
 	transition_started = false
@@ -603,6 +636,10 @@ func _restore_menu_after_failed_transition() -> void:
 
 	play_button.disabled = false
 	settings_button.disabled = false
+	awaiting_controls_continue = false
+	controls_continue_button.disabled = true
+	_set_controls_input_enabled(false)
+	_set_cover_input_enabled(true)
 
 func _on_settings_pressed() -> void:
 	if transition_started or not menu_initialized:
@@ -687,9 +724,6 @@ func _is_button_activation_event(event: InputEvent) -> bool:
 	return event.is_action_pressed("ui_accept")
 	
 func _show_controls_page() -> void:
-	controls_page.z_index = 20
-	controls_page.move_to_front()
-
 	controls_page.visible = true
 	controls_page.modulate = Color(
 		1.0,
@@ -698,9 +732,10 @@ func _show_controls_page() -> void:
 		0.0
 	)
 
-	controls_continue_button.disabled = true
+	controls_page.z_index = 20
 
-	# Let Containers recalculate their child layouts.
+	_set_controls_input_enabled(false)
+
 	await get_tree().process_frame
 
 	var tween := create_tween()
@@ -716,16 +751,26 @@ func _show_controls_page() -> void:
 
 	await tween.finished
 
-	controls_continue_button.disabled = false
+	awaiting_controls_continue = true
+	_set_controls_input_enabled(true)
 	controls_continue_button.grab_focus()
 
 func _on_controls_continue_pressed() -> void:
+	if not awaiting_controls_continue:
+		return
+
 	if not controls_page.visible:
 		return
 
-	controls_continue_button.disabled = true
+	awaiting_controls_continue = false
+	_set_controls_input_enabled(false)
 
-	await _fade_to_black()
+	var fade_succeeded: bool = await _fade_to_black()
+
+	if not fade_succeeded:
+		awaiting_controls_continue = true
+		_set_controls_input_enabled(true)
+		return
 
 	var error: Error = get_tree().change_scene_to_file(
 		intro_scene_path
@@ -736,6 +781,8 @@ func _on_controls_continue_pressed() -> void:
 			"Could not load intro scene: %s. Error code: %s"
 			% [intro_scene_path, error]
 		)
+
+		_restore_menu_after_failed_transition()
 
 func _configure_page_rect(rect: TextureRect) -> void:
 	rect.set_anchors_preset(Control.PRESET_TOP_LEFT)
@@ -829,3 +876,64 @@ func _configure_texture_rect(
 	rect.stretch_mode = TextureRect.STRETCH_SCALE
 	rect.mouse_filter = Control.MOUSE_FILTER_IGNORE
 	rect.clip_contents = false
+
+func _set_cover_input_enabled(enabled: bool) -> void:
+	if enabled:
+		front_cover_pivot.mouse_behavior_recursive = \
+			Control.MOUSE_BEHAVIOR_ENABLED
+
+		front_cover_pivot.mouse_filter = \
+			Control.MOUSE_FILTER_PASS
+
+		cover_content.mouse_filter = \
+			Control.MOUSE_FILTER_PASS
+
+		button_container.mouse_filter = \
+			Control.MOUSE_FILTER_PASS
+
+		play_button.mouse_filter = \
+			Control.MOUSE_FILTER_STOP
+
+		settings_button.mouse_filter = \
+			Control.MOUSE_FILTER_STOP
+	else:
+		# Disable the entire closed-cover UI branch so its invisible
+		# rectangle cannot cover the controls page.
+		front_cover_pivot.mouse_behavior_recursive = \
+			Control.MOUSE_BEHAVIOR_DISABLED
+
+		front_cover_pivot.mouse_filter = \
+			Control.MOUSE_FILTER_IGNORE
+
+
+func _set_controls_input_enabled(enabled: bool) -> void:
+	if enabled:
+		back_and_pages.mouse_behavior_recursive = \
+			Control.MOUSE_BEHAVIOR_ENABLED
+
+		controls_page.mouse_behavior_recursive = \
+			Control.MOUSE_BEHAVIOR_ENABLED
+
+		controls_page.mouse_filter = \
+			Control.MOUSE_FILTER_PASS
+
+		controls_margin.mouse_filter = \
+			Control.MOUSE_FILTER_PASS
+
+		controls_container.mouse_filter = \
+			Control.MOUSE_FILTER_PASS
+
+		controls_continue_button.mouse_filter = \
+			Control.MOUSE_FILTER_STOP
+
+		controls_continue_button.disabled = false
+	else:
+		controls_continue_button.disabled = true
+		controls_continue_button.mouse_filter = \
+			Control.MOUSE_FILTER_IGNORE
+
+		controls_page.mouse_filter = \
+			Control.MOUSE_FILTER_IGNORE
+
+		controls_page.mouse_behavior_recursive = \
+			Control.MOUSE_BEHAVIOR_DISABLED

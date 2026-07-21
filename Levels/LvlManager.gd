@@ -2,8 +2,8 @@ extends Node
 
 # Define the explicit order of your levels
 const LEVELS : Array[String] = [
-	"res://levels/Intro.tscn",
-	"res://levels/lvl1.tscn",
+	"res://Levels/Intro.tscn",
+	"res://Levels/lvl1.tscn",
 ]
 
 var current_level_index: int = 0

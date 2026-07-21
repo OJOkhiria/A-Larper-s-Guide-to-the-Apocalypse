@@ -4,7 +4,6 @@
 [ext_resource type="Texture2D" uid="uid://mugqcl04i32i" path="res://pixel-art_by_filereadynow_ai_2026-07-20 14_23_19.png" id="2_2k6u6"]
 [ext_resource type="Texture2D" uid="uid://b6mklos5jsect" path="res://pixel-art_by_filereadynow_ai_2026-07-20 14_23_19 (1).png" id="2_65ows"]
 [ext_resource type="Texture2D" uid="uid://daukrugch87eg" path="res://pixel-art_by_filereadynow_ai_2026-07-20 14_23_19 (2).png" id="2_gerv3"]
-[ext_resource type="Script" uid="uid://dwoahc2bbvyh2" path="res://Levels/fade_rect.gd" id="2_hr4vk"]
 [ext_resource type="AudioStream" uid="uid://doyevkvvaiimp" path="res://freesound_community-thud-bassy-bump2-108323-[AudioTrimmer.com].mp3" id="2_xun1b"]
 [ext_resource type="Texture2D" uid="uid://dlk20x5x6kl1v" path="res://pixel-art_by_filereadynow_ai_2026-07-20 14_23_19 (4).png" id="3_17ajd"]
 [ext_resource type="AudioStream" uid="uid://ctgwlxs331hmh" path="res://PageFlip.mp3" id="3_uty7f"]
@@ -219,7 +218,6 @@ offset_right = 1152.0
 offset_bottom = 648.0
 mouse_filter = 2
 color = Color(0, 0, 0, 1)
-script = ExtResource("2_hr4vk")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1192719967]
 

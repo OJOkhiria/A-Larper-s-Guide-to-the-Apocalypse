@@ -1,7 +1,7 @@
 extends CanvasLayer
 
 
-const DialogueButtonPreload = preload("res://dialogue_button.tscn")
+const DialogueButtonPreload = preload("res://DialogueSystem/dialogue_button.tscn")
 
 enum BoxPlacement {
 	AUTO,
