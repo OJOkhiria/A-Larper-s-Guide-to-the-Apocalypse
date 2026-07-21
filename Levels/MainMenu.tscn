@@ -1,11 +1,11 @@
 [gd_scene format=3 uid="uid://bsuosocvrtb5f"]
 
 [ext_resource type="Script" uid="uid://do7hwt3hfb1mi" path="res://Levels/main_menu.gd" id="1_yw2i3"]
-[ext_resource type="Texture2D" uid="uid://dfjdmrf1vi1ly" path="res://pixel-art_by_filereadynow_ai_2026-07-20 14_23_19.png" id="2_2k6u6"]
-[ext_resource type="Texture2D" uid="uid://ba2kkgp2kk380" path="res://pixel-art_by_filereadynow_ai_2026-07-20 14_23_19 (1).png" id="2_65ows"]
-[ext_resource type="Texture2D" uid="uid://bxdx1q64quke2" path="res://pixel-art_by_filereadynow_ai_2026-07-20 14_23_19 (2).png" id="2_gerv3"]
+[ext_resource type="Texture2D" uid="uid://mugqcl04i32i" path="res://pixel-art_by_filereadynow_ai_2026-07-20 14_23_19.png" id="2_2k6u6"]
+[ext_resource type="Texture2D" uid="uid://b6mklos5jsect" path="res://pixel-art_by_filereadynow_ai_2026-07-20 14_23_19 (1).png" id="2_65ows"]
+[ext_resource type="Texture2D" uid="uid://daukrugch87eg" path="res://pixel-art_by_filereadynow_ai_2026-07-20 14_23_19 (2).png" id="2_gerv3"]
 [ext_resource type="Script" uid="uid://dwoahc2bbvyh2" path="res://Levels/fade_rect.gd" id="2_hr4vk"]
-[ext_resource type="Texture2D" uid="uid://dgi0v18l8twd" path="res://pixel-art_by_filereadynow_ai_2026-07-20 14_23_19 (4).png" id="3_17ajd"]
+[ext_resource type="Texture2D" uid="uid://dlk20x5x6kl1v" path="res://pixel-art_by_filereadynow_ai_2026-07-20 14_23_19 (4).png" id="3_17ajd"]
 [ext_resource type="FontFile" uid="uid://b7wwpls0rmqff" path="res://Adventurer.ttf" id="4_2ld8x"]
 [ext_resource type="FontFile" uid="uid://xaq0o2laqakn" path="res://DialogueSystem/ChiKareGo.ttf" id="5_ooo5j"]
 
@@ -42,8 +42,10 @@ mouse_filter = 2
 
 [node name="BackCover" type="TextureRect" parent="BookPivot/BackAndPages" unique_id=391102554]
 layout_mode = 0
-offset_right = 40.0
-offset_bottom = 40.0
+offset_left = 631.0
+offset_top = 87.0
+offset_right = 1041.0
+offset_bottom = 557.0
 mouse_filter = 2
 texture = ExtResource("2_gerv3")
 
@@ -54,29 +56,67 @@ offset_bottom = 40.0
 mouse_filter = 2
 texture = ExtResource("3_17ajd")
 
+[node name="ControlsPage" type="Control" parent="BookPivot/BackAndPages" unique_id=1162682719]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="MarginContainer" type="MarginContainer" parent="BookPivot/BackAndPages/ControlsPage" unique_id=1958448214]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 8.593
+anchor_bottom = 9.505
+offset_right = -15.720032
+offset_bottom = 10.799988
+theme_override_constants/margin_top = 10
+
+[node name="VBoxContainer" type="VBoxContainer" parent="BookPivot/BackAndPages/ControlsPage/MarginContainer" unique_id=871724296]
+layout_mode = 2
+
+[node name="ControlsTitle" type="Label" parent="BookPivot/BackAndPages/ControlsPage/MarginContainer/VBoxContainer" unique_id=1895363830]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("4_2ld8x")
+theme_override_font_sizes/font_size = 30
+text = "Controls"
+
+[node name="ContinueButton" type="Button" parent="BookPivot/BackAndPages/ControlsPage/MarginContainer/VBoxContainer" unique_id=42815891]
+custom_minimum_size = Vector2(100, 50)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_fonts/font = ExtResource("5_ooo5j")
+theme_override_font_sizes/font_size = 20
+text = "CONTINUE"
+
 [node name="FrontCoverPivot" type="Control" parent="BookPivot" unique_id=1727096091]
 layout_mode = 1
-anchor_left = 0.14400001
-anchor_top = 0.147
-anchor_right = 0.74200004
-anchor_bottom = 0.846
-offset_left = -86.4
-offset_top = -88.2
-offset_right = -405.2
-offset_bottom = -467.6
+anchor_left = 0.002
+anchor_top = 0.003
+anchor_right = 0.55300003
+anchor_bottom = 0.652
+offset_left = -0.20000005
+offset_top = 0.19999993
+offset_right = 0.19998169
+offset_bottom = -0.2000122
 mouse_filter = 2
 
 [node name="InsideCover" type="TextureRect" parent="BookPivot/FrontCoverPivot" unique_id=9414403]
 layout_mode = 0
-offset_right = 40.0
-offset_bottom = 40.0
+offset_left = 748.0
+offset_top = 141.0
+offset_right = 1158.0
+offset_bottom = 611.0
 mouse_filter = 2
 texture = ExtResource("2_65ows")
 
 [node name="FrontCover" type="TextureRect" parent="BookPivot/FrontCoverPivot" unique_id=393927976]
 layout_mode = 0
-offset_right = 40.0
-offset_bottom = 40.0
+offset_left = 615.0
+offset_top = 38.0
+offset_right = 1025.0
+offset_bottom = 508.0
 mouse_filter = 2
 texture = ExtResource("2_2k6u6")
 
@@ -97,14 +137,14 @@ mouse_filter = 2
 [node name="VBoxContainer" type="VBoxContainer" parent="BookPivot/FrontCoverPivot/FrontCover/CoverContent" unique_id=668485479]
 layout_mode = 1
 anchors_preset = -1
-anchor_left = -0.019000001
-anchor_top = 0.054
-anchor_right = 1.0
-anchor_bottom = 1.054
-offset_left = -0.059999466
-offset_top = 0.015999794
-offset_right = 7.0
-offset_bottom = 0.015991211
+anchor_left = -0.19100001
+anchor_top = -0.264
+anchor_right = 1.5370001
+anchor_bottom = 1.3520001
+offset_left = 29.389969
+offset_top = 53.025192
+offset_right = -30.263763
+offset_bottom = -92.07364
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
@@ -135,25 +175,6 @@ theme_override_fonts/font = ExtResource("5_ooo5j")
 theme_override_font_sizes/font_size = 24
 action_mode = 0
 text = "SETTINGS"
-
-[node name="ControlsPage" type="Control" parent="BookPivot" unique_id=1162682719]
-anchors_preset = 0
-offset_right = 40.0
-offset_bottom = 40.0
-
-[node name="MarginContainer" type="MarginContainer" parent="BookPivot/ControlsPage" unique_id=1958448214]
-layout_mode = 0
-offset_right = 40.0
-offset_bottom = 40.0
-
-[node name="VBoxContainer" type="VBoxContainer" parent="BookPivot/ControlsPage/MarginContainer" unique_id=871724296]
-layout_mode = 2
-
-[node name="ControlsTitle" type="Label" parent="BookPivot/ControlsPage/MarginContainer/VBoxContainer" unique_id=1895363830]
-layout_mode = 2
-
-[node name="ContinueButton" type="Button" parent="BookPivot/ControlsPage/MarginContainer/VBoxContainer" unique_id=42815891]
-layout_mode = 2
 
 [node name="FadeLayer" type="CanvasLayer" parent="." unique_id=962056340]
 layer = 100
