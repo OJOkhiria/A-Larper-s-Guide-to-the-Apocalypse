@@ -28,11 +28,9 @@ extends Control
 @onready var front_cover_pivot: Control = \
 	$BookPivot/FrontCoverPivot
 
-@onready var inside_cover: TextureRect = \
-	$BookPivot/FrontCoverPivot/InsideCover
+@onready var inside_cover: TextureRect = $BookPivot/FrontCoverPivot/InsideCover
 
-@onready var front_cover: TextureRect = \
-	$BookPivot/FrontCoverPivot/FrontCover
+@onready var front_cover: TextureRect = $BookPivot/FrontCoverPivot/FrontCover
 
 @onready var cover_content: Control = \
 	$BookPivot/FrontCoverPivot/FrontCover/CoverContent
@@ -45,6 +43,12 @@ extends Control
 
 @onready var settings_button: Button = \
 	$BookPivot/FrontCoverPivot/FrontCover/CoverContent/VBoxContainer/SettingsButton
+	
+@onready var controls_page: Control = \
+$BookPivot/ControlsPage
+
+@onready var controls_continue_button: Button = \
+	$BookPivot/ControlsPage/MarginContainer/VBoxContainer/ContinueButton
 
 @onready var settings_panel: Control = \
 	get_node_or_null("SettingsPanel") as Control
@@ -77,48 +81,55 @@ func _ready() -> void:
 
 
 func _connect_signals() -> void:
-	if not play_button.gui_input.is_connected(
-		_on_play_button_gui_input
+	if not play_button.pressed.is_connected(_on_play_pressed):
+		play_button.pressed.connect(_on_play_pressed)
+
+	if not settings_button.pressed.is_connected(
+		_on_settings_pressed
 	):
-		play_button.gui_input.connect(
-			_on_play_button_gui_input
+		settings_button.pressed.connect(
+			_on_settings_pressed
 		)
 
-	if not settings_button.gui_input.is_connected(
-		_on_settings_button_gui_input
+	if not controls_continue_button.pressed.is_connected(
+		_on_controls_continue_pressed
 	):
-		settings_button.gui_input.connect(
-			_on_settings_button_gui_input
+		controls_continue_button.pressed.connect(
+			_on_controls_continue_pressed
 		)
 
 	if (
 		settings_back_button != null
-		and not settings_back_button.gui_input.is_connected(
-			_on_settings_back_button_gui_input
+		and not settings_back_button.pressed.is_connected(
+			_on_settings_back_pressed
 		)
 	):
-		settings_back_button.gui_input.connect(
-			_on_settings_back_button_gui_input
+		settings_back_button.pressed.connect(
+			_on_settings_back_pressed
 		)
 
 
 func _configure_mouse_input() -> void:
-	# Decorative controls should not intercept clicks.
 	background.mouse_filter = Control.MOUSE_FILTER_IGNORE
+
 	back_and_pages.mouse_filter = Control.MOUSE_FILTER_IGNORE
 	back_cover.mouse_filter = Control.MOUSE_FILTER_IGNORE
 	pages.mouse_filter = Control.MOUSE_FILTER_IGNORE
+
+	book_pivot.mouse_filter = Control.MOUSE_FILTER_PASS
+	front_cover_pivot.mouse_filter = Control.MOUSE_FILTER_PASS
+
 	inside_cover.mouse_filter = Control.MOUSE_FILTER_IGNORE
 	front_cover.mouse_filter = Control.MOUSE_FILTER_IGNORE
 
-	# Parent UI controls allow events to reach their children.
-	book_pivot.mouse_filter = Control.MOUSE_FILTER_PASS
-	front_cover_pivot.mouse_filter = Control.MOUSE_FILTER_PASS
 	cover_content.mouse_filter = Control.MOUSE_FILTER_PASS
 	button_container.mouse_filter = Control.MOUSE_FILTER_PASS
 
+	controls_page.mouse_filter = Control.MOUSE_FILTER_PASS
+
 	_configure_button(play_button)
 	_configure_button(settings_button)
+	_configure_button(controls_continue_button)
 
 	if settings_back_button != null:
 		_configure_button(settings_back_button)
@@ -128,6 +139,7 @@ func _configure_mouse_input() -> void:
 	book_pivot.clip_contents = false
 	front_cover_pivot.clip_contents = false
 	cover_content.clip_contents = false
+	controls_page.clip_contents = false
 
 
 func _configure_button(button: Button) -> void:
@@ -206,6 +218,12 @@ func _set_initial_state() -> void:
 	book_pivot.scale = Vector2.ONE * starting_book_scale
 	book_pivot.rotation_degrees = starting_rotation_degrees
 	book_pivot.modulate.a = 0.0
+	
+	controls_page.visible = false
+	controls_page.modulate.a = 0.0
+	controls_page.z_index = 5
+
+	controls_continue_button.disabled = true
 
 	front_cover_pivot.scale = Vector2.ONE
 
@@ -333,13 +351,8 @@ func _play_book_impact() -> void:
 	book_pivot.position = final_book_position
 	book_pivot.scale = Vector2.ONE
 
-
 func _on_play_pressed() -> void:
 	if transition_started or not menu_initialized:
-		return
-
-	if intro_scene_path.is_empty():
-		push_error("The intro scene path has not been assigned.")
 		return
 
 	transition_started = true
@@ -351,20 +364,7 @@ func _on_play_pressed() -> void:
 		settings_panel.visible = false
 
 	await _open_book()
-	await _fade_to_black()
-
-	var error: Error = get_tree().change_scene_to_file(
-		intro_scene_path
-	)
-
-	if error != OK:
-		push_error(
-			"Could not load intro scene: %s. Error code: %s"
-			% [intro_scene_path, error]
-		)
-
-		_restore_menu_after_failed_transition()
-
+	await _show_controls_page()
 
 func _open_book() -> void:
 	# Remove the title and buttons before folding the cover.
@@ -475,6 +475,10 @@ func _restore_menu_after_failed_transition() -> void:
 	fade_rect.modulate.a = 0.0
 	fade_rect.mouse_filter = Control.MOUSE_FILTER_IGNORE
 
+	controls_page.visible = false
+	controls_page.modulate.a = 0.0
+	controls_continue_button.disabled = true
+
 	front_cover.visible = true
 	front_cover.scale = Vector2.ONE
 
@@ -489,7 +493,6 @@ func _restore_menu_after_failed_transition() -> void:
 
 	play_button.disabled = false
 	settings_button.disabled = false
-
 
 func _on_settings_pressed() -> void:
 	if transition_started or not menu_initialized:
@@ -564,3 +567,49 @@ func _is_button_activation_event(event: InputEvent) -> bool:
 		return false
 
 	return event.is_action_pressed("ui_accept")
+	
+func _show_controls_page() -> void:
+	controls_page.visible = true
+	controls_page.modulate.a = 0.0
+	controls_page.move_to_front()
+
+	controls_continue_button.disabled = true
+
+	var tween := create_tween()
+	tween.set_trans(Tween.TRANS_SINE)
+	tween.set_ease(Tween.EASE_OUT)
+
+	tween.tween_property(
+		controls_page,
+		"modulate:a",
+		1.0,
+		0.35
+	)
+
+	await tween.finished
+
+	controls_continue_button.disabled = false
+	controls_continue_button.grab_focus()
+
+func _on_controls_continue_pressed() -> void:
+	if not transition_started:
+		return
+
+	if not controls_page.visible:
+		return
+
+	controls_continue_button.disabled = true
+
+	await _fade_to_black()
+
+	var error: Error = get_tree().change_scene_to_file(
+		intro_scene_path
+	)
+
+	if error != OK:
+		push_error(
+			"Could not load intro scene: %s. Error code: %s"
+			% [intro_scene_path, error]
+		)
+
+		_restore_menu_after_failed_transition()

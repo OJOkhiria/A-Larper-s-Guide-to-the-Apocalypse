@@ -134,6 +134,25 @@ theme_override_font_sizes/font_size = 24
 action_mode = 0
 text = "SETTINGS"
 
+[node name="ControlsPage" type="Control" parent="BookPivot" unique_id=1162682719]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="MarginContainer" type="MarginContainer" parent="BookPivot/ControlsPage" unique_id=1958448214]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="BookPivot/ControlsPage/MarginContainer" unique_id=871724296]
+layout_mode = 2
+
+[node name="ControlsTitle" type="Label" parent="BookPivot/ControlsPage/MarginContainer/VBoxContainer" unique_id=1895363830]
+layout_mode = 2
+
+[node name="ContinueButton" type="Button" parent="BookPivot/ControlsPage/MarginContainer/VBoxContainer" unique_id=42815891]
+layout_mode = 2
+
 [node name="FadeLayer" type="CanvasLayer" parent="." unique_id=962056340]
 layer = 100
 
