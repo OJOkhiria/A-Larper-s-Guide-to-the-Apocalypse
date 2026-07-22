@@ -34,7 +34,12 @@
 animations = [{
 "frames": [],
 "loop": 1,
-"name": &"crouch",
+"name": &"crouch_idle",
+"speed": 5.0
+}, {
+"frames": [],
+"loop": 1,
+"name": &"crouch_walk",
 "speed": 5.0
 }, {
 "frames": [{
@@ -558,7 +563,7 @@ z_index = 1
 position = Vector2(17.5, 605.5)
 scale = Vector2(0.25781247, 0.2421877)
 sprite_frames = SubResource("SpriteFrames_0ma7k")
-animation = &"crouch"
+animation = &"crouch_idle"
 
 [node name="StandingCollision" type="CollisionShape2D" parent="Player(Lvl1)" unique_id=656056684]
 z_index = 1

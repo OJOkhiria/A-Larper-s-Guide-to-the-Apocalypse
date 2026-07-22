@@ -4,6 +4,10 @@ extends CharacterBody2D
 signal crouch_changed(is_crouching: bool)
 
 
+# -------------------------------------------------------------------
+# Movement settings
+# -------------------------------------------------------------------
+
 @export_group("Movement")
 
 @export var movement_speed: float = 275.0
@@ -15,13 +19,26 @@ signal crouch_changed(is_crouching: bool)
 @export var jump_velocity: float = -475.0
 
 
+# -------------------------------------------------------------------
+# Animation settings
+# -------------------------------------------------------------------
+
 @export_group("Animations")
 
 @export var idle_animation: StringName = &"idle"
 @export var run_animation: StringName = &"run"
 @export var jump_animation: StringName = &"jump"
-@export var crouch_animation: StringName = &"crouch"
 
+@export var crouch_idle_animation: StringName = \
+	&"crouch_idle"
+
+@export var crouch_walk_animation: StringName = \
+	&"crouch_walk"
+
+
+# -------------------------------------------------------------------
+# Input actions
+# -------------------------------------------------------------------
 
 const INPUT_LEFT: StringName = &"Left"
 const INPUT_RIGHT: StringName = &"Right"
@@ -29,7 +46,12 @@ const INPUT_JUMP: StringName = &"Jump"
 const INPUT_CROUCH: StringName = &"Crouch"
 
 
-@onready var health: Node = get_node_or_null("Health")
+# -------------------------------------------------------------------
+# Node references
+# -------------------------------------------------------------------
+
+@onready var health: Node = \
+	get_node_or_null("Health")
 
 @onready var animated_sprite: AnimatedSprite2D = \
 	$AnimatedSprite2D
@@ -43,6 +65,10 @@ const INPUT_CROUCH: StringName = &"Crouch"
 @onready var standing_clearance: ShapeCast2D = \
 	$StandingClearance
 
+
+# -------------------------------------------------------------------
+# State
+# -------------------------------------------------------------------
 
 var controls_enabled: bool = true
 var is_crouching: bool = false
@@ -81,6 +107,10 @@ func _physics_process(delta: float) -> void:
 	_update_animation(direction)
 
 
+# -------------------------------------------------------------------
+# External control
+# -------------------------------------------------------------------
+
 func set_controls_enabled(enabled: bool) -> void:
 	controls_enabled = enabled
 
@@ -88,12 +118,17 @@ func set_controls_enabled(enabled: bool) -> void:
 		velocity.x = 0.0
 
 
+# -------------------------------------------------------------------
+# Movement
+# -------------------------------------------------------------------
+
 func _apply_gravity(delta: float) -> void:
 	if not is_on_floor():
 		velocity += get_gravity() * delta
 
 
 func _handle_jump() -> void:
+	# The player cannot jump while crouching.
 	if is_crouching:
 		return
 
@@ -141,8 +176,8 @@ func _process_disabled_state(delta: float) -> void:
 		ground_deceleration * delta
 	)
 
-	# Physics still runs while controls are disabled. This prevents
-	# the player from becoming suspended in midair during dialogue.
+	# Physics continues while controls are disabled so the player
+	# does not become suspended in midair during dialogue.
 	move_and_slide()
 
 	_update_animation(0.0)
@@ -179,13 +214,13 @@ func _update_crouching() -> void:
 
 		return
 
+	# The player may stand only when the standing hitbox would
+	# not overlap a ceiling or another solid object.
 	if is_crouching and _can_stand_up():
 		_set_crouching(false)
 
 
 func _can_stand_up() -> bool:
-	# Refresh the collision result immediately so the player cannot
-	# stand inside a ceiling or another solid object.
 	standing_clearance.force_shapecast_update()
 
 	return not standing_clearance.is_colliding()
@@ -205,8 +240,8 @@ func _set_crouching(crouching: bool) -> void:
 func _apply_crouch_collision_state(
 	crouching: bool
 ) -> void:
-	# Collision shapes are changed deferred so they are not modified
-	# while Godot is processing the current physics query.
+	# Collision shapes are changed deferred so they are not
+	# modified during an active physics query.
 	standing_collision.set_deferred(
 		"disabled",
 		crouching
@@ -223,9 +258,13 @@ func _apply_crouch_collision_state(
 # -------------------------------------------------------------------
 
 func _update_animation(direction: float) -> void:
-	# Crouching takes priority over all regular movement animations.
+	# Crouching takes priority over the standard ground animations.
 	if is_crouching:
-		_play_animation(crouch_animation)
+		if not is_zero_approx(direction):
+			_play_animation(crouch_walk_animation)
+		else:
+			_play_animation(crouch_idle_animation)
+
 		return
 
 	if not is_on_floor():
@@ -249,13 +288,22 @@ func _play_animation(
 	):
 		return
 
+	# Avoid unnecessarily requesting the same animation every
+	# physics frame.
+	if animated_sprite.animation == animation_name:
+		if not animated_sprite.is_playing():
+			animated_sprite.play(animation_name)
+
+		return
+
 	animated_sprite.play(animation_name)
 
 
 func _validate_animations() -> void:
 	if animated_sprite.sprite_frames == null:
 		push_error(
-			"Player AnimatedSprite2D has no SpriteFrames resource."
+			"Player AnimatedSprite2D has no "
+			+ "SpriteFrames resource."
 		)
 		return
 
@@ -263,7 +311,8 @@ func _validate_animations() -> void:
 		idle_animation,
 		run_animation,
 		jump_animation,
-		crouch_animation
+		crouch_idle_animation,
+		crouch_walk_animation
 	]
 
 	for animation_name: StringName in required_animations:
@@ -327,6 +376,7 @@ func _on_health_died(
 
 	GameOver.show_game_over()
 
+
 func _resolve_death_source_id(
 	death_source: Node
 ) -> StringName:
@@ -347,8 +397,8 @@ func _resolve_death_source_id(
 			str(returned_value)
 		)
 
-	# Optional fallbacks for older hazards that have not yet
-	# received get_death_source_id().
+	# Fallbacks for hazards that do not yet implement
+	# get_death_source_id().
 	if death_source.is_in_group(
 		&"bomber_bombs"
 	):
