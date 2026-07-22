@@ -2,8 +2,8 @@ extends Node
 
 # Define the explicit order of your levels
 const LEVELS : Array[String] = [
-	"res://Levels/Intro.tscn",
-	"res://Levels/lvl1.tscn",
+	"res://Levels/Intro/Intro.tscn",
+	"res://Levels/Lvl1/lvl1.tscn",
 ]
 
 var current_level_index: int = 0
@@ -14,7 +14,7 @@ func load_level(index: int) -> void:
 		get_tree().change_scene_to_file(LEVELS[index])
 	else:
 		print("No more levels! Redirecting to Main Menu...")
-		get_tree().change_scene_to_file("res://Levels/MainMenu.tscn")
+		get_tree().change_scene_to_file("res://Levels/MainMenu/MainMenu.tscn")
 
 func load_next_level() -> void:
 	load_level(current_level_index + 1)

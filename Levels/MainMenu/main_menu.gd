@@ -2,7 +2,7 @@ extends Control
 
 
 @export_file("*.tscn") var intro_scene_path: String = \
-	"res://Levels/Intro.tscn"
+	"res://Levels/Intro/Intro.tscn"
 
 @export var page_size: Vector2 = Vector2(600.0, 600.0)
 @export var open_book_margin: float = 24.0
