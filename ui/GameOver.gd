@@ -6,7 +6,7 @@ const GAME_OVER_SCENE: PackedScene = preload(
 )
 
 const MAIN_MENU_PATH: String = \
-	"res://Levels/MainMenu.tscn"
+	"res://Levels/MainMenu/MainMenu.tscn"
 
 
 var overlay: GameOverOverlayUI = null
