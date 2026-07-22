@@ -1,10 +1,10 @@
 [gd_scene format=3 uid="uid://i2mv6qm0dy5g"]
 
-[ext_resource type="Script" uid="uid://lgu2caa86vgw" path="res://Levels/intro.gd" id="1_d556c"]
+[ext_resource type="Script" uid="uid://lgu2caa86vgw" path="res://Levels/Intro/intro.gd" id="1_d556c"]
 [ext_resource type="PackedScene" uid="uid://bk5cub14yf6d" path="res://DialogueSystem/dialogue_area_2d.tscn" id="2_kgeka"]
 [ext_resource type="Script" uid="uid://dkpwxghjd7ry8" path="res://DialogueSystem/DialogueExportResource.gd" id="3_dt4lh"]
 [ext_resource type="Script" uid="uid://q2hfxekwglu3" path="res://DialogueSystem/DialogueTextResource.gd" id="4_rks4u"]
-[ext_resource type="AudioStream" uid="uid://b1iyperftamvw" path="res://talk.wav" id="5_nh2cg"]
+[ext_resource type="AudioStream" uid="uid://b1iyperftamvw" path="res://DialogueSystem/talk.wav" id="5_nh2cg"]
 [ext_resource type="Texture2D" uid="uid://bvy2baarpw3u" path="res://REAL_info_side.png" id="6_dt4lh"]
 [ext_resource type="Texture2D" uid="uid://baa3dj36ytw40" path="res://REAL_neutral.png" id="7_rks4u"]
 [ext_resource type="Texture2D" uid="uid://d3pg4lk1nuh35" path="res://REAL_question.png" id="8_nh2cg"]
@@ -12,7 +12,7 @@
 [ext_resource type="Script" uid="uid://80kl10p8d3vr" path="res://player.gd" id="10_ja504"]
 [ext_resource type="Script" uid="uid://dho5u66n3qum8" path="res://Health.gd" id="11_ja504"]
 [ext_resource type="Texture2D" uid="uid://d32r1g03tq7r1" path="res://PlayerModels/PlayerModel.png" id="12_6ocyv"]
-[ext_resource type="Script" uid="uid://b8oaxr7h2apa6" path="res://Levels/intro_fade.gd" id="12_wnude"]
+[ext_resource type="Script" uid="uid://b8oaxr7h2apa6" path="res://Levels/Intro/intro_fade.gd" id="12_wnude"]
 [ext_resource type="Texture2D" uid="uid://d1om6pjvcs2ag" path="res://PlayerModels/pixel-art_by_filereadynow_ai_2026-07-17 15_24_26.png" id="13_t8xs2"]
 [ext_resource type="Texture2D" uid="uid://celkaehf2l7st" path="res://PlayerModels/pixel-art_by_filereadynow_ai_2026-07-16 20_09_05.png" id="14_l8bc4"]
 [ext_resource type="Texture2D" uid="uid://bv5q2k3obwci6" path="res://PlayerModels/pixel-art_by_filereadynow_ai_2026-07-15 21_43_59.png" id="15_hf6e7"]
@@ -204,7 +204,7 @@ disabled = true
 shape = SubResource("RectangleShape2D_e3msw")
 target_position = Vector2(10, 576)
 
-[node name="Camera2D" type="Camera2D" parent="Player_Intro" unique_id=408722138 node_paths=PackedStringArray("top_left", "bottom_right")]
+[node name="Camera2D" type="Camera2D" parent="Player_Intro" unique_id=408722138]
 position = Vector2(208, 514)
 zoom = Vector2(2.5, 2.5)
 limit_left = 15
@@ -214,8 +214,6 @@ limit_bottom = 645
 position_smoothing_enabled = true
 position_smoothing_speed = 7.0
 script = ExtResource("18_51c6c")
-top_left = NodePath("")
-bottom_right = NodePath("")
 
 [node name="Health" type="Node" parent="Player_Intro" unique_id=1971941932]
 script = ExtResource("11_ja504")

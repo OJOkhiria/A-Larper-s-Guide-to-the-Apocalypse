@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://daukrugch87eg"
-path="res://.godot/imported/pixel-art_by_filereadynow_ai_2026-07-20 14_23_19 (2).png-4302fd27b28cd0649c799c88b7197872.ctex"
+uid="uid://ccpifndlwqdac"
+path="res://.godot/imported/Lvl1Bck.png-fada17460af7f28fcb6bf76a5e64ae01.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://pixel-art_by_filereadynow_ai_2026-07-20 14_23_19 (2).png"
-dest_files=["res://.godot/imported/pixel-art_by_filereadynow_ai_2026-07-20 14_23_19 (2).png-4302fd27b28cd0649c799c88b7197872.ctex"]
+source_file="res://Levels/Lvl1/Lvl1Bck.png"
+dest_files=["res://.godot/imported/Lvl1Bck.png-fada17460af7f28fcb6bf76a5e64ae01.ctex"]
 
 [params]
 

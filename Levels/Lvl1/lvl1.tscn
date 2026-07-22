@@ -1,35 +1,34 @@
 [gd_scene format=4 uid="uid://cqow47bch5ocs"]
 
-[ext_resource type="Script" uid="uid://80kl10p8d3vr" path="res://player.gd" id="1_h2yge"]
-[ext_resource type="Texture2D" uid="uid://d1om6pjvcs2ag" path="res://PlayerModels/pixel-art_by_filereadynow_ai_2026-07-17 15_24_26.png" id="3_0ma7k"]
-[ext_resource type="Script" uid="uid://be53l74160rtt" path="res://Levels/camera_2d.gd" id="3_cnj6n"]
-[ext_resource type="Texture2D" uid="uid://ddglx5b8cep2p" path="res://download (2).png" id="3_lquwl"]
-[ext_resource type="Texture2D" uid="uid://ccpifndlwqdac" path="res://Lvl1Bck.png" id="4_1bvp3"]
-[ext_resource type="Texture2D" uid="uid://celkaehf2l7st" path="res://PlayerModels/pixel-art_by_filereadynow_ai_2026-07-16 20_09_05.png" id="4_fr3s5"]
-[ext_resource type="Script" uid="uid://dho5u66n3qum8" path="res://Health.gd" id="4_p01d0"]
-[ext_resource type="Texture2D" uid="uid://d32r1g03tq7r1" path="res://PlayerModels/PlayerModel.png" id="5_0ma7k"]
-[ext_resource type="Texture2D" uid="uid://bv5q2k3obwci6" path="res://PlayerModels/pixel-art_by_filereadynow_ai_2026-07-15 21_43_59.png" id="5_b7ok2"]
-[ext_resource type="PackedScene" uid="uid://bk5cub14yf6d" path="res://DialogueSystem/dialogue_area_2d.tscn" id="5_tg51p"]
-[ext_resource type="Script" uid="uid://dkpwxghjd7ry8" path="res://DialogueSystem/DialogueExportResource.gd" id="6_cnj6n"]
-[ext_resource type="Texture2D" uid="uid://d25vhlnyjljan" path="res://PlayerModels/pixel-art_by_filereadynow_ai_2026-07-16 20_09_05 (1).png" id="6_qwvbv"]
-[ext_resource type="Texture2D" uid="uid://c4bu5o4cshtbn" path="res://PlayerModels/pixel-art_by_filereadynow_ai_2026-07-15 21_43_59 (1).png" id="7_0ma7k"]
-[ext_resource type="Script" uid="uid://q2hfxekwglu3" path="res://DialogueSystem/DialogueTextResource.gd" id="7_fvgg0"]
-[ext_resource type="Texture2D" uid="uid://di3aa2tou5axn" path="res://REAL_exclamation-removebg-preview.png" id="8_p01d0"]
-[ext_resource type="AudioStream" uid="uid://b1iyperftamvw" path="res://talk.wav" id="9_6ot8x"]
-[ext_resource type="Script" uid="uid://b2q2t7xwlh7y5" path="res://Levels/the_bomber_(lvl_1).gd" id="10_avaaf"]
-[ext_resource type="Texture2D" uid="uid://5wwr3wtoejs7" path="res://Enemies/The Bomber (lvl1)/Models/pixel-art_by_filereadynow_ai_2026-07-17 15_24_26 (2).png" id="10_qwuwr"]
-[ext_resource type="Texture2D" uid="uid://36f7lwut6sxk" path="res://Enemies/The Bomber (lvl1)/Models/pixel-art_by_filereadynow_ai_2026-07-17 15_24_26 (1).png" id="11_avaaf"]
-[ext_resource type="Texture2D" uid="uid://baa3dj36ytw40" path="res://REAL_neutral.png" id="11_fvgg0"]
-[ext_resource type="PackedScene" uid="uid://bl88onnvv263j" path="res://Enemies/The Bomber (lvl1)/Bomb/bomb.tscn" id="11_kmsxj"]
-[ext_resource type="Texture2D" uid="uid://b0s1yxl0rg4ju" path="res://Enemies/The Bomber (lvl1)/Models/pixel-art_by_filereadynow_ai_2026-07-17 15_24_26 (3).png" id="11_rf3a3"]
-[ext_resource type="Texture2D" uid="uid://cvmngi4ycdr6f" path="res://Enemies/The Bomber (lvl1)/Models/pixel-art_by_filereadynow_ai_2026-07-17 15_24_26 (4).png" id="12_kmsxj"]
-[ext_resource type="Texture2D" uid="uid://bit56apljt88m" path="res://Enemies/The Bomber (lvl1)/Models/pixel-art_by_filereadynow_ai_2026-07-17 15_24_26 (5).png" id="13_5ntyq"]
-[ext_resource type="Script" uid="uid://bgu5nf4rque13" path="res://Levels/area_2d.gd" id="13_5rnc8"]
-[ext_resource type="Texture2D" uid="uid://u6sh1dsfitnv" path="res://Enemies/The Bomber (lvl1)/Models/pixel-art_by_filereadynow_ai_2026-07-17 15_24_26 (6).png" id="14_v7f56"]
-[ext_resource type="PackedScene" uid="uid://bsusofe1hdgx" path="res://ui/hud.tscn" id="18_0ma7k"]
-[ext_resource type="Script" uid="uid://5mnj0ck1m7n0" path="res://DialogueSystem/respawn_dialogue_controller.gd" id="28_5ntyq"]
-[ext_resource type="PackedScene" uid="uid://doayi0ae8263f" path="res://DialogueSystem/Dialogue_System.tscn" id="29_jytrn"]
-[ext_resource type="Texture2D" uid="uid://clyjketh411lr" path="res://Screenshot 2026-07-21 at 6.07.31 PM-Photoroom.png" id="30_awtfi"]
+[ext_resource type="Script" uid="uid://80kl10p8d3vr" path="res://player.gd" id="1_4huox"]
+[ext_resource type="Texture2D" uid="uid://d32r1g03tq7r1" path="res://PlayerModels/PlayerModel.png" id="2_av52w"]
+[ext_resource type="Texture2D" uid="uid://d1om6pjvcs2ag" path="res://PlayerModels/pixel-art_by_filereadynow_ai_2026-07-17 15_24_26.png" id="3_el6vb"]
+[ext_resource type="Texture2D" uid="uid://celkaehf2l7st" path="res://PlayerModels/pixel-art_by_filereadynow_ai_2026-07-16 20_09_05.png" id="4_q2wb1"]
+[ext_resource type="Texture2D" uid="uid://bv5q2k3obwci6" path="res://PlayerModels/pixel-art_by_filereadynow_ai_2026-07-15 21_43_59.png" id="5_rffqr"]
+[ext_resource type="Texture2D" uid="uid://d25vhlnyjljan" path="res://PlayerModels/pixel-art_by_filereadynow_ai_2026-07-16 20_09_05 (1).png" id="6_pxo2n"]
+[ext_resource type="Texture2D" uid="uid://c4bu5o4cshtbn" path="res://PlayerModels/pixel-art_by_filereadynow_ai_2026-07-15 21_43_59 (1).png" id="7_cqfwx"]
+[ext_resource type="Script" uid="uid://be53l74160rtt" path="res://Levels/camera_2d.gd" id="8_tvo0h"]
+[ext_resource type="Script" uid="uid://dho5u66n3qum8" path="res://Health.gd" id="9_h6a3d"]
+[ext_resource type="Script" uid="uid://b2q2t7xwlh7y5" path="res://Levels/Lvl1/the_bomber_(lvl_1).gd" id="10_iedrn"]
+[ext_resource type="PackedScene" uid="uid://bl88onnvv263j" path="res://Enemies/The Bomber (lvl1)/Bomb/bomb.tscn" id="11_by15l"]
+[ext_resource type="Texture2D" uid="uid://5wwr3wtoejs7" path="res://Enemies/The Bomber (lvl1)/Models/pixel-art_by_filereadynow_ai_2026-07-17 15_24_26 (2).png" id="12_l0e0q"]
+[ext_resource type="Texture2D" uid="uid://36f7lwut6sxk" path="res://Enemies/The Bomber (lvl1)/Models/pixel-art_by_filereadynow_ai_2026-07-17 15_24_26 (1).png" id="13_awgkf"]
+[ext_resource type="Texture2D" uid="uid://b0s1yxl0rg4ju" path="res://Enemies/The Bomber (lvl1)/Models/pixel-art_by_filereadynow_ai_2026-07-17 15_24_26 (3).png" id="14_f28xq"]
+[ext_resource type="Texture2D" uid="uid://cvmngi4ycdr6f" path="res://Enemies/The Bomber (lvl1)/Models/pixel-art_by_filereadynow_ai_2026-07-17 15_24_26 (4).png" id="15_6chwl"]
+[ext_resource type="Texture2D" uid="uid://bit56apljt88m" path="res://Enemies/The Bomber (lvl1)/Models/pixel-art_by_filereadynow_ai_2026-07-17 15_24_26 (5).png" id="16_jn4is"]
+[ext_resource type="Texture2D" uid="uid://u6sh1dsfitnv" path="res://Enemies/The Bomber (lvl1)/Models/pixel-art_by_filereadynow_ai_2026-07-17 15_24_26 (6).png" id="17_e16a4"]
+[ext_resource type="Texture2D" uid="uid://ddglx5b8cep2p" path="res://download (2).png" id="18_yol60"]
+[ext_resource type="Texture2D" uid="uid://ccpifndlwqdac" path="res://Levels/Lvl1/Lvl1Bck.png" id="19_yycmp"]
+[ext_resource type="PackedScene" uid="uid://bk5cub14yf6d" path="res://DialogueSystem/dialogue_area_2d.tscn" id="20_cl5sn"]
+[ext_resource type="Script" uid="uid://dkpwxghjd7ry8" path="res://DialogueSystem/DialogueExportResource.gd" id="21_xgks1"]
+[ext_resource type="Script" uid="uid://q2hfxekwglu3" path="res://DialogueSystem/DialogueTextResource.gd" id="22_jibdw"]
+[ext_resource type="Texture2D" uid="uid://di3aa2tou5axn" path="res://REAL_exclamation-removebg-preview.png" id="23_3tosa"]
+[ext_resource type="AudioStream" uid="uid://b1iyperftamvw" path="res://DialogueSystem/talk.wav" id="24_47xte"]
+[ext_resource type="Texture2D" uid="uid://baa3dj36ytw40" path="res://REAL_neutral.png" id="25_j733s"]
+[ext_resource type="PackedScene" uid="uid://bsusofe1hdgx" path="res://ui/hud.tscn" id="26_ncgh6"]
+[ext_resource type="Script" uid="uid://5mnj0ck1m7n0" path="res://DialogueSystem/respawn_dialogue_controller.gd" id="27_jyqp1"]
+[ext_resource type="PackedScene" uid="uid://doayi0ae8263f" path="res://DialogueSystem/Dialogue_System.tscn" id="28_v5ypr"]
+[ext_resource type="Texture2D" uid="uid://clyjketh411lr" path="res://Screenshot 2026-07-21 at 6.07.31 PM-Photoroom.png" id="29_umdog"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_0ma7k"]
 animations = [{
@@ -40,7 +39,7 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("5_0ma7k")
+"texture": ExtResource("2_av52w")
 }],
 "loop": 1,
 "name": &"idle",
@@ -48,7 +47,7 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("3_0ma7k")
+"texture": ExtResource("3_el6vb")
 }],
 "loop": 1,
 "name": &"jump",
@@ -56,16 +55,16 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("4_fr3s5")
+"texture": ExtResource("4_q2wb1")
 }, {
 "duration": 1.0,
-"texture": ExtResource("5_b7ok2")
+"texture": ExtResource("5_rffqr")
 }, {
 "duration": 1.0,
-"texture": ExtResource("6_qwvbv")
+"texture": ExtResource("6_pxo2n")
 }, {
 "duration": 1.0,
-"texture": ExtResource("7_0ma7k")
+"texture": ExtResource("7_cqfwx")
 }],
 "loop": 1,
 "name": &"run",
@@ -84,10 +83,10 @@ size = Vector2(34, 51)
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("10_qwuwr")
+"texture": ExtResource("12_l0e0q")
 }, {
 "duration": 1.0,
-"texture": ExtResource("11_avaaf")
+"texture": ExtResource("13_awgkf")
 }],
 "loop": 1,
 "name": &"idle",
@@ -95,16 +94,16 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("11_rf3a3")
+"texture": ExtResource("14_f28xq")
 }, {
 "duration": 1.0,
-"texture": ExtResource("12_kmsxj")
+"texture": ExtResource("15_6chwl")
 }, {
 "duration": 1.0,
-"texture": ExtResource("13_5ntyq")
+"texture": ExtResource("16_jn4is")
 }, {
 "duration": 1.0,
-"texture": ExtResource("14_v7f56")
+"texture": ExtResource("17_e16a4")
 }],
 "loop": 1,
 "name": &"throw",
@@ -114,11 +113,13 @@ animations = [{
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_0ma7k"]
 size = Vector2(74, 83.5)
 
+[sub_resource type="GDScript" id="GDScript_v7f56"]
+
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_f7bkp"]
 size = Vector2(495, 125)
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_272bh"]
-texture = ExtResource("3_lquwl")
+texture = ExtResource("18_yol60")
 0:0/0 = 0
 0:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
 1:0/0 = 0
@@ -491,54 +492,54 @@ size = Vector2(20, 641.5)
 size = Vector2(1151, 20)
 
 [sub_resource type="Resource" id="Resource_dc0bb"]
-script = ExtResource("7_fvgg0")
-speaker_img = ExtResource("8_p01d0")
+script = ExtResource("22_jibdw")
+speaker_img = ExtResource("23_3tosa")
 text = "Hey! Look over there!"
 text_speed = 14.0
-text_sound = ExtResource("9_6ot8x")
+text_sound = ExtResource("24_47xte")
 metadata/_custom_type_script = "uid://q2hfxekwglu3"
 
 [sub_resource type="Resource" id="Resource_p01d0"]
-script = ExtResource("7_fvgg0")
-speaker_img = ExtResource("11_fvgg0")
+script = ExtResource("22_jibdw")
+speaker_img = ExtResource("25_j733s")
 text = "It's your classmate. He... doesn't really look like he's in his right of mind right now"
 text_speed = 14.0
-text_sound = ExtResource("9_6ot8x")
+text_sound = ExtResource("24_47xte")
 metadata/_custom_type_script = "uid://q2hfxekwglu3"
 
 [sub_resource type="Resource" id="Resource_6ot8x"]
-script = ExtResource("7_fvgg0")
-speaker_img = ExtResource("11_fvgg0")
+script = ExtResource("22_jibdw")
+speaker_img = ExtResource("25_j733s")
 text = "I don't think we're ready to confront him just yet. See if you can find a way around him!"
 text_speed = 14.0
-text_sound = ExtResource("9_6ot8x")
+text_sound = ExtResource("24_47xte")
 metadata/_custom_type_script = "uid://q2hfxekwglu3"
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_fr3s5"]
 size = Vector2(162, 87)
 
 [sub_resource type="Resource" id="Resource_v7f56"]
-script = ExtResource("7_fvgg0")
-speaker_img = ExtResource("30_awtfi")
+script = ExtResource("22_jibdw")
+speaker_img = ExtResource("29_umdog")
 text = "You tried to fight him, didn't you?"
 text_speed = 14.0
-text_sound = ExtResource("9_6ot8x")
+text_sound = ExtResource("24_47xte")
 metadata/_custom_type_script = "uid://q2hfxekwglu3"
 
 [sub_resource type="Resource" id="Resource_h6diq"]
-script = ExtResource("7_fvgg0")
-speaker_img = ExtResource("30_awtfi")
+script = ExtResource("22_jibdw")
+speaker_img = ExtResource("29_umdog")
 text = "You kids need to learn to stop biting off more than you can chew."
 text_speed = 14.0
-text_sound = ExtResource("9_6ot8x")
+text_sound = ExtResource("24_47xte")
 metadata/_custom_type_script = "uid://q2hfxekwglu3"
 
 [sub_resource type="Resource" id="Resource_jvm1p"]
-script = ExtResource("7_fvgg0")
-speaker_img = ExtResource("30_awtfi")
+script = ExtResource("22_jibdw")
+speaker_img = ExtResource("29_umdog")
 text = "Sometimes, instead of taking to straightforward, cool-looking path that people tell you about, you need to find your own path."
 text_speed = 14.0
-text_sound = ExtResource("9_6ot8x")
+text_sound = ExtResource("24_47xte")
 metadata/_custom_type_script = "uid://q2hfxekwglu3"
 
 [node name="Lvl1" type="Node" unique_id=518403287]
@@ -550,7 +551,7 @@ position = Vector2(1152, 648)
 
 [node name="Player(Lvl1)" type="CharacterBody2D" parent="." unique_id=1176159441 groups=["player"]]
 position = Vector2(1, 1)
-script = ExtResource("1_h2yge")
+script = ExtResource("1_4huox")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Player(Lvl1)" unique_id=68647467]
 z_index = 1
@@ -583,17 +584,17 @@ limit_right = 1222
 limit_bottom = 654
 position_smoothing_enabled = true
 position_smoothing_speed = 7.0
-script = ExtResource("3_cnj6n")
+script = ExtResource("8_tvo0h")
 top_left = NodePath("../../TopLeft")
 bottom_right = NodePath("../../BottomRight")
 
 [node name="Health" type="Node" parent="Player(Lvl1)" unique_id=1219425922]
-script = ExtResource("4_p01d0")
+script = ExtResource("9_h6a3d")
 use_player_data = true
 
 [node name="The Bomber (lvl 1)" type="CharacterBody2D" parent="." unique_id=643991390]
-script = ExtResource("10_avaaf")
-bomb_scene = ExtResource("11_kmsxj")
+script = ExtResource("10_iedrn")
+bomb_scene = ExtResource("11_by15l")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="The Bomber (lvl 1)" unique_id=1235553158]
 z_index = 1
@@ -608,7 +609,7 @@ position = Vector2(729, 582.75)
 shape = SubResource("RectangleShape2D_0ma7k")
 
 [node name="DetectionArea" type="Area2D" parent="The Bomber (lvl 1)" unique_id=119613211]
-script = ExtResource("13_5rnc8")
+script = SubResource("GDScript_v7f56")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="The Bomber (lvl 1)/DetectionArea" unique_id=39579852]
 z_index = 1
@@ -628,7 +629,7 @@ tile_set = SubResource("TileSet_5vw27")
 [node name="Lvl1Bck" type="Sprite2D" parent="." unique_id=565523357]
 position = Vector2(599.00006, 288)
 scale = Vector2(0.75, 0.773)
-texture = ExtResource("4_1bvp3")
+texture = ExtResource("19_yycmp")
 
 [node name="StaticBody2D" type="StaticBody2D" parent="." unique_id=1823116970]
 
@@ -644,11 +645,11 @@ shape = SubResource("RectangleShape2D_d77kr")
 position = Vector2(576.5, -10)
 shape = SubResource("RectangleShape2D_82m2o")
 
-[node name="DialogueArea2D" parent="." unique_id=1615248638 node_paths=PackedStringArray("camera_target_path") instance=ExtResource("5_tg51p")]
+[node name="DialogueArea2D" parent="." unique_id=1615248638 node_paths=PackedStringArray("camera_target_path") instance=ExtResource("20_cl5sn")]
 activate_instant = true
 only_activate_once = true
 box_placement = 3
-dialogue = Array[ExtResource("6_cnj6n")]([SubResource("Resource_dc0bb"), SubResource("Resource_p01d0"), SubResource("Resource_6ot8x")])
+dialogue = Array[ExtResource("21_xgks1")]([SubResource("Resource_dc0bb"), SubResource("Resource_p01d0"), SubResource("Resource_6ot8x")])
 camera_target_path = NodePath("../CameraFocusPoint")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="DialogueArea2D" unique_id=1955166417]
@@ -658,10 +659,10 @@ shape = SubResource("RectangleShape2D_fr3s5")
 [node name="CameraFocusPoint" type="Marker2D" parent="." unique_id=1905506304]
 position = Vector2(730, 550)
 
-[node name="HUD" parent="." unique_id=1161330053 instance=ExtResource("18_0ma7k")]
+[node name="HUD" parent="." unique_id=1161330053 instance=ExtResource("26_ncgh6")]
 heart_size = Vector2(128, 128)
 
 [node name="RespawnDialogueController" type="Node" parent="." unique_id=1424525574]
-script = ExtResource("28_5ntyq")
-dialogue_system_scene = ExtResource("29_jytrn")
-bomber_bomb_dialogue = Array[ExtResource("6_cnj6n")]([SubResource("Resource_v7f56"), SubResource("Resource_h6diq"), SubResource("Resource_jvm1p")])
+script = ExtResource("27_jyqp1")
+dialogue_system_scene = ExtResource("28_v5ypr")
+bomber_bomb_dialogue = Array[ExtResource("21_xgks1")]([SubResource("Resource_v7f56"), SubResource("Resource_h6diq"), SubResource("Resource_jvm1p")])
