@@ -220,19 +220,3 @@ mouse_filter = 2
 color = Color(0, 0, 0, 1)
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1192719967]
-
-[node name="SettingsPanel" type="Control" parent="." unique_id=1850560948]
-visible = false
-anchors_preset = 0
-offset_left = 71.0
-offset_top = 68.0
-offset_right = 464.0
-offset_bottom = 523.0
-
-[node name="VBoxContainer" type="VBoxContainer" parent="SettingsPanel" unique_id=273441829]
-layout_mode = 0
-offset_right = 40.0
-offset_bottom = 40.0
-
-[node name="BackButton" type="Button" parent="SettingsPanel/VBoxContainer" unique_id=1810456683]
-layout_mode = 2

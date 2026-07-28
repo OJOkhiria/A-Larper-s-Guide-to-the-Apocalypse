@@ -49,8 +49,6 @@ var starting_book_position: Vector2
 @onready var play_button: Button = \
 	$BookPivot/FrontCoverPivot/FrontCover/CoverContent/VBoxContainer/PlayButton
 
-@onready var settings_button: Button = \
-	$BookPivot/FrontCoverPivot/FrontCover/CoverContent/VBoxContainer/SettingsButton
 	
 @onready var controls_page: Control = \
 $BookPivot/BackAndPages/ControlsPage
@@ -64,13 +62,7 @@ $BookPivot/BackAndPages/ControlsPage
 @onready var controls_continue_button: Button = \
 	$BookPivot/BackAndPages/ControlsPage/MarginContainer/VBoxContainer/ContinueButton
 
-@onready var settings_panel: Control = \
-	get_node_or_null("SettingsPanel") as Control
 
-@onready var settings_back_button: Button = \
-	get_node_or_null(
-		"SettingsPanel/VBoxContainer/BackButton"
-	) as Button
 
 @onready var fade_rect: ColorRect = \
 	$FadeLayer/FadeRect
@@ -113,12 +105,6 @@ func _connect_signals() -> void:
 	if not play_button.pressed.is_connected(_on_play_pressed):
 		play_button.pressed.connect(_on_play_pressed)
 
-	if not settings_button.pressed.is_connected(
-		_on_settings_pressed
-	):
-		settings_button.pressed.connect(
-			_on_settings_pressed
-		)
 
 	if not controls_continue_button.pressed.is_connected(
 		_on_controls_continue_pressed
@@ -127,15 +113,7 @@ func _connect_signals() -> void:
 			_on_controls_continue_pressed
 		)
 
-	if (
-		settings_back_button != null
-		and not settings_back_button.pressed.is_connected(
-			_on_settings_back_pressed
-		)
-	):
-		settings_back_button.pressed.connect(
-			_on_settings_back_pressed
-		)
+
 	if not controls_continue_button.pressed.is_connected(
 	_on_controls_continue_pressed
 	):
@@ -163,11 +141,9 @@ func _configure_mouse_input() -> void:
 	controls_page.mouse_filter = Control.MOUSE_FILTER_PASS
 
 	_configure_button(play_button)
-	_configure_button(settings_button)
 	_configure_button(controls_continue_button)
 
-	if settings_back_button != null:
-		_configure_button(settings_back_button)
+
 
 	fade_rect.mouse_filter = Control.MOUSE_FILTER_IGNORE
 
@@ -197,7 +173,6 @@ func _initialize_menu() -> void:
 	menu_initialized = true
 
 	play_button.disabled = false
-	settings_button.disabled = false
 	play_button.grab_focus()
 
 
@@ -380,10 +355,8 @@ func _set_initial_state() -> void:
 	controls_continue_button.disabled = true
 
 	play_button.disabled = true
-	settings_button.disabled = true
 
-	if settings_panel != null:
-		settings_panel.visible = false
+
 
 	fade_rect.visible = true
 	fade_rect.modulate.a = 0.0
@@ -530,10 +503,7 @@ func _on_play_pressed() -> void:
 	awaiting_controls_continue = false
 
 	play_button.disabled = true
-	settings_button.disabled = true
 
-	if settings_panel != null:
-		settings_panel.visible = false
 
 	# Immediately stop the front-cover branch from blocking
 	# the controls page.
@@ -635,42 +605,11 @@ func _restore_menu_after_failed_transition() -> void:
 	book_pivot.position = final_book_position
 
 	play_button.disabled = false
-	settings_button.disabled = false
 	awaiting_controls_continue = false
 	controls_continue_button.disabled = true
 	_set_controls_input_enabled(false)
 	_set_cover_input_enabled(true)
 
-func _on_settings_pressed() -> void:
-	if transition_started or not menu_initialized:
-		return
-
-	if settings_panel == null:
-		push_warning(
-			"SettingsPanel could not be found."
-		)
-		return
-
-	settings_panel.visible = true
-	settings_panel.move_to_front()
-
-	play_button.disabled = true
-	settings_button.disabled = true
-
-	if settings_back_button != null:
-		settings_back_button.disabled = false
-		settings_back_button.grab_focus()
-
-
-func _on_settings_back_pressed() -> void:
-	if settings_panel == null:
-		return
-
-	settings_panel.visible = false
-
-	play_button.disabled = false
-	settings_button.disabled = false
-	settings_button.grab_focus()
 
 
 func _on_viewport_resized() -> void:
@@ -696,20 +635,6 @@ func _on_play_button_gui_input(event: InputEvent) -> void:
 	_on_play_pressed()
 
 
-func _on_settings_button_gui_input(event: InputEvent) -> void:
-	if not _is_button_activation_event(event):
-		return
-
-	settings_button.accept_event()
-	_on_settings_pressed()
-
-
-func _on_settings_back_button_gui_input(event: InputEvent) -> void:
-	if not _is_button_activation_event(event):
-		return
-
-	settings_back_button.accept_event()
-	_on_settings_back_pressed()
 
 func _is_button_activation_event(event: InputEvent) -> bool:
 	if event is InputEventMouseButton:
@@ -894,8 +819,6 @@ func _set_cover_input_enabled(enabled: bool) -> void:
 		play_button.mouse_filter = \
 			Control.MOUSE_FILTER_STOP
 
-		settings_button.mouse_filter = \
-			Control.MOUSE_FILTER_STOP
 	else:
 		# Disable the entire closed-cover UI branch so its invisible
 		# rectangle cannot cover the controls page.

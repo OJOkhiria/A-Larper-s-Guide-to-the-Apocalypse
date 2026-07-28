@@ -3,7 +3,7 @@ extends CharacterBody2D
 
 @export var damage: int = 1
 @export var throw_speed: float = 300.0
-@export var upward_force: float = 350.0
+@export var upward_force: float = 150.0
 @export var gravity: float = 900.0
 @export var ground_friction: float = 600.0
 @export var fuse_time: float = 1.5
