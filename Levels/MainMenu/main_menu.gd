@@ -49,7 +49,6 @@ var starting_book_position: Vector2
 @onready var play_button: Button = \
 	$BookPivot/FrontCoverPivot/FrontCover/CoverContent/VBoxContainer/PlayButton
 
-	
 @onready var controls_page: Control = \
 $BookPivot/BackAndPages/ControlsPage
 
@@ -61,6 +60,25 @@ $BookPivot/BackAndPages/ControlsPage
 
 @onready var controls_continue_button: Button = \
 	$BookPivot/BackAndPages/ControlsPage/MarginContainer/VBoxContainer/ContinueButton
+	
+
+@onready var hud_page: Control = \
+	$BookPivot/BackAndPages/HUDPage
+
+@onready var hud_page_margin: MarginContainer = \
+	$BookPivot/BackAndPages/HUDPage/MarginContainer
+
+@onready var hud_page_container: VBoxContainer = \
+	$BookPivot/BackAndPages/HUDPage/MarginContainer/VBoxContainer
+
+@onready var hud_page_continue_button: Button = \
+	$BookPivot/BackAndPages/HUDPage/MarginContainer/VBoxContainer/ContinueButton
+	
+@onready var page_turn_pivot: Control = \
+	$BookPivot/PageTurnPivot
+
+@onready var turning_page: TextureRect = \
+	$BookPivot/PageTurnPivot/TurningPage
 
 
 
@@ -90,6 +108,17 @@ const SPREAD_SIZE := Vector2(
 	COVER_SIZE.y
 )
 
+enum MenuPage {
+	NONE,
+	CONTROLS,
+	HUD
+}
+
+var current_menu_page: MenuPage = MenuPage.NONE
+var page_transition_running: bool = false
+# The source page artwork faces right. Once it is resting on the left cover,
+# this state drives the TextureRect flip explicitly.
+var turning_page_is_reflected: bool = false
 
 func _ready() -> void:
 	_configure_mouse_input()
@@ -114,11 +143,11 @@ func _connect_signals() -> void:
 		)
 
 
-	if not controls_continue_button.pressed.is_connected(
-	_on_controls_continue_pressed
+	if not hud_page_continue_button.pressed.is_connected(
+	_on_hud_page_continue_pressed
 	):
-		controls_continue_button.pressed.connect(
-		_on_controls_continue_pressed
+		hud_page_continue_button.pressed.connect(
+		_on_hud_page_continue_pressed
 	)
 
 
@@ -142,6 +171,7 @@ func _configure_mouse_input() -> void:
 
 	_configure_button(play_button)
 	_configure_button(controls_continue_button)
+	_configure_button(hud_page_continue_button)
 
 
 
@@ -151,6 +181,9 @@ func _configure_mouse_input() -> void:
 	front_cover_pivot.clip_contents = false
 	cover_content.clip_contents = false
 	controls_page.clip_contents = false
+
+	hud_page.clip_contents = false
+	hud_page.mouse_filter = Control.MOUSE_FILTER_IGNORE
 
 
 func _configure_button(button: Button) -> void:
@@ -177,9 +210,7 @@ func _initialize_menu() -> void:
 
 
 func _prepare_layout() -> void:
-	set_anchors_and_offsets_preset(
-		Control.PRESET_FULL_RECT
-	)
+	set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
 
 	# The complete open spread.
 	_place_control(
@@ -252,6 +283,26 @@ func _prepare_layout() -> void:
 	fade_rect.set_anchors_and_offsets_preset(
 		Control.PRESET_FULL_RECT
 	)
+	
+	_place_control(
+	hud_page,
+	PAGE_INSET,
+	PAGE_SIZE)
+
+	hud_page.clip_contents = false
+	hud_page.mouse_filter = Control.MOUSE_FILTER_IGNORE
+
+	hud_page_margin.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
+
+	hud_page_margin.mouse_filter = \
+	Control.MOUSE_FILTER_PASS
+
+	hud_page_container.mouse_filter = \
+	Control.MOUSE_FILTER_PASS
+
+	hud_page_continue_button.mouse_filter = \
+	Control.MOUSE_FILTER_STOP
+	_configure_page_turn()
 
 
 func _set_pivots() -> void:
@@ -409,6 +460,60 @@ func _set_initial_state() -> void:
 	controls_page.size = PAGE_SIZE
 	controls_page.visible = false
 	controls_page.modulate.a = 0.0
+	current_menu_page = MenuPage.NONE
+	page_transition_running = false
+
+	controls_page.visible = false
+	controls_page.modulate = Color(
+	1.0,
+	1.0,
+	1.0,
+	0.0
+	)
+
+	hud_page.visible = false
+	hud_page.modulate = Color(
+	1.0,
+	1.0,
+	1.0,
+	0.0
+	)
+
+	controls_continue_button.disabled = true
+	hud_page_continue_button.disabled = true
+
+	controls_page.mouse_filter = \
+	Control.MOUSE_FILTER_IGNORE
+
+	hud_page.mouse_filter = \
+	Control.MOUSE_FILTER_IGNORE
+
+	controls_page.z_index = 20
+	hud_page.z_index = 21
+	
+	page_turn_pivot.position = Vector2(
+	COVER_SIZE.x,
+	PAGE_INSET.y
+	)
+
+	page_turn_pivot.pivot_offset = Vector2(
+	0.0,
+	PAGE_SIZE.y * 0.5
+	)
+
+	page_turn_pivot.visible = false
+	page_turn_pivot.scale = Vector2.ONE
+	page_turn_pivot.z_index = 30
+
+	turning_page.position = Vector2(
+	PAGE_INSET.x,
+	0.0
+	)
+
+	turning_page.size = PAGE_SIZE
+	turning_page.texture = pages.texture
+	turning_page.visible = true
+	_set_turning_page_reflected(false)
 
 
 func _play_book_fall() -> void:
@@ -609,6 +714,38 @@ func _restore_menu_after_failed_transition() -> void:
 	controls_continue_button.disabled = true
 	_set_controls_input_enabled(false)
 	_set_cover_input_enabled(true)
+	
+	current_menu_page = MenuPage.NONE
+	page_transition_running = false
+
+	controls_page.visible = false
+	controls_page.position = PAGE_INSET
+	controls_page.modulate.a = 0.0
+
+	hud_page.visible = false
+	hud_page.position = PAGE_INSET
+	hud_page.modulate.a = 0.0
+
+	page_turn_pivot.visible = false
+	page_turn_pivot.position = Vector2(
+		COVER_SIZE.x,
+		PAGE_INSET.y
+	)
+	page_turn_pivot.scale = Vector2.ONE
+	turning_page.position = Vector2(PAGE_INSET.x, 0.0)
+	_set_turning_page_reflected(false)
+
+	_set_page_input_enabled(
+	controls_page,
+	controls_continue_button,
+	false
+	)
+
+	_set_page_input_enabled(
+	hud_page,
+	hud_page_continue_button,
+	false
+)
 
 
 
@@ -648,7 +785,10 @@ func _is_button_activation_event(event: InputEvent) -> bool:
 
 	return event.is_action_pressed("ui_accept")
 	
+
 func _show_controls_page() -> void:
+	current_menu_page = MenuPage.CONTROLS
+
 	controls_page.visible = true
 	controls_page.modulate = Color(
 		1.0,
@@ -657,9 +797,20 @@ func _show_controls_page() -> void:
 		0.0
 	)
 
-	controls_page.z_index = 20
+	hud_page.visible = false
+	hud_page.modulate.a = 0.0
 
-	_set_controls_input_enabled(false)
+	_set_page_input_enabled(
+		controls_page,
+		controls_continue_button,
+		false
+	)
+
+	_set_page_input_enabled(
+		hud_page,
+		hud_page_continue_button,
+		false
+	)
 
 	await get_tree().process_frame
 
@@ -676,38 +827,44 @@ func _show_controls_page() -> void:
 
 	await tween.finished
 
-	awaiting_controls_continue = true
-	_set_controls_input_enabled(true)
+	_set_page_input_enabled(
+		controls_page,
+		controls_continue_button,
+		true
+	)
+
 	controls_continue_button.grab_focus()
 
 func _on_controls_continue_pressed() -> void:
-	if not awaiting_controls_continue:
+	if current_menu_page != MenuPage.CONTROLS:
 		return
 
-	if not controls_page.visible:
+	if page_transition_running:
 		return
 
-	awaiting_controls_continue = false
-	_set_controls_input_enabled(false)
+	page_transition_running = true
 
-	var fade_succeeded: bool = await _fade_to_black()
-
-	if not fade_succeeded:
-		awaiting_controls_continue = true
-		_set_controls_input_enabled(true)
-		return
-
-	var error: Error = get_tree().change_scene_to_file(
-		intro_scene_path
+	_set_page_input_enabled(
+		controls_page,
+		controls_continue_button,
+		false
+	)
+	page_flip.play()
+	await _transition_between_pages(
+		controls_page,
+		hud_page
 	)
 
-	if error != OK:
-		push_error(
-			"Could not load intro scene: %s. Error code: %s"
-			% [intro_scene_path, error]
-		)
+	current_menu_page = MenuPage.HUD
+	page_transition_running = false
 
-		_restore_menu_after_failed_transition()
+	_set_page_input_enabled(
+		hud_page,
+		hud_page_continue_button,
+		true
+	)
+
+	hud_page_continue_button.grab_focus()
 
 func _configure_page_rect(rect: TextureRect) -> void:
 	rect.set_anchors_preset(Control.PRESET_TOP_LEFT)
@@ -773,11 +930,7 @@ func _configure_cover_rect(rect: TextureRect) -> void:
 	)
 	rect.mouse_filter = Control.MOUSE_FILTER_IGNORE
 
-func _place_control(
-	control: Control,
-	local_position: Vector2,
-	control_size: Vector2
-) -> void:
+func _place_control(control: Control, local_position: Vector2, control_size: Vector2) -> void:
 	control.set_anchors_preset(
 		Control.PRESET_TOP_LEFT
 	)
@@ -860,3 +1013,227 @@ func _set_controls_input_enabled(enabled: bool) -> void:
 
 		controls_page.mouse_behavior_recursive = \
 			Control.MOUSE_BEHAVIOR_DISABLED
+
+
+func _set_page_input_enabled(page: Control, button: Button, enabled: bool) -> void:
+	if enabled:
+		page.mouse_behavior_recursive = \
+			Control.MOUSE_BEHAVIOR_ENABLED
+
+		page.mouse_filter = \
+			Control.MOUSE_FILTER_PASS
+
+		button.mouse_filter = \
+			Control.MOUSE_FILTER_STOP
+
+		button.disabled = false
+	else:
+		button.disabled = true
+		button.mouse_filter = \
+			Control.MOUSE_FILTER_IGNORE
+
+		page.mouse_filter = \
+			Control.MOUSE_FILTER_IGNORE
+
+		page.mouse_behavior_recursive = \
+			Control.MOUSE_BEHAVIOR_DISABLED
+
+func _transition_between_pages(from_page: Control,to_page: Control) -> void:
+	from_page.mouse_filter = \
+		Control.MOUSE_FILTER_IGNORE
+
+	to_page.visible = true
+	to_page.modulate = Color.WHITE
+	to_page.position = PAGE_INSET
+
+	# The destination page sits beneath the turning page.
+	to_page.z_index = 2
+	from_page.z_index = 3
+
+	page_turn_pivot.visible = true
+	# Start at the spine so the moving page occupies the right-hand page inset.
+	page_turn_pivot.position = Vector2(
+		COVER_SIZE.x,
+		PAGE_INSET.y
+	)
+
+	page_turn_pivot.scale = Vector2.ONE
+	turning_page.texture = pages.texture
+	turning_page.position = Vector2(PAGE_INSET.x, 0.0)
+	_set_turning_page_reflected(false)
+
+	var tween := create_tween()
+	# Remove the outgoing instructions as soon as the page starts to move.
+	# Previously they remained opaque until the entire turn had finished,
+	# briefly leaving two pages' contents visible at once.
+	tween.set_parallel(true)
+	tween.set_trans(Tween.TRANS_CUBIC)
+	tween.set_ease(Tween.EASE_IN_OUT)
+
+	tween.tween_method(
+		_apply_page_turn_progress,
+		0.0,
+		1.0,
+		0.55
+	)
+	tween.tween_property(
+		from_page,
+		"modulate:a",
+		0.0,
+		0.12
+	).set_trans(Tween.TRANS_SINE).set_ease(
+		Tween.EASE_OUT
+	)
+
+	await tween.finished
+
+	# The controls were the source of the turn, not a second visible page.
+	# Hide them once the turn has reached the left cover, where the mirrored
+	# page texture remains as the visual back of the turned page.
+	from_page.visible = false
+	from_page.modulate.a = 0.0
+
+	# Lay the final texture directly over the left cover's page inset. This
+	# avoids relying on a negative parent scale for its final orientation.
+	page_turn_pivot.visible = true
+	page_turn_pivot.position = Vector2.ZERO
+	page_turn_pivot.scale = Vector2.ONE
+
+	turning_page.visible = true
+	turning_page.position = PAGE_INSET
+	_set_turning_page_reflected(true)
+
+
+
+func _on_hud_page_continue_pressed() -> void:
+	if current_menu_page != MenuPage.HUD:
+		return
+
+	if page_transition_running:
+		return
+
+	page_transition_running = true
+
+	_set_page_input_enabled(
+		hud_page,
+		hud_page_continue_button,
+		false
+	)
+
+	var fade_succeeded: bool = await _fade_to_black()
+
+	if not fade_succeeded:
+		page_transition_running = false
+
+		_set_page_input_enabled(
+			hud_page,
+			hud_page_continue_button,
+			true
+		)
+
+		return
+
+	var error: Error = get_tree().change_scene_to_file(
+		intro_scene_path
+	)
+
+	if error != OK:
+		push_error(
+			"Could not load intro scene: %s. Error code: %s"
+			% [intro_scene_path, error]
+		)
+
+		page_transition_running = false
+		_restore_menu_after_failed_transition()
+
+func _apply_page_turn_progress(progress: float) -> void:
+	if progress < 0.5:
+		var fold_progress: float = smoothstep(
+			0.0,
+			1.0,
+			progress * 2.0
+		)
+
+		_set_turning_page_reflected(false)
+
+		page_turn_pivot.scale = Vector2(
+			lerpf(
+				1.0,
+				0.015,
+				fold_progress
+			),
+			lerpf(
+				1.0,
+				0.97,
+				fold_progress
+			)
+		)
+	else:
+		var unfold_progress: float = smoothstep(
+			0.0,
+			1.0,
+			(progress - 0.5) * 2.0
+		)
+
+		_set_turning_page_reflected(false)
+
+
+		page_turn_pivot.scale = Vector2(
+			lerpf(
+				-0.015,
+				-1.0,
+				unfold_progress
+			),
+			lerpf(
+				0.97,
+				1.0,
+				unfold_progress
+			)
+		)
+
+func _configure_page_turn() -> void:
+	# The pivot's origin is placed directly at the book spine.
+	_place_control(
+		page_turn_pivot,
+		Vector2(
+			COVER_SIZE.x,
+			PAGE_INSET.y
+		),
+		Vector2(
+			PAGE_SIZE.x + PAGE_INSET.x,
+			PAGE_SIZE.y
+		)
+	)
+
+	# The local origin is already the hinge, so no horizontal
+	# pivot offset is needed.
+	page_turn_pivot.pivot_offset = Vector2(
+		0.0,
+		PAGE_SIZE.y * 0.5
+	)
+
+	page_turn_pivot.clip_contents = false
+	page_turn_pivot.mouse_filter = \
+		Control.MOUSE_FILTER_IGNORE
+	page_turn_pivot.z_index = 30
+
+	# The actual page art starts PAGE_INSET.x pixels to the right
+	# of the cover's physical spine.
+	_configure_texture_rect(
+		turning_page,
+		Vector2(
+			PAGE_INSET.x,
+			0.0
+		),
+		PAGE_SIZE
+	)
+
+	turning_page.texture = pages.texture
+	_set_turning_page_reflected(false)
+	turning_page.mouse_filter = \
+		Control.MOUSE_FILTER_IGNORE
+
+
+func _set_turning_page_reflected(reflected: bool) -> void:
+	turning_page_is_reflected = reflected
+	turning_page.flip_h = turning_page_is_reflected

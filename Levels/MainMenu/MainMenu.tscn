@@ -8,8 +8,10 @@
 [ext_resource type="FontFile" uid="uid://b7wwpls0rmqff" path="res://Adventurer.ttf" id="6_twtkn"]
 [ext_resource type="Texture2D" uid="uid://c2j0awpx14yj5" path="res://Levels/MainMenu/pixel-art_by_filereadynow_ai_2026-07-21 14_13_33.png" id="7_u6fy6"]
 [ext_resource type="FontFile" uid="uid://xaq0o2laqakn" path="res://DialogueSystem/ChiKareGo.ttf" id="8_aw04d"]
+[ext_resource type="Texture2D" uid="uid://02dsxsjjavwp" path="res://ui/pixel-art_by_filereadynow_ai_2026-07-17 01_47_21 (1).png" id="9_gfug0"]
 [ext_resource type="Texture2D" uid="uid://b6mklos5jsect" path="res://Levels/MainMenu/pixel-art_by_filereadynow_ai_2026-07-20 14_23_19 (1).png" id="9_jh1mt"]
 [ext_resource type="Texture2D" uid="uid://cgfvowow6yxqj" path="res://Levels/MainMenu/pixel-art_by_filereadynow_ai_2026-07-20 14_23_19.png" id="10_3h8pc"]
+[ext_resource type="Texture2D" uid="uid://boom75ub6jdbd" path="res://ui/pixel-art_by_filereadynow_ai_2026-07-17 01_47_21.png" id="10_visqm"]
 
 [node name="MainMenu" type="Control" unique_id=603751745]
 layout_mode = 3
@@ -122,16 +124,93 @@ theme_override_fonts/font = ExtResource("8_aw04d")
 theme_override_font_sizes/font_size = 20
 text = "CONTINUE"
 
+[node name="HUDPage" type="Control" parent="BookPivot/BackAndPages" unique_id=218725347]
+anchors_preset = 0
+offset_right = 329.0
+offset_bottom = 389.0
+
+[node name="MarginContainer" type="MarginContainer" parent="BookPivot/BackAndPages/HUDPage" unique_id=2110701809]
+layout_mode = 0
+offset_right = 332.0
+offset_bottom = 389.0
+theme_override_constants/margin_left = 15
+theme_override_constants/margin_top = 15
+theme_override_constants/margin_bottom = 15
+
+[node name="VBoxContainer" type="VBoxContainer" parent="BookPivot/BackAndPages/HUDPage/MarginContainer" unique_id=6325815]
+layout_mode = 2
+
+[node name="HealthTitle" type="Label" parent="BookPivot/BackAndPages/HUDPage/MarginContainer/VBoxContainer" unique_id=893863425]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("6_twtkn")
+theme_override_font_sizes/font_size = 30
+text = "Health"
+horizontal_alignment = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="BookPivot/BackAndPages/HUDPage/MarginContainer/VBoxContainer" unique_id=525577978]
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="BookPivot/BackAndPages/HUDPage/MarginContainer/VBoxContainer/HBoxContainer" unique_id=177900997]
+layout_mode = 2
+theme_override_constants/separation = -45
+
+[node name="FullHealth" type="TextureRect" parent="BookPivot/BackAndPages/HUDPage/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer" unique_id=2115157333]
+custom_maximum_size = Vector2(125, 125)
+layout_mode = 2
+texture = ExtResource("9_gfug0")
+
+[node name="EmptyHealth" type="TextureRect" parent="BookPivot/BackAndPages/HUDPage/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer" unique_id=142115013]
+custom_maximum_size = Vector2(150, 150)
+layout_mode = 2
+texture = ExtResource("10_visqm")
+
+[node name="HealthText" type="Label" parent="BookPivot/BackAndPages/HUDPage/MarginContainer/VBoxContainer/HBoxContainer" unique_id=1600152844]
+custom_minimum_size = Vector2(0, 150)
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("8_aw04d")
+theme_override_font_sizes/font_size = 20
+text = "---> Full Health
+          Container
+
+
+
+---> Empty Health
+          Container"
+
+[node name="ContinueButton" type="Button" parent="BookPivot/BackAndPages/HUDPage/MarginContainer/VBoxContainer" unique_id=971577293]
+custom_minimum_size = Vector2(100, 50)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_fonts/font = ExtResource("8_aw04d")
+theme_override_font_sizes/font_size = 20
+text = "CONTINUE"
+
+[node name="PageTurnPivot" type="Control" parent="BookPivot" unique_id=996367063]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="TurningPage" type="TextureRect" parent="BookPivot/PageTurnPivot" unique_id=919014542]
+layout_mode = 0
+offset_left = -364.0
+offset_top = 1.0
+offset_right = -34.0
+offset_bottom = 391.0
+texture = ExtResource("5_onxhe")
+
 [node name="FrontCoverPivot" type="Control" parent="BookPivot" unique_id=1727096091]
 layout_mode = 1
 anchor_left = 0.002
 anchor_top = 0.003
 anchor_right = 0.55300003
 anchor_bottom = 0.652
-offset_left = -0.20000005
-offset_top = 0.19999993
-offset_right = 0.19998169
-offset_bottom = -0.2000122
+offset_left = -161.2
+offset_top = 429.2
+offset_right = -160.80002
+offset_bottom = 428.8
 mouse_filter = 2
 
 [node name="InsideCover" type="TextureRect" parent="BookPivot/FrontCoverPivot" unique_id=9414403]
@@ -199,15 +278,6 @@ theme_override_fonts/font = ExtResource("8_aw04d")
 theme_override_font_sizes/font_size = 24
 action_mode = 0
 text = "PLAY"
-
-[node name="SettingsButton" type="Button" parent="BookPivot/FrontCoverPivot/FrontCover/CoverContent/VBoxContainer" unique_id=2111428320]
-custom_minimum_size = Vector2(100, 50)
-layout_mode = 2
-size_flags_horizontal = 4
-theme_override_fonts/font = ExtResource("8_aw04d")
-theme_override_font_sizes/font_size = 24
-action_mode = 0
-text = "SETTINGS"
 
 [node name="FadeLayer" type="CanvasLayer" parent="." unique_id=962056340]
 layer = 100
