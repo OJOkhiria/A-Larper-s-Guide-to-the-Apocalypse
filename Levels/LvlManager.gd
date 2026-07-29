@@ -4,6 +4,7 @@ extends Node
 const LEVELS : Array[String] = [
 	"res://Levels/Intro/Intro.tscn",
 	"res://Levels/Lvl1/lvl1.tscn",
+	"res://Levels/Lvl2/lvl2.tscn"
 ]
 
 var current_level_index: int = 0

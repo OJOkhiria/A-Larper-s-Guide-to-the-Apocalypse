@@ -31,6 +31,7 @@
 [ext_resource type="Script" uid="uid://5mnj0ck1m7n0" path="res://DialogueSystem/respawn_dialogue_controller.gd" id="27_jyqp1"]
 [ext_resource type="PackedScene" uid="uid://doayi0ae8263f" path="res://DialogueSystem/Dialogue_System.tscn" id="28_v5ypr"]
 [ext_resource type="Texture2D" uid="uid://clyjketh411lr" path="res://Screenshot 2026-07-21 at 6.07.31 PM-Photoroom.png" id="29_umdog"]
+[ext_resource type="Script" uid="uid://dkc7jukn7kfw2" path="res://Levels/exit_area.gd" id="32_q2wb1"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_0ma7k"]
 animations = [{
@@ -558,6 +559,9 @@ text_speed = 14.0
 text_sound = ExtResource("24_4huox")
 metadata/_custom_type_script = "uid://q2hfxekwglu3"
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_2672p"]
+size = Vector2(109, 134)
+
 [node name="Lvl1" type="Node" unique_id=518403287]
 
 [node name="TopLeft" type="Marker2D" parent="." unique_id=642363423]
@@ -684,3 +688,18 @@ heart_size = Vector2(128, 128)
 script = ExtResource("27_jyqp1")
 dialogue_system_scene = ExtResource("28_v5ypr")
 bomber_bomb_dialogue = Array[ExtResource("21_xgks1")]([SubResource("Resource_v7f56"), SubResource("Resource_h6diq"), SubResource("Resource_jvm1p")])
+
+[node name="ExitArea" type="Area2D" parent="." unique_id=2112095006]
+script = ExtResource("32_q2wb1")
+destination_level_index = 2
+
+[node name="ExitShape" type="CollisionShape2D" parent="ExitArea" unique_id=1682044827]
+position = Vector2(1086.5, 374)
+shape = SubResource("RectangleShape2D_2672p")
+
+[node name="FadeLayer" type="CanvasLayer" parent="ExitArea" unique_id=856942792]
+
+[node name="FadeRect" type="ColorRect" parent="ExitArea/FadeLayer" unique_id=345088015]
+offset_right = 40.0
+offset_bottom = 40.0
+color = Color(0, 0, 0, 1)
