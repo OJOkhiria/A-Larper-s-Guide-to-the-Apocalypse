@@ -13,6 +13,11 @@ enum BoxPlacement {
 
 @export var activate_instant: bool = false
 @export var only_activate_once: bool = false
+@export_group("Persistent Activation")
+# Give a dialogue area a unique ID to keep it from replaying after a level
+# reload (such as a respawn). Leave blank for the existing per-scene behavior.
+@export var persistent_once_id: StringName = &""
+@export_group("")
 @export var override_dialogue_position: bool = false
 @export var override_position: Vector2 = Vector2.ZERO
 @export var box_placement: BoxPlacement = BoxPlacement.AUTO
@@ -44,7 +49,7 @@ func _process(_delta: float) -> void:
 		return
 
 	if not activate_instant and player_body_in:
-		if only_activate_once and has_activated_already:
+		if _has_already_activated():
 			set_process(false)
 			return
 
@@ -54,6 +59,9 @@ func _process(_delta: float) -> void:
 
 
 func _activate_dialogue() -> void:
+	if _has_already_activated():
+		return
+
 	if not player_node:
 		for i in get_tree().get_nodes_in_group("player"):
 			player_node = i
@@ -65,6 +73,8 @@ func _activate_dialogue() -> void:
 
 	player_node.set_controls_enabled(false)
 	has_activated_already = true
+	if persistent_once_id != &"":
+		PlayerData.mark_dialogue_completed(persistent_once_id)
 
 
 	var new_dialogue = DialogueSystemPreload.instantiate()
@@ -108,7 +118,7 @@ func _activate_dialogue() -> void:
 
 
 func _on_body_entered(body: Node2D) -> void:
-	if only_activate_once and has_activated_already:
+	if _has_already_activated():
 		return
 
 	if body.is_in_group("player"):
@@ -120,6 +130,16 @@ func _on_body_entered(body: Node2D) -> void:
 func _on_body_exited(body: Node2D) -> void:
 	if body.is_in_group("player"):
 		player_body_in = false
+
+
+func _has_already_activated() -> bool:
+	if only_activate_once and has_activated_already:
+		return true
+
+	return (
+		persistent_once_id != &""
+		and PlayerData.has_completed_dialogue(persistent_once_id)
+	)
 		
 func _pan_camera_to_target() -> void:
 	active_camera = get_viewport().get_camera_2d()

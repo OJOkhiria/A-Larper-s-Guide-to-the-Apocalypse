@@ -665,6 +665,7 @@ shape = SubResource("RectangleShape2D_82m2o")
 [node name="DialogueArea2D" parent="." unique_id=1615248638 node_paths=PackedStringArray("camera_target_path") instance=ExtResource("20_cl5sn")]
 activate_instant = true
 only_activate_once = true
+persistent_once_id = &"lvl1_entry"
 box_placement = 3
 dialogue = Array[ExtResource("21_xgks1")]([SubResource("Resource_dc0bb"), SubResource("Resource_p01d0"), SubResource("Resource_6ot8x")])
 camera_target_path = NodePath("../CameraFocusPoint")
