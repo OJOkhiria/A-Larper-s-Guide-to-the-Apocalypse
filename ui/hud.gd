@@ -1,15 +1,28 @@
 extends CanvasLayer
 
+const PAUSE_MENU_SCENE: PackedScene = preload(
+	"res://ui/pause_menu.tscn"
+)
+const MAIN_MENU_PATH := "res://Levels/MainMenu/MainMenu.tscn"
+
 @export var full_heart_texture: Texture2D
 @export var empty_heart_texture: Texture2D
 @export var heart_size: Vector2 = Vector2(32, 32)
 
 @onready var hearts_container: HBoxContainer = $HealthHUD/Hearts
+@onready var pause_button: Button = $PauseButton
 
 var health: Node
+var pause_menu: PauseMenuUI
+var changing_scene: bool = false
 
 
 func _ready() -> void:
+	# The HUD owns the pause controls, so it must keep processing while the
+	# rest of the scene tree is frozen.
+	process_mode = Node.PROCESS_MODE_ALWAYS
+	pause_button.pressed.connect(_on_pause_pressed)
+
 	var player := get_tree().get_first_node_in_group("player")
 
 	if not player:
@@ -64,3 +77,46 @@ func _create_heart() -> void:
 	heart.mouse_filter = Control.MOUSE_FILTER_IGNORE
 
 	hearts_container.add_child(heart)
+
+
+func _on_pause_pressed() -> void:
+	if changing_scene or get_tree().paused:
+		return
+
+	if not is_instance_valid(pause_menu):
+		pause_menu = PAUSE_MENU_SCENE.instantiate() as PauseMenuUI
+		get_tree().root.add_child(pause_menu)
+		pause_menu.resume_requested.connect(_on_resume_requested)
+		pause_menu.menu_requested.connect(_on_main_menu_requested)
+
+	pause_menu.show_menu()
+	get_tree().paused = true
+
+
+func _on_resume_requested() -> void:
+	if not is_instance_valid(pause_menu):
+		return
+
+	pause_menu.hide_menu()
+	get_tree().paused = false
+
+
+func _on_main_menu_requested() -> void:
+	if changing_scene:
+		return
+
+	changing_scene = true
+	get_tree().paused = false
+
+	if is_instance_valid(pause_menu):
+		pause_menu.queue_free()
+		pause_menu = null
+
+	PlayerData.clear_pending_death_source()
+
+	var error := get_tree().change_scene_to_file(MAIN_MENU_PATH)
+	if error != OK:
+		push_error(
+			"Could not load Main Menu. Error code: %s" % error
+		)
+		changing_scene = false

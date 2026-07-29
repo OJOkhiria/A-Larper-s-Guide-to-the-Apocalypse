@@ -1,0 +1,58 @@
+[gd_scene format=3 uid="uid://fj614rca7fec"]
+
+[ext_resource type="Script" uid="uid://djs4qlol77gtm" path="res://ui/pause_menu.gd" id="1_pause"]
+[ext_resource type="Shader" uid="uid://c21ncot4rvrmv" path="res://game_over_overlay.gdshader" id="2_blur"]
+[ext_resource type="FontFile" uid="uid://xaq0o2laqakn" path="res://DialogueSystem/ChiKareGo.ttf" id="3_font"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_pause_blur"]
+shader = ExtResource("2_blur")
+shader_parameter/blur_amount = 5.0
+
+[node name="PauseMenu" type="CanvasLayer" unique_id=98494309]
+layer = 20
+script = ExtResource("1_pause")
+
+[node name="BlurRect" type="ColorRect" parent="." unique_id=144191669]
+material = SubResource("ShaderMaterial_pause_blur")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="CenterContainer" type="CenterContainer" parent="BlurRect" unique_id=1978313179]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="PanelContainer" type="PanelContainer" parent="BlurRect/CenterContainer" unique_id=34809888]
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="BlurRect/CenterContainer/PanelContainer" unique_id=1162168143]
+custom_minimum_size = Vector2(360, 220)
+layout_mode = 2
+theme_override_constants/separation = 18
+
+[node name="Title" type="Label" parent="BlurRect/CenterContainer/PanelContainer/VBoxContainer" unique_id=472872182]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("3_font")
+theme_override_font_sizes/font_size = 32
+text = "MATCHA BREAK"
+horizontal_alignment = 1
+
+[node name="ResumeButton" type="Button" parent="BlurRect/CenterContainer/PanelContainer/VBoxContainer" unique_id=261429548]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_fonts/font = ExtResource("3_font")
+theme_override_font_sizes/font_size = 22
+text = "RESUME"
+
+[node name="MainMenuButton" type="Button" parent="BlurRect/CenterContainer/PanelContainer/VBoxContainer" unique_id=773849530]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_fonts/font = ExtResource("3_font")
+theme_override_font_sizes/font_size = 22
+text = "MAIN MENU"

@@ -3,6 +3,7 @@
 [ext_resource type="Script" uid="uid://dvqrwolhht2pe" path="res://ui/hud.gd" id="1_37p78"]
 [ext_resource type="Texture2D" uid="uid://02dsxsjjavwp" path="res://ui/pixel-art_by_filereadynow_ai_2026-07-17 01_47_21 (1).png" id="2_546lt"]
 [ext_resource type="Texture2D" uid="uid://boom75ub6jdbd" path="res://ui/pixel-art_by_filereadynow_ai_2026-07-17 01_47_21.png" id="3_7ihmi"]
+[ext_resource type="FontFile" uid="uid://xaq0o2laqakn" path="res://DialogueSystem/ChiKareGo.ttf" id="4_pause_font"]
 
 [node name="HUD" type="CanvasLayer" unique_id=665291530]
 layer = 10
@@ -23,3 +24,12 @@ layout_mode = 0
 offset_right = 40.0
 offset_bottom = 40.0
 theme_override_constants/separation = 6
+
+[node name="PauseButton" type="Button" parent="." unique_id=812380998]
+offset_left = 925.0
+offset_top = 42.0
+offset_right = 1127.0
+offset_bottom = 133.0
+theme_override_fonts/font = ExtResource("4_pause_font")
+theme_override_font_sizes/font_size = 18
+text = "PAUSE"
