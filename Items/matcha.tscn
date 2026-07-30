@@ -1,14 +1,19 @@
-[gd_scene format=3]
+[gd_scene format=3 uid="uid://d3b8evtp2ukbr"]
 
-[ext_resource type="Script" path="res://Items/matcha.gd" id="1_matcha_script"]
+[ext_resource type="Script" uid="uid://cr6btspaybi03" path="res://Items/matcha.gd" id="1_matcha_script"]
+[ext_resource type="Texture2D" uid="uid://c1s1oy3huo0j4" path="res://Items/Matcha.png" id="2_qdao5"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_matcha"]
-size = Vector2(32, 32)
+size = Vector2(13.5, 22.5)
 
-[node name="Matcha" type="Area2D"]
+[node name="Matcha" type="Area2D" unique_id=1849183055]
 collision_layer = 0
-collision_mask = 1
 script = ExtResource("1_matcha_script")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1792283918]
+position = Vector2(0.25, 2.75)
 shape = SubResource("RectangleShape2D_matcha")
+
+[node name="MatchaSprite" type="Sprite2D" parent="." unique_id=656949158]
+scale = Vector2(0.125, 0.125)
+texture = ExtResource("2_qdao5")

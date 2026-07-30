@@ -16,7 +16,7 @@
 [ext_resource type="Script" uid="uid://dkc7jukn7kfw2" path="res://Levels/exit_area.gd" id="14_slhgf"]
 [ext_resource type="PackedScene" uid="uid://dxe80lvt1hq8r" path="res://Hazards/Spikes/spikes.tscn" id="15_spikes"]
 [ext_resource type="Script" uid="uid://5mnj0ck1m7n0" path="res://DialogueSystem/respawn_dialogue_controller.gd" id="16_d76tm"]
-[ext_resource type="PackedScene" path="res://Items/matcha.tscn" id="16_matcha"]
+[ext_resource type="PackedScene" uid="uid://d3b8evtp2ukbr" path="res://Items/matcha.tscn" id="16_matcha"]
 [ext_resource type="PackedScene" uid="uid://doayi0ae8263f" path="res://DialogueSystem/Dialogue_System.tscn" id="17_omahg"]
 [ext_resource type="Script" uid="uid://dkpwxghjd7ry8" path="res://DialogueSystem/DialogueExportResource.gd" id="18_8jwkw"]
 [ext_resource type="Script" uid="uid://q2hfxekwglu3" path="res://DialogueSystem/DialogueTextResource.gd" id="19_jcwqk"]
@@ -34,7 +34,7 @@ animations = [{
 "duration": 1.0,
 "texture": ExtResource("2_1cmya")
 }],
-"loop": 1,
+"loop": true,
 "name": &"crouch_idle",
 "speed": 5.0
 }, {
@@ -45,7 +45,7 @@ animations = [{
 "duration": 1.0,
 "texture": ExtResource("3_7850q")
 }],
-"loop": 1,
+"loop": true,
 "name": &"crouch_walk",
 "speed": 5.0
 }, {
@@ -53,7 +53,7 @@ animations = [{
 "duration": 1.0,
 "texture": ExtResource("4_kg6o6")
 }],
-"loop": 1,
+"loop": true,
 "name": &"idle",
 "speed": 5.0
 }, {
@@ -61,7 +61,7 @@ animations = [{
 "duration": 1.0,
 "texture": ExtResource("5_7t443")
 }],
-"loop": 1,
+"loop": true,
 "name": &"jump",
 "speed": 5.0
 }, {
@@ -78,7 +78,7 @@ animations = [{
 "duration": 1.0,
 "texture": ExtResource("9_d76tm")
 }],
-"loop": 1,
+"loop": true,
 "name": &"run",
 "speed": 5.0
 }]
@@ -637,7 +637,7 @@ position = Vector2(1967, 242)
 hazard_width = 288.0
 
 [node name="Matcha" parent="." unique_id=1540022438 instance=ExtResource("16_matcha")]
-position = Vector2(2238, 62)
+position = Vector2(2252, 66)
 persistent_item_id = &"lvl2_matcha"
 
 [node name="ExitArea" type="Area2D" parent="." unique_id=720295293]
