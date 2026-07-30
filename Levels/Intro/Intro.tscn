@@ -12,7 +12,6 @@
 [ext_resource type="Script" uid="uid://80kl10p8d3vr" path="res://player.gd" id="10_ja504"]
 [ext_resource type="Script" uid="uid://dho5u66n3qum8" path="res://Health.gd" id="11_ja504"]
 [ext_resource type="Texture2D" uid="uid://d32r1g03tq7r1" path="res://PlayerModels/PlayerModel.png" id="12_6ocyv"]
-[ext_resource type="Script" uid="uid://b8oaxr7h2apa6" path="res://Levels/Intro/intro_fade.gd" id="12_wnude"]
 [ext_resource type="Texture2D" uid="uid://d1om6pjvcs2ag" path="res://PlayerModels/pixel-art_by_filereadynow_ai_2026-07-17 15_24_26.png" id="13_t8xs2"]
 [ext_resource type="Texture2D" uid="uid://celkaehf2l7st" path="res://PlayerModels/pixel-art_by_filereadynow_ai_2026-07-16 20_09_05.png" id="14_l8bc4"]
 [ext_resource type="Texture2D" uid="uid://bv5q2k3obwci6" path="res://PlayerModels/pixel-art_by_filereadynow_ai_2026-07-15 21_43_59.png" id="15_hf6e7"]
@@ -173,15 +172,6 @@ dialogue = Array[ExtResource("3_dt4lh")]([SubResource("Resource_golbo"), SubReso
 [node name="CollisionShape2D" type="CollisionShape2D" parent="DialogueArea2D" unique_id=1781149125]
 position = Vector2(577, 324.75)
 shape = SubResource("RectangleShape2D_v6nf2")
-
-[node name="TransitionLayer" type="CanvasLayer" parent="." unique_id=1380607179]
-
-[node name="FadeRect" type="ColorRect" parent="TransitionLayer" unique_id=100974777]
-visible = false
-offset_right = 1152.0
-offset_bottom = 648.0
-color = Color(0, 0, 0, 1)
-script = ExtResource("12_wnude")
 
 [node name="Player_Intro" type="CharacterBody2D" parent="." unique_id=2106874177 groups=["player"]]
 visible = false

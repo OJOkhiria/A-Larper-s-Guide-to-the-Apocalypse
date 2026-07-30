@@ -14,7 +14,16 @@
 [ext_resource type="Texture2D" uid="uid://ddglx5b8cep2p" path="res://download (2).png" id="12_jcwqk"]
 [ext_resource type="PackedScene" uid="uid://bsusofe1hdgx" path="res://ui/hud.tscn" id="13_lcl7h"]
 [ext_resource type="Script" uid="uid://dkc7jukn7kfw2" path="res://Levels/exit_area.gd" id="14_slhgf"]
-[ext_resource type="PackedScene" path="res://Levels/Hazards/spike_hazard.tscn" id="15_spikes"]
+[ext_resource type="PackedScene" uid="uid://dxe80lvt1hq8r" path="res://Hazards/spikes.tscn" id="15_spikes"]
+[ext_resource type="Script" uid="uid://5mnj0ck1m7n0" path="res://DialogueSystem/respawn_dialogue_controller.gd" id="16_d76tm"]
+[ext_resource type="PackedScene" uid="uid://doayi0ae8263f" path="res://DialogueSystem/Dialogue_System.tscn" id="17_omahg"]
+[ext_resource type="Script" uid="uid://dkpwxghjd7ry8" path="res://DialogueSystem/DialogueExportResource.gd" id="18_8jwkw"]
+[ext_resource type="Script" uid="uid://q2hfxekwglu3" path="res://DialogueSystem/DialogueTextResource.gd" id="19_jcwqk"]
+[ext_resource type="Texture2D" uid="uid://clyjketh411lr" path="res://Screenshot 2026-07-21 at 6.07.31 PM-Photoroom.png" id="20_lcl7h"]
+[ext_resource type="AudioStream" uid="uid://b1iyperftamvw" path="res://DialogueSystem/talk.wav" id="21_slhgf"]
+[ext_resource type="Texture2D" uid="uid://baa3dj36ytw40" path="res://REAL_neutral.png" id="22_gtdy2"]
+[ext_resource type="PackedScene" uid="uid://bk5cub14yf6d" path="res://DialogueSystem/dialogue_area_2d.tscn" id="23_8jwkw"]
+[ext_resource type="Texture2D" uid="uid://d3pg4lk1nuh35" path="res://REAL_question.png" id="24_jcwqk"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_gtdy2"]
 animations = [{
@@ -455,6 +464,73 @@ size = Vector2(2450.5, 20)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_sdjtk"]
 size = Vector2(109, 134)
 
+[sub_resource type="Resource" id="Resource_v7f56"]
+script = ExtResource("19_jcwqk")
+speaker_img = ExtResource("20_lcl7h")
+text = "You tried to fight him, didn't you?"
+text_speed = 14.0
+text_sound = ExtResource("21_slhgf")
+metadata/_custom_type_script = "uid://q2hfxekwglu3"
+
+[sub_resource type="Resource" id="Resource_h6diq"]
+script = ExtResource("19_jcwqk")
+speaker_img = ExtResource("20_lcl7h")
+text = "You kids need to learn to stop biting off more than you can chew."
+text_speed = 14.0
+text_sound = ExtResource("21_slhgf")
+metadata/_custom_type_script = "uid://q2hfxekwglu3"
+
+[sub_resource type="Resource" id="Resource_jvm1p"]
+script = ExtResource("19_jcwqk")
+speaker_img = ExtResource("20_lcl7h")
+text = "Sometimes, instead of taking to straightforward, cool-looking path that people tell you about, you need to find your own path."
+text_speed = 14.0
+text_sound = ExtResource("21_slhgf")
+metadata/_custom_type_script = "uid://q2hfxekwglu3"
+
+[sub_resource type="Resource" id="Resource_gfug0"]
+script = ExtResource("19_jcwqk")
+speaker_img = ExtResource("22_gtdy2")
+text = "Come on! You got this."
+text_speed = 14.0
+text_sound = ExtResource("21_slhgf")
+metadata/_custom_type_script = "uid://q2hfxekwglu3"
+
+[sub_resource type="Resource" id="Resource_visqm"]
+script = ExtResource("19_jcwqk")
+speaker_img = ExtResource("22_gtdy2")
+text = "Don't hesitate. Take a leap of faith."
+text_speed = 14.0
+text_sound = ExtResource("21_slhgf")
+metadata/_custom_type_script = "uid://q2hfxekwglu3"
+
+[sub_resource type="Resource" id="Resource_8jwkw"]
+script = ExtResource("19_jcwqk")
+speaker_img = ExtResource("24_jcwqk")
+text = "Y'know how people always say you need a \"spike\" to stand out?"
+text_speed = 14.0
+text_sound = ExtResource("21_slhgf")
+metadata/_custom_type_script = "uid://q2hfxekwglu3"
+
+[sub_resource type="Resource" id="Resource_jcwqk"]
+script = ExtResource("19_jcwqk")
+speaker_img = ExtResource("20_lcl7h")
+text = "This is what happens when you take that too seriously"
+text_speed = 14.0
+text_sound = ExtResource("21_slhgf")
+metadata/_custom_type_script = "uid://q2hfxekwglu3"
+
+[sub_resource type="Resource" id="Resource_lcl7h"]
+script = ExtResource("19_jcwqk")
+speaker_img = ExtResource("22_gtdy2")
+text = "Just don't look down and we'll be alright!"
+text_speed = 14.0
+text_sound = ExtResource("21_slhgf")
+metadata/_custom_type_script = "uid://q2hfxekwglu3"
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_lcl7h"]
+size = Vector2(162, 87)
+
 [node name="Lvl2" type="Node" unique_id=1675095938]
 
 [node name="TopLeft" type="Marker2D" parent="." unique_id=841449484]
@@ -524,21 +600,21 @@ position = Vector2(1231.75, -133)
 shape = SubResource("RectangleShape2D_2ippi")
 
 [node name="HUD" parent="." unique_id=665291530 instance=ExtResource("13_lcl7h")]
+visible = false
 heart_size = Vector2(128, 128)
 
-[node name="PitSpikes1" parent="." instance=ExtResource("15_spikes")]
+[node name="PitSpikes1" parent="." unique_id=2108854709 instance=ExtResource("15_spikes")]
 position = Vector2(880, 280)
-hazard_width = 64.0
 
-[node name="PitSpikes2" parent="." instance=ExtResource("15_spikes")]
+[node name="PitSpikes2" parent="." unique_id=396037353 instance=ExtResource("15_spikes")]
 position = Vector2(1264, 280)
 hazard_width = 128.0
 
-[node name="PitSpikes3" parent="." instance=ExtResource("15_spikes")]
+[node name="PitSpikes3" parent="." unique_id=28667627 instance=ExtResource("15_spikes")]
 position = Vector2(1584, 280)
 hazard_width = 224.0
 
-[node name="PitSpikes4" parent="." instance=ExtResource("15_spikes")]
+[node name="PitSpikes4" parent="." unique_id=834414841 instance=ExtResource("15_spikes")]
 position = Vector2(1968, 280)
 hazard_width = 288.0
 
@@ -558,3 +634,24 @@ offset_right = 40.0
 offset_bottom = 40.0
 color = Color(0, 0, 0, 1)
 metadata/_edit_use_anchors_ = true
+
+[node name="RespawnDialogueController" type="Node" parent="." unique_id=1619063794]
+script = ExtResource("16_d76tm")
+dialogue_system_scene = ExtResource("17_omahg")
+bomber_bomb_dialogue = Array[ExtResource("18_8jwkw")]([SubResource("Resource_v7f56"), SubResource("Resource_h6diq"), SubResource("Resource_jvm1p")])
+spikes_dialogue = Array[ExtResource("18_8jwkw")]([SubResource("Resource_gfug0"), SubResource("Resource_visqm")])
+
+[node name="DialogueArea2D" parent="." unique_id=1615248638 node_paths=PackedStringArray("camera_target_path") instance=ExtResource("23_8jwkw")]
+activate_instant = true
+only_activate_once = true
+persistent_once_id = &"lvl2_spikes_intro"
+box_placement = 3
+dialogue = Array[ExtResource("18_8jwkw")]([SubResource("Resource_8jwkw"), SubResource("Resource_jcwqk"), SubResource("Resource_lcl7h")])
+camera_target_path = NodePath("../CameraFocusPoint")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DialogueArea2D" unique_id=286145823]
+position = Vector2(708, 35)
+shape = SubResource("RectangleShape2D_lcl7h")
+
+[node name="CameraFocusPoint" type="Marker2D" parent="." unique_id=1467021401]
+position = Vector2(877, 254)

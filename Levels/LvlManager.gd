@@ -87,7 +87,7 @@ func _ensure_fade_overlay() -> void:
 	fade_rect.mouse_filter = Control.MOUSE_FILTER_IGNORE
 
 	fade_layer.add_child(fade_rect)
-	get_tree().root.add_child.call_deferred(fade_layer)
+	get_tree().root.call_deferred("add_child", fade_layer)
 
 
 func _fade_to_black() -> void:

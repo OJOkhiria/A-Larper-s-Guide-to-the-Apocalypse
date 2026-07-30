@@ -82,8 +82,6 @@ $BookPivot/BackAndPages/ControlsPage
 
 
 
-@onready var fade_rect: ColorRect = \
-	$FadeLayer/FadeRect
 
 @onready var book_thud: AudioStreamPlayer2D = \
 	get_node_or_null("BookThud") as AudioStreamPlayer2D
@@ -174,8 +172,6 @@ func _configure_mouse_input() -> void:
 	_configure_button(hud_page_continue_button)
 
 
-
-	fade_rect.mouse_filter = Control.MOUSE_FILTER_IGNORE
 
 	book_pivot.clip_contents = false
 	front_cover_pivot.clip_contents = false
@@ -280,9 +276,6 @@ func _prepare_layout() -> void:
 	controls_continue_button.mouse_filter = \
 	Control.MOUSE_FILTER_STOP
 
-	fade_rect.set_anchors_and_offsets_preset(
-		Control.PRESET_FULL_RECT
-	)
 	
 	_place_control(
 	hud_page,
@@ -409,9 +402,6 @@ func _set_initial_state() -> void:
 
 
 
-	fade_rect.visible = true
-	fade_rect.modulate.a = 0.0
-	fade_rect.mouse_filter = Control.MOUSE_FILTER_IGNORE
 	
 	back_and_pages.z_index = 0
 
@@ -651,47 +641,11 @@ func _open_book() -> void:
 	_apply_book_open_progress(1.0)
 
 
-func _fade_to_black() -> bool:
-	# Fetch the node again instead of trusting a potentially stale reference.
-	var current_fade_rect := get_node_or_null(
-		"FadeLayer/FadeRect"
-	) as ColorRect
 
-	if current_fade_rect == null:
-		push_error(
-			"MainMenu FadeLayer/FadeRect was freed or could not be found. "
-			+ "Remove any fade-out script that calls queue_free() from it."
-		)
-		return false
-
-	current_fade_rect.visible = true
-	current_fade_rect.mouse_filter = Control.MOUSE_FILTER_STOP
-	current_fade_rect.modulate = Color(
-		1.0,
-		1.0,
-		1.0,
-		0.0
-	)
-
-	var fade_tween := create_tween()
-	fade_tween.set_trans(Tween.TRANS_SINE)
-	fade_tween.set_ease(Tween.EASE_IN_OUT)
-
-	fade_tween.tween_property(
-		current_fade_rect,
-		"modulate:a",
-		1.0,
-		fade_duration
-	)
-
-	await fade_tween.finished
-	return true
 
 func _restore_menu_after_failed_transition() -> void:
 	transition_started = false
 
-	fade_rect.modulate.a = 0.0
-	fade_rect.mouse_filter = Control.MOUSE_FILTER_IGNORE
 
 	controls_page.visible = false
 	controls_page.modulate.a = 0.0
@@ -1120,31 +1074,11 @@ func _on_hud_page_continue_pressed() -> void:
 		false
 	)
 
-	var fade_succeeded: bool = await _fade_to_black()
 
-	if not fade_succeeded:
-		page_transition_running = false
 
-		_set_page_input_enabled(
-			hud_page,
-			hud_page_continue_button,
-			true
-		)
-
-		return
-
-	var error: Error = get_tree().change_scene_to_file(
-		intro_scene_path
-	)
-
-	if error != OK:
-		push_error(
-			"Could not load intro scene: %s. Error code: %s"
-			% [intro_scene_path, error]
-		)
-
-		page_transition_running = false
-		_restore_menu_after_failed_transition()
+	# Route this through the level manager so its persistent transition layer
+	# can fade over the scene replacement just like level-to-level changes.
+	LvlManager.load_level(0)
 
 func _apply_page_turn_progress(progress: float) -> void:
 	if progress < 0.5:
