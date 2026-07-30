@@ -80,8 +80,9 @@ func _activate_dialogue() -> void:
 	var new_dialogue = DialogueSystemPreload.instantiate()
 	new_dialogue.dialogue = dialogue
 
+	var camera_was_panned: bool = false
 	if pan_before_dialogue:
-		await _pan_camera_to_target()
+		camera_was_panned = await _pan_camera_to_target()
 
 	# UI-root dialogue scenes should not be moved with global_position.
 	# Instead, pass a placement hint to the dialogue scene if it supports it.
@@ -104,7 +105,7 @@ func _activate_dialogue() -> void:
 				desired_dialogue_pos = dialogue_bottom_pos
 
 	get_parent().add_child(new_dialogue)
-	if pan_before_dialogue:
+	if camera_was_panned:
 		if not DialogueBus.dialogue_finished.is_connected(_return_camera):
 			DialogueBus.dialogue_finished.connect(
 			_return_camera,
@@ -141,13 +142,13 @@ func _has_already_activated() -> bool:
 		and PlayerData.has_completed_dialogue(persistent_once_id)
 	)
 		
-func _pan_camera_to_target() -> void:
+func _pan_camera_to_target() -> bool:
 	active_camera = get_viewport().get_camera_2d()
 	if not active_camera:
-		return
+		return false
 
 	if not camera_target_path:
-		return
+		return false
 
 	# Save where the camera normally lives under the player
 	camera_home_local_position = active_camera.position
@@ -164,6 +165,7 @@ func _pan_camera_to_target() -> void:
 	)
 
 	await tween.finished
+	return true
 
 func _return_camera() -> void:
 	if not active_camera or not player_node:

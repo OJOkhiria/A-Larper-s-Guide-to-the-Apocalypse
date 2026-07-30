@@ -21,6 +21,7 @@
 [ext_resource type="Texture2D" uid="uid://clyjketh411lr" path="res://Screenshot 2026-07-21 at 6.07.31 PM-Photoroom.png" id="19_xnj3f"]
 [ext_resource type="AudioStream" uid="uid://b1iyperftamvw" path="res://DialogueSystem/talk.wav" id="20_f3u4g"]
 [ext_resource type="Texture2D" uid="uid://baa3dj36ytw40" path="res://REAL_neutral.png" id="21_esiih"]
+[ext_resource type="PackedScene" uid="uid://bk5cub14yf6d" path="res://DialogueSystem/dialogue_area_2d.tscn" id="22_e1yul"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_s7fet"]
 animations = [{
@@ -501,6 +502,25 @@ text_speed = 14.0
 text_sound = ExtResource("20_f3u4g")
 metadata/_custom_type_script = "uid://q2hfxekwglu3"
 
+[sub_resource type="Resource" id="Resource_31p0e"]
+script = ExtResource("18_4f84q")
+speaker_img = ExtResource("21_esiih")
+text = "Looks like some kinda admissions fair was happening here..."
+text_speed = 14.0
+text_sound = ExtResource("20_f3u4g")
+metadata/_custom_type_script = "uid://q2hfxekwglu3"
+
+[sub_resource type="Resource" id="Resource_0hwl2"]
+script = ExtResource("18_4f84q")
+speaker_img = ExtResource("21_esiih")
+text = "There's lots of different booths, and some of them look like they're going to collapse, but I'm sure you'll make the right choices."
+text_speed = 14.0
+text_sound = ExtResource("20_f3u4g")
+metadata/_custom_type_script = "uid://q2hfxekwglu3"
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_8cv2l"]
+size = Vector2(47, 136.25)
+
 [node name="Lvl3" type="Node" unique_id=588168789]
 
 [node name="TopLeft" type="Marker2D" parent="." unique_id=1083586457]
@@ -552,7 +572,7 @@ script = ExtResource("11_0yj7l")
 use_player_data = true
 
 [node name="TileMapLayer" type="TileMapLayer" parent="." unique_id=1101571466]
-tile_map_data = PackedByteArray("AAAAACcAAAAIAAUAAAABACcAAAAIAAUAAAACACcAAAAIAAUAAAADACcAAAAIAAUAAAAEACcAAAAIAAUAAAAFACcAAAAHAAIAAAA=")
+tile_map_data = PackedByteArray("AAAAACcAAAAIAAUAAAABACcAAAAIAAUAAAACACcAAAAIAAUAAAADACcAAAAIAAUAAAAEACcAAAAIAAUAAAAFACcAAAAHAAIAAAAGACcAAAAJAAUAAAAHACcAAAAJAAUAAAAIACcAAAAJAAUAAAAJACcAAAAJAAUAAAAKACcAAAAJAAUAAAALACcAAAAJAAUAAAAMACcAAAAJAAUAAAANACcAAAAJAAUAAAAOACcAAAAJAAUAAAAPACcAAAAJAAUAAAAQACcAAAAJAAUAAAARACcAAAAJAAUAAAASACcAAAAJAAUAAAATACcAAAAJAAUAAAAUACcAAAAJAAUAAAAVACcAAAAJAAUAAAAWACcAAAAJAAUAAAAXACcAAAAJAAUAAAAYACcAAAAJAAUAAAAZACcAAAAJAAUAAAAaACcAAAAJAAUAAAAbACcAAAAJAAUAAAAcACcAAAAJAAUAAAAdACcAAAAJAAUAAAAeACcAAAAJAAUAAAAfACcAAAAJAAUAAAAgACcAAAAJAAUAAAAhACcAAAAJAAUAAAAiACcAAAAJAAUAAAAjACcAAAAJAAUAAAAkACcAAAAJAAUAAAAlACcAAAAJAAUAAAAmACcAAAAJAAUAAAAnACcAAAAJAAUAAAAoACcAAAAJAAUAAAApACcAAAAJAAUAAAAqACcAAAAJAAUAAAArACcAAAAJAAUAAAAsACcAAAAJAAUAAAAtACcAAAAJAAUAAAAuACcAAAAJAAUAAAAvACcAAAAJAAUAAAAwACcAAAAJAAUAAAAxACcAAAAJAAUAAAAyACcAAAAJAAUAAAAzACcAAAAJAAUAAAA0ACcAAAAJAAUAAAA1ACcAAAAJAAUAAAA2ACcAAAAJAAUAAAA3ACcAAAAJAAUAAAA4ACcAAAAJAAUAAAA5ACcAAAAJAAUAAAA6ACcAAAAJAAUAAAA7ACcAAAAJAAUAAAA8ACcAAAAJAAUAAAA9ACcAAAAJAAUAAAA+ACcAAAAJAAUAAAA/ACcAAAAJAAUAAABAACcAAAAJAAUAAABBACcAAAAJAAUAAABCACcAAAAJAAUAAABDACcAAAAJAAUAAABEACcAAAAJAAUAAABFACcAAAAJAAUAAABGACcAAAAJAAUAAABHACcAAAAJAAUAAABIACcAAAAJAAUAAABJACcAAAAJAAUAAABKACcAAAAJAAUAAABLACcAAAAJAAUAAABMACcAAAAJAAUAAABNACcAAAAJAAUAAABOACcAAAAJAAUAAABPACcAAAAJAAUAAABQACcAAAAJAAUAAABRACcAAAAJAAUAAABSACcAAAAJAAUAAABTACcAAAAJAAUAAABUACcAAAAJAAUAAABVACcAAAAJAAUAAABWACcAAAAJAAUAAABXACcAAAAJAAUAAABYACcAAAAJAAUAAABZACcAAAAJAAUAAABaACcAAAAJAAUAAABbACcAAAAJAAUAAABcACcAAAAJAAUAAABdACcAAAAJAAUAAABeACcAAAAJAAUAAABfACcAAAAJAAUAAABgACcAAAAGAAUAAABhACcAAAAGAAUAAABiACcAAAAGAAUAAABjACcAAAAGAAUAAABkACcAAAAGAAUAAABlACcAAAAGAAUAAABmACcAAAAGAAUAAABnACcAAAAGAAUAAABoACcAAAAGAAUAAABpACcAAAAGAAUAAABqACcAAAAGAAUAAABrACcAAAAGAAUAAABsACcAAAAGAAUAAABtACcAAAAGAAUAAABuACcAAAAGAAUAAABvACcAAAAGAAUAAABwACcAAAAGAAUAAABxACcAAAAGAAUAAAByACcAAAAGAAUAAABzACcAAAAGAAUAAAB0ACcAAAAGAAUAAAB1ACcAAAAGAAUAAAB2ACcAAAAGAAUAAAB3ACcAAAAGAAUAAAB4ACcAAAAGAAUAAAB5ACcAAAAGAAUAAAB6ACcAAAAGAAUAAAB7ACcAAAAGAAUAAAB8ACcAAAAGAAUAAAD6/xcAAAAGAAUAAAA=")
 tile_set = SubResource("TileSet_i3fks")
 
 [node name="StaticBody2D" type="StaticBody2D" parent="." unique_id=2062988285]
@@ -594,3 +614,18 @@ script = ExtResource("15_r0oje")
 dialogue_system_scene = ExtResource("16_16ott")
 bomber_bomb_dialogue = Array[ExtResource("17_6sqhk")]([SubResource("Resource_v7f56"), SubResource("Resource_h6diq"), SubResource("Resource_jvm1p")])
 spikes_dialogue = Array[ExtResource("17_6sqhk")]([SubResource("Resource_gfug0"), SubResource("Resource_visqm")])
+
+[node name="DialogueArea2D" parent="." unique_id=1615248638 node_paths=PackedStringArray("camera_target_path") instance=ExtResource("22_e1yul")]
+activate_instant = true
+only_activate_once = true
+persistent_once_id = &"lvl3_intro_dialogue"
+box_placement = 3
+dialogue = Array[ExtResource("17_6sqhk")]([SubResource("Resource_31p0e"), SubResource("Resource_0hwl2")])
+camera_target_path = NodePath("CollisionShape2D/CameraFocusPoint")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DialogueArea2D" unique_id=1749557279]
+position = Vector2(71, 554)
+shape = SubResource("RectangleShape2D_8cv2l")
+
+[node name="CameraFocusPoint" type="Marker2D" parent="DialogueArea2D/CollisionShape2D" unique_id=1218643650]
+position = Vector2(263, -99)
