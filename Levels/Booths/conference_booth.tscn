@@ -1,0 +1,23 @@
+[gd_scene format=3]
+
+[ext_resource type="Script" path="res://Levels/Booths/conference_booth.gd" id="1_script"]
+[ext_resource type="Texture2D" path="res://Assets/Booths/conference_booth_blue_96.png" id="2_texture"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_trigger"]
+size = Vector2(176, 128)
+
+[node name="ConferenceBooth" type="Area2D"]
+collision_layer = 0
+collision_mask = 1
+script = ExtResource("1_script")
+
+[node name="BoothVisual" type="Node2D" parent="."]
+
+[node name="Sprite2D" type="Sprite2D" parent="BoothVisual"]
+position = Vector2(0, -64)
+scale = Vector2(2, 2)
+texture = ExtResource("2_texture")
+
+[node name="TriggerShape" type="CollisionShape2D" parent="."]
+position = Vector2(0, -64)
+shape = SubResource("RectangleShape2D_trigger")

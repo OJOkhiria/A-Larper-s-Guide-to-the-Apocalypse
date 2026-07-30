@@ -22,6 +22,11 @@
 [ext_resource type="AudioStream" uid="uid://b1iyperftamvw" path="res://DialogueSystem/talk.wav" id="20_f3u4g"]
 [ext_resource type="Texture2D" uid="uid://baa3dj36ytw40" path="res://REAL_neutral.png" id="21_esiih"]
 [ext_resource type="PackedScene" uid="uid://bk5cub14yf6d" path="res://DialogueSystem/dialogue_area_2d.tscn" id="22_e1yul"]
+[ext_resource type="PackedScene" path="res://Levels/Booths/conference_booth.tscn" id="23_booth"]
+[ext_resource type="Script" path="res://Levels/Booths/booth_challenge_controller.gd" id="24_booth_controller"]
+[ext_resource type="PackedScene" path="res://Items/matcha.tscn" id="25_matcha"]
+[ext_resource type="Texture2D" path="res://Assets/Booths/conference_booth_red_96.png" id="26_booth_red"]
+[ext_resource type="Texture2D" path="res://Assets/Booths/conference_booth_green_96.png" id="27_booth_green"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_s7fet"]
 animations = [{
@@ -591,6 +596,91 @@ shape = SubResource("RectangleShape2D_lwis1")
 
 [node name="HUD" parent="." unique_id=665291530 instance=ExtResource("13_x42gp")]
 heart_size = Vector2(128, 128)
+
+[node name="BoothChallengeController" type="Node" parent="." node_paths=PackedStringArray("reward_path")]
+script = ExtResource("24_booth_controller")
+reward_path = NodePath("../MatchaReward")
+
+[node name="Booth1" parent="." instance=ExtResource("23_booth")]
+position = Vector2(300, 624)
+booth_id = &"lvl3_booth_01"
+question = "What is the best first step at an admissions fair?"
+answers = Array[String](["Introduce yourself and ask about programs", "Take every brochure without speaking", "Ignore the representatives"])
+correct_answer_index = 0
+
+[node name="Booth2" parent="." instance=ExtResource("23_booth")]
+position = Vector2(500, 624)
+booth_id = &"lvl3_booth_02"
+question = "Which deadline should you put on your calendar?"
+answers = Array[String](["Only the deadline for tuition", "The application deadline", "No deadlines are important"])
+correct_answer_index = 1
+booth_texture = ExtResource("26_booth_red")
+
+[node name="Booth3" parent="." instance=ExtResource("23_booth")]
+position = Vector2(700, 624)
+booth_id = &"lvl3_booth_03"
+question = "What is a good question to ask a college representative?"
+answers = Array[String](["What support exists for new students?", "Can I skip every class?", "Do you dislike your school?"])
+correct_answer_index = 0
+booth_texture = ExtResource("27_booth_green")
+
+[node name="Booth4" parent="." instance=ExtResource("23_booth")]
+position = Vector2(900, 624)
+booth_id = &"lvl3_booth_04"
+question = "A campus visit is most useful for..."
+answers = Array[String](["Judging the cafeteria from one photo", "Learning whether the community feels right", "Avoiding all research"])
+correct_answer_index = 1
+
+[node name="Booth5" parent="." instance=ExtResource("23_booth")]
+position = Vector2(1100, 624)
+booth_id = &"lvl3_booth_05"
+question = "Which activity best strengthens an application?"
+answers = Array[String](["Something meaningful that you commit to", "Joining thirty clubs for one day", "Copying another student's essay"])
+correct_answer_index = 0
+booth_texture = ExtResource("26_booth_red")
+
+[node name="Booth6" parent="." instance=ExtResource("23_booth")]
+position = Vector2(1300, 624)
+booth_id = &"lvl3_booth_06"
+question = "What should you do if you do not understand a program requirement?"
+answers = Array[String](["Guess and hope", "Ask an advisor or representative", "Pretend it does not exist"])
+correct_answer_index = 1
+booth_texture = ExtResource("27_booth_green")
+
+[node name="Booth7" parent="." instance=ExtResource("23_booth")]
+position = Vector2(1500, 624)
+booth_id = &"lvl3_booth_07"
+question = "Financial aid information is useful because it helps you..."
+answers = Array[String](["Plan for the cost of attendance", "Avoid filling out forms forever", "Choose a school by its mascot only"])
+correct_answer_index = 0
+
+[node name="Booth8" parent="." instance=ExtResource("23_booth")]
+position = Vector2(1700, 624)
+booth_id = &"lvl3_booth_08"
+question = "A thoughtful follow-up after meeting a representative is..."
+answers = Array[String](["A polite thank-you with a relevant question", "Twenty blank messages", "Nothing, ever"])
+correct_answer_index = 0
+booth_texture = ExtResource("26_booth_red")
+
+[node name="Booth9" parent="." instance=ExtResource("23_booth")]
+position = Vector2(1900, 624)
+booth_id = &"lvl3_booth_09"
+question = "When comparing schools, which factor matters most?"
+answers = Array[String](["Whether it supports your goals and needs", "The shiniest pen at its booth", "The loudest advertisement"])
+correct_answer_index = 0
+booth_texture = ExtResource("27_booth_green")
+
+[node name="Booth10" parent="." instance=ExtResource("23_booth")]
+position = Vector2(2100, 624)
+booth_id = &"lvl3_booth_10"
+question = "What is the best way to choose a path after high school?"
+answers = Array[String](["Consider your interests, goals, and options", "Let a random flyer decide", "Never ask for help"])
+correct_answer_index = 0
+
+[node name="MatchaReward" parent="." instance=ExtResource("25_matcha")]
+visible = false
+position = Vector2(2260, 560)
+persistent_item_id = &"lvl3_booth_challenge_matcha"
 
 [node name="ExitArea" type="Area2D" parent="." unique_id=639965763]
 script = ExtResource("14_ym3yy")

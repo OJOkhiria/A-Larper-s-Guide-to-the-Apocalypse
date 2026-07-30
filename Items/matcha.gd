@@ -19,6 +19,16 @@ func _ready() -> void:
 	if not body_entered.is_connected(_on_body_entered):
 		body_entered.connect(_on_body_entered)
 
+	if not visible:
+		monitoring = false
+		$CollisionShape2D.set_deferred("disabled", true)
+
+
+func activate() -> void:
+	visible = true
+	set_deferred("monitoring", true)
+	$CollisionShape2D.set_deferred("disabled", false)
+
 
 func _on_body_entered(body: Node2D) -> void:
 	if collected or not body.is_in_group("player"):
