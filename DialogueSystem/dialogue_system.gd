@@ -23,6 +23,10 @@ var next_item: bool = true
 var player_node: CharacterBody2D
 
 
+func set_dialogue_entries(entries: Array[DE]) -> void:
+	dialogue = entries
+
+
 func _ready() -> void:
 	DialogueBox.visible = false
 	ButtonContainer.visible = false
@@ -131,12 +135,12 @@ func _choice_resource(i: DialogueChoice) -> void:
 	DialogueLabel.visible_characters = -1
 
 	if i.speaker_img:
-		$PanelContainer/HBoxContainer/SpeakerParent.visible = true
+		$PanelContainer/HBoxContainer/SpeakerMargin/SpeakerParent.visible = true
 		SpeakerSprite.texture = i.speaker_img
 		SpeakerSprite.hframes = i.speaker_img_Hframes
 		SpeakerSprite.frame = i.speaker_img_select_frame
 	else:
-		$PanelContainer/HBoxContainer/SpeakerParent.visible = false
+		$PanelContainer/HBoxContainer/SpeakerMargin/SpeakerParent.visible = false
 
 	ButtonContainer.visible = true
 

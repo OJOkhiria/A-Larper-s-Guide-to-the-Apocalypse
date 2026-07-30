@@ -54,7 +54,9 @@ func _show_question() -> void:
 		)
 		choice.choice_function_call.append(answer_action)
 
-	dialogue_ui.dialogue = [choice]
+	var dialogue_entries: Array[DE] = []
+	dialogue_entries.append(choice)
+	dialogue_ui.call("set_dialogue_entries", dialogue_entries)
 	add_child(dialogue_ui)
 
 
