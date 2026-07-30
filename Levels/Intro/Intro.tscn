@@ -103,7 +103,12 @@ size = Vector2(1152, 648.5)
 animations = [{
 "frames": [],
 "loop": 1,
-"name": &"crouch",
+"name": &"crouch_idle",
+"speed": 5.0
+}, {
+"frames": [],
+"loop": 1,
+"name": &"crouch_walk",
 "speed": 5.0
 }, {
 "frames": [{
@@ -172,6 +177,7 @@ shape = SubResource("RectangleShape2D_v6nf2")
 [node name="TransitionLayer" type="CanvasLayer" parent="." unique_id=1380607179]
 
 [node name="FadeRect" type="ColorRect" parent="TransitionLayer" unique_id=100974777]
+visible = false
 offset_right = 1152.0
 offset_bottom = 648.0
 color = Color(0, 0, 0, 1)
@@ -187,7 +193,7 @@ z_index = 1
 position = Vector2(17.5, 605.5)
 scale = Vector2(0.25781247, 0.2421877)
 sprite_frames = SubResource("SpriteFrames_frr8k")
-animation = &"crouch"
+animation = &"crouch_walk"
 
 [node name="StandingCollision" type="CollisionShape2D" parent="Player_Intro" unique_id=1492970049]
 z_index = 1

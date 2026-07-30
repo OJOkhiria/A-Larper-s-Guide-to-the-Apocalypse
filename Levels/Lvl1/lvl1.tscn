@@ -696,12 +696,3 @@ destination_level_index = 2
 [node name="ExitShape" type="CollisionShape2D" parent="ExitArea" unique_id=1682044827]
 position = Vector2(1086.5, 374)
 shape = SubResource("RectangleShape2D_2672p")
-
-[node name="FadeLayer" type="CanvasLayer" parent="ExitArea" unique_id=856942792]
-
-[node name="FadeRect" type="ColorRect" parent="ExitArea/FadeLayer" unique_id=345088015]
-visible = false
-offset_right = 40.0
-offset_bottom = 40.0
-color = Color(0, 0, 0, 1)
-metadata/_edit_use_anchors_ = true

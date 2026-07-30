@@ -3,7 +3,6 @@ extends CanvasLayer
 const PAUSE_MENU_SCENE: PackedScene = preload(
 	"res://ui/pause_menu.tscn"
 )
-const MAIN_MENU_PATH := "res://Levels/MainMenu/MainMenu.tscn"
 
 @export var full_heart_texture: Texture2D
 @export var empty_heart_texture: Texture2D
@@ -114,9 +113,5 @@ func _on_main_menu_requested() -> void:
 
 	PlayerData.clear_pending_death_source()
 
-	var error := get_tree().change_scene_to_file(MAIN_MENU_PATH)
-	if error != OK:
-		push_error(
-			"Could not load Main Menu. Error code: %s" % error
-		)
-		changing_scene = false
+	await LvlManager.load_main_menu()
+	changing_scene = false
