@@ -1,0 +1,18 @@
+[gd_scene format=3 uid="uid://dxe80lvt1hq8r"]
+
+[ext_resource type="Script" uid="uid://c14r305qpjadm" path="res://Hazards/spikes.gd" id="1_x3olp"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_spikes"]
+size = Vector2(64, 16)
+
+[node name="Spikes" type="Area2D" unique_id=191965331 groups=["spikes"]]
+collision_layer = 0
+script = ExtResource("1_x3olp")
+
+[node name="SpikeSprite" type="Sprite2D" parent="." unique_id=373517374]
+texture_repeat = 1
+region_enabled = true
+region_rect = Rect2(0, 0, 64, 16)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=796632092]
+shape = SubResource("RectangleShape2D_spikes")

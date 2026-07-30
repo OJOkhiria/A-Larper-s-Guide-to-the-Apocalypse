@@ -14,6 +14,7 @@
 [ext_resource type="Texture2D" uid="uid://ddglx5b8cep2p" path="res://download (2).png" id="12_jcwqk"]
 [ext_resource type="PackedScene" uid="uid://bsusofe1hdgx" path="res://ui/hud.tscn" id="13_lcl7h"]
 [ext_resource type="Script" uid="uid://dkc7jukn7kfw2" path="res://Levels/exit_area.gd" id="14_slhgf"]
+[ext_resource type="PackedScene" path="res://Levels/Hazards/spike_hazard.tscn" id="15_spikes"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_gtdy2"]
 animations = [{
@@ -524,6 +525,22 @@ shape = SubResource("RectangleShape2D_2ippi")
 
 [node name="HUD" parent="." unique_id=665291530 instance=ExtResource("13_lcl7h")]
 heart_size = Vector2(128, 128)
+
+[node name="PitSpikes1" parent="." instance=ExtResource("15_spikes")]
+position = Vector2(880, 280)
+hazard_width = 64.0
+
+[node name="PitSpikes2" parent="." instance=ExtResource("15_spikes")]
+position = Vector2(1264, 280)
+hazard_width = 128.0
+
+[node name="PitSpikes3" parent="." instance=ExtResource("15_spikes")]
+position = Vector2(1584, 280)
+hazard_width = 224.0
+
+[node name="PitSpikes4" parent="." instance=ExtResource("15_spikes")]
+position = Vector2(1968, 280)
+hazard_width = 288.0
 
 [node name="ExitArea" type="Area2D" parent="." unique_id=720295293]
 script = ExtResource("14_slhgf")
