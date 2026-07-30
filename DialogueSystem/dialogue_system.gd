@@ -71,7 +71,7 @@ func set_dialogue_position(pos: Vector2) -> void:
 
 
 func _process(_delta: float) -> void:
-	if current_dialogue_item == dialogue.size():
+	if current_dialogue_item >= dialogue.size():
 		if !player_node:
 			for i in get_tree().get_nodes_in_group("player"):
 				player_node = i

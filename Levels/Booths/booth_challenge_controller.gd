@@ -1,6 +1,6 @@
 extends Node
 
-@export var required_correct_answers: int = 10
+@export var required_correct_answers: int = 8
 @export var reward_path: NodePath
 
 var correct_booth_ids: Dictionary[StringName, bool] = {}
@@ -21,7 +21,11 @@ func _reveal_reward() -> void:
 	if reward_revealed:
 		return
 
-	var reward := get_node_or_null(reward_path)
+	var reward: Node = null
+	if reward_path != NodePath():
+		reward = get_node_or_null(reward_path)
+	if reward == null and get_parent() != null:
+		reward = get_parent().get_node_or_null("MatchaReward")
 	if reward == null:
 		push_warning("Booth challenge reward was not found.")
 		return
