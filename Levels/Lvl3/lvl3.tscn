@@ -28,6 +28,7 @@
 [ext_resource type="Texture2D" uid="uid://cfu7io7yc3fe2" path="res://Assets/Booths/conference_booth_red_96.png" id="26_booth_red"]
 [ext_resource type="Texture2D" uid="uid://di3aa2tou5axn" path="res://REAL_exclamation-removebg-preview.png" id="27_115rh"]
 [ext_resource type="Texture2D" uid="uid://cb1tri35w6mjo" path="res://Assets/Booths/conference_booth_green_96.png" id="27_booth_green"]
+[ext_resource type="Texture2D" uid="uid://f6r60q7efcx6" path="res://Levels/Lvl3/Lvl3Bck.png" id="29_e8ud8"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_s7fet"]
 animations = [{
@@ -463,7 +464,7 @@ sources/0 = SubResource("TileSetAtlasSource_sodd4")
 size = Vector2(20, 820.25)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_lwis1"]
-size = Vector2(2450.5, 20)
+size = Vector2(2173.5, 20)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_elj72"]
 size = Vector2(109, 134)
@@ -556,25 +557,25 @@ script = ExtResource("1_v28qb")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Player(Lvl3)" unique_id=449709113]
 z_index = 1
-position = Vector2(17.5, 605.5)
+position = Vector2(93.56249, 584.43756)
 scale = Vector2(0.25781247, 0.2421877)
 sprite_frames = SubResource("SpriteFrames_s7fet")
 animation = &"crouch_walk"
 
 [node name="StandingCollision" type="CollisionShape2D" parent="Player(Lvl3)" unique_id=1714179095]
 z_index = 1
-position = Vector2(11, 598.5)
+position = Vector2(87.06249, 577.43756)
 shape = SubResource("RectangleShape2D_u13mc")
 
 [node name="CrouchingCollision" type="CollisionShape2D" parent="Player(Lvl3)" unique_id=1897450817]
 z_index = 1
-position = Vector2(11, 611.5)
+position = Vector2(87.06249, 590.43756)
 shape = SubResource("RectangleShape2D_27lpv")
 disabled = true
 
 [node name="StandingClearance" type="ShapeCast2D" parent="Player(Lvl3)" unique_id=1272303521]
 z_index = 1
-position = Vector2(5, 576)
+position = Vector2(81.06249, 554.93756)
 shape = SubResource("RectangleShape2D_trjbo")
 target_position = Vector2(13, -6)
 
@@ -594,7 +595,7 @@ script = ExtResource("11_0yj7l")
 use_player_data = true
 
 [node name="TileMapLayer" type="TileMapLayer" parent="." unique_id=1101571466]
-tile_map_data = PackedByteArray("AAAAACcAAAAIAAUAAAABACcAAAAIAAUAAAACACcAAAAIAAUAAAADACcAAAAIAAUAAAAEACcAAAAIAAUAAAAFACcAAAAHAAIAAAAGACcAAAAJAAUAAAAHACcAAAAJAAUAAAAIACcAAAAJAAUAAAAJACcAAAAJAAUAAAAKACcAAAAJAAUAAAALACcAAAAJAAUAAAAMACcAAAAJAAUAAAANACcAAAAJAAUAAAAOACcAAAAJAAUAAAAPACcAAAAJAAUAAAAQACcAAAAJAAUAAAARACcAAAAJAAUAAAASACcAAAAJAAUAAAATACcAAAAJAAUAAAAUACcAAAAJAAUAAAAVACcAAAAJAAUAAAAWACcAAAAJAAUAAAAXACcAAAAJAAUAAAAYACcAAAAJAAUAAAAZACcAAAAJAAUAAAAaACcAAAAJAAUAAAAbACcAAAAJAAUAAAAcACcAAAAJAAUAAAAdACcAAAAJAAUAAAAeACcAAAAJAAUAAAAfACcAAAAJAAUAAAAgACcAAAAJAAUAAAAhACcAAAAJAAUAAAAiACcAAAAJAAUAAAAjACcAAAAJAAUAAAAkACcAAAAJAAUAAAAlACcAAAAJAAUAAAAmACcAAAAJAAUAAAAnACcAAAAJAAUAAAAoACcAAAAJAAUAAAApACcAAAAJAAUAAAAqACcAAAAJAAUAAAArACcAAAAJAAUAAAAsACcAAAAJAAUAAAAtACcAAAAJAAUAAAAuACcAAAAJAAUAAAAvACcAAAAJAAUAAAAwACcAAAAJAAUAAAAxACcAAAAJAAUAAAAyACcAAAAJAAUAAAAzACcAAAAJAAUAAAA0ACcAAAAJAAUAAAA1ACcAAAAJAAUAAAA2ACcAAAAJAAUAAAA3ACcAAAAJAAUAAAA4ACcAAAAJAAUAAAA5ACcAAAAJAAUAAAA6ACcAAAAJAAUAAAA7ACcAAAAJAAUAAAA8ACcAAAAJAAUAAAA9ACcAAAAJAAUAAAA+ACcAAAAJAAUAAAA/ACcAAAAJAAUAAABAACcAAAAJAAUAAABBACcAAAAJAAUAAABCACcAAAAJAAUAAABDACcAAAAJAAUAAABEACcAAAAJAAUAAABFACcAAAAJAAUAAABGACcAAAAJAAUAAABHACcAAAAJAAUAAABIACcAAAAJAAUAAABJACcAAAAJAAUAAABKACcAAAAJAAUAAABLACcAAAAJAAUAAABMACcAAAAJAAUAAABNACcAAAAJAAUAAABOACcAAAAJAAUAAABPACcAAAAJAAUAAABQACcAAAAJAAUAAABRACcAAAAJAAUAAABSACcAAAAJAAUAAABTACcAAAAJAAUAAABUACcAAAAJAAUAAABVACcAAAAJAAUAAABWACcAAAAJAAUAAABXACcAAAAJAAUAAABYACcAAAAJAAUAAABZACcAAAAJAAUAAABaACcAAAAJAAUAAABbACcAAAAJAAUAAABcACcAAAAJAAUAAABdACcAAAAJAAUAAABeACcAAAAJAAUAAABfACcAAAAJAAUAAABgACcAAAAGAAUAAABhACcAAAAGAAUAAABiACcAAAAGAAUAAABjACcAAAAGAAUAAABkACcAAAAGAAUAAABlACcAAAAGAAUAAABmACcAAAAGAAUAAABnACcAAAAGAAUAAABoACcAAAAGAAUAAABpACcAAAAGAAUAAABqACcAAAAGAAUAAABrACcAAAAGAAUAAABsACcAAAAGAAUAAABtACcAAAAGAAUAAABuACcAAAAGAAUAAABvACcAAAAGAAUAAABwACcAAAAGAAUAAABxACcAAAAGAAUAAAByACcAAAAGAAUAAABzACcAAAAGAAUAAAB0ACcAAAAGAAUAAAB1ACcAAAAGAAUAAAB2ACcAAAAGAAUAAAB3ACcAAAAGAAUAAAB4ACcAAAAGAAUAAAB5ACcAAAAGAAUAAAB6ACcAAAAGAAUAAAB7ACcAAAAGAAUAAAB8ACcAAAAGAAUAAAA=")
+tile_map_data = PackedByteArray("AAAAACcAAAAIAAUAAAABACcAAAAIAAUAAAACACcAAAAIAAUAAAADACcAAAAIAAUAAAAEACcAAAAIAAUAAAAFACcAAAAHAAIAAAAGACcAAAAJAAUAAAAHACcAAAAJAAUAAAAIACcAAAAJAAUAAAAJACcAAAAJAAUAAAAKACcAAAAJAAUAAAALACcAAAAJAAUAAAAMACcAAAAJAAUAAAANACcAAAAJAAUAAAAOACcAAAAJAAUAAAAPACcAAAAJAAUAAAAQACcAAAAJAAUAAAARACcAAAAJAAUAAAASACcAAAAJAAUAAAATACcAAAAJAAUAAAAUACcAAAAJAAUAAAAVACcAAAAJAAUAAAAWACcAAAAJAAUAAAAXACcAAAAJAAUAAAAYACcAAAAJAAUAAAAZACcAAAAJAAUAAAAaACcAAAAJAAUAAAAbACcAAAAJAAUAAAAcACcAAAAJAAUAAAAdACcAAAAJAAUAAAAeACcAAAAJAAUAAAAfACcAAAAJAAUAAAAgACcAAAAJAAUAAAAhACcAAAAJAAUAAAAiACcAAAAJAAUAAAAjACcAAAAJAAUAAAAkACcAAAAJAAUAAAAlACcAAAAJAAUAAAAmACcAAAAJAAUAAAAnACcAAAAJAAUAAAAoACcAAAAJAAUAAAApACcAAAAJAAUAAAAqACcAAAAJAAUAAAArACcAAAAJAAUAAAAsACcAAAAJAAUAAAAtACcAAAAJAAUAAAAuACcAAAAJAAUAAAAvACcAAAAJAAUAAAAwACcAAAAJAAUAAAAxACcAAAAJAAUAAAAyACcAAAAJAAUAAAAzACcAAAAJAAUAAAA0ACcAAAAJAAUAAAA1ACcAAAAJAAUAAAA2ACcAAAAJAAUAAAA3ACcAAAAJAAUAAAA4ACcAAAAJAAUAAAA5ACcAAAAJAAUAAAA6ACcAAAAJAAUAAAA7ACcAAAAJAAUAAAA8ACcAAAAJAAUAAAA9ACcAAAAJAAUAAAA+ACcAAAAJAAUAAAA/ACcAAAAJAAUAAABAACcAAAAJAAUAAABBACcAAAAJAAUAAABCACcAAAAJAAUAAABDACcAAAAJAAUAAABEACcAAAAJAAUAAABFACcAAAAJAAUAAABGACcAAAAJAAUAAABHACcAAAAJAAUAAABIACcAAAAJAAUAAABJACcAAAAJAAUAAABKACcAAAAJAAUAAABLACcAAAAJAAUAAABMACcAAAAJAAUAAABNACcAAAAJAAUAAABOACcAAAAJAAUAAABPACcAAAAJAAUAAABQACcAAAAJAAUAAABRACcAAAAJAAUAAABSACcAAAAJAAUAAABTACcAAAAJAAUAAABUACcAAAAJAAUAAABVACcAAAAJAAUAAABWACcAAAAJAAUAAABXACcAAAAJAAUAAABYACcAAAAJAAUAAABZACcAAAAJAAUAAABaACcAAAAJAAUAAABbACcAAAAJAAUAAABcACcAAAAJAAUAAABdACcAAAAJAAUAAABeACcAAAAJAAUAAABfACcAAAAJAAUAAABgACcAAAAGAAUAAABhACcAAAAGAAUAAABiACcAAAAGAAUAAABjACcAAAAGAAUAAABkACcAAAAGAAUAAABlACcAAAAGAAUAAABmACcAAAAGAAUAAABnACcAAAAGAAUAAABoACcAAAAGAAUAAABpACcAAAAGAAUAAABqACcAAAAGAAUAAABrACcAAAAGAAUAAABsACcAAAAGAAUAAABtACcAAAAGAAUAAABuACcAAAAGAAUAAABvACcAAAAGAAUAAABwACcAAAAGAAUAAABxACcAAAAGAAUAAAByACcAAAAGAAUAAABzACcAAAAGAAUAAAB0ACcAAAAGAAUAAAB1ACcAAAAGAAUAAAB2ACcAAAAGAAUAAAB3ACcAAAAGAAUAAAB4ACcAAAAGAAUAAAB5ACcAAAAGAAUAAAB6ACcAAAAGAAUAAAB7ACcAAAAGAAUAAAB8ACcAAAAGAAUAAAB9ACcAAAALAAcAAAB+ACcAAAALAAcAAAB/ACcAAAALAAcAAACAACcAAAALAAcAAACBACcAAAALAAcAAACCACcAAAALAAcAAACDACcAAAALAAcAAACEACcAAAALAAcAAACFACcAAAALAAcAAACGACcAAAALAAcAAACHACcAAAALAAcAAAA=")
 tile_set = SubResource("TileSet_i3fks")
 
 [node name="StaticBody2D" type="StaticBody2D" parent="." unique_id=2062988285]
@@ -604,11 +605,11 @@ position = Vector2(-9, 301)
 shape = SubResource("RectangleShape2D_4nexq")
 
 [node name="CollisionShape2D3" type="CollisionShape2D" parent="StaticBody2D" unique_id=1219063248]
-position = Vector2(2452, 273.125)
+position = Vector2(2187, 263)
 shape = SubResource("RectangleShape2D_4nexq")
 
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="StaticBody2D" unique_id=1884199963]
-position = Vector2(1231.75, -133)
+position = Vector2(1093.25, -133)
 shape = SubResource("RectangleShape2D_lwis1")
 
 [node name="HUD" parent="." unique_id=665291530 instance=ExtResource("13_x42gp")]
@@ -618,14 +619,16 @@ heart_size = Vector2(128, 128)
 script = ExtResource("24_booth_controller")
 
 [node name="Booth1" parent="." unique_id=1804958507 instance=ExtResource("23_booth")]
-position = Vector2(300, 637)
+z_index = 1
+position = Vector2(350, 637)
 booth_id = &"lvl3_booth_01"
 question = "What makes you unique?"
 answers = Array[String](["My stats", "My story"])
 correct_answer_index = 1
 
 [node name="Booth2" parent="." unique_id=893326072 instance=ExtResource("23_booth")]
-position = Vector2(500, 637)
+z_index = 1
+position = Vector2(560, 636)
 booth_id = &"lvl3_booth_02"
 question = "What matters more: optics or impact?"
 answers = Array[String](["Optics", "Impact"])
@@ -633,7 +636,8 @@ correct_answer_index = 1
 booth_texture = ExtResource("26_booth_red")
 
 [node name="Booth3" parent="." unique_id=1429204647 instance=ExtResource("23_booth")]
-position = Vector2(700, 637)
+z_index = 1
+position = Vector2(770, 636)
 booth_id = &"lvl3_booth_03"
 question = "Would you commit to something you weren't really interested in if it'd make you look better?"
 answers = Array[String](["Yes", "No"])
@@ -641,21 +645,24 @@ correct_answer_index = 1
 booth_texture = ExtResource("27_booth_green")
 
 [node name="Booth4" parent="." unique_id=919121515 instance=ExtResource("23_booth")]
-position = Vector2(900, 637)
+z_index = 1
+position = Vector2(980, 636)
 booth_id = &"lvl3_booth_04"
 question = "You helped someone once, but the application asks for a long-term service commitment. Do you describe the incident as ongoing service?"
 answers = Array[String](["Yes", "No"])
 correct_answer_index = 1
 
 [node name="Booth5" parent="." unique_id=1204526871 instance=ExtResource("23_booth")]
-position = Vector2(1100, 637)
+z_index = 1
+position = Vector2(1190, 636)
 booth_id = &"lvl3_booth_05"
 question = "You have never completed a volunteer project, but an application rewards community service. What should you do?"
 answers = Array[String](["Leave the section blank", "Make one up"])
 booth_texture = ExtResource("26_booth_red")
 
 [node name="Booth6" parent="." unique_id=1804078517 instance=ExtResource("23_booth")]
-position = Vector2(1300, 637)
+z_index = 1
+position = Vector2(1400, 636)
 booth_id = &"lvl3_booth_06"
 question = "Should you do an activity just because everyone else does it?"
 answers = Array[String](["Yes", "No"])
@@ -663,14 +670,16 @@ correct_answer_index = 1
 booth_texture = ExtResource("27_booth_green")
 
 [node name="Booth7" parent="." unique_id=783843690 instance=ExtResource("23_booth")]
-position = Vector2(1500, 637)
+z_index = 1
+position = Vector2(1610, 636)
 booth_id = &"lvl3_booth_07"
 question = "You discover that your application says you led a service project, but you only attended it. What should you do?
 "
 answers = Array[String](["Correct it", "Submit it anyway"])
 
 [node name="Booth8" parent="." unique_id=1719013399 instance=ExtResource("23_booth")]
-position = Vector2(1700, 637)
+z_index = 1
+position = Vector2(1820, 636)
 booth_id = &"lvl3_booth_08"
 question = "If someone asks for help in something you consider \"your\" niche, should you gatekeep or help them?"
 answers = Array[String](["Gatekeep", "Help them"])
@@ -679,7 +688,8 @@ booth_texture = ExtResource("26_booth_red")
 
 [node name="MatchaReward" parent="." unique_id=668963614 instance=ExtResource("25_matcha")]
 visible = false
-position = Vector2(1953, 609)
+z_index = 1
+position = Vector2(1996, 610)
 persistent_item_id = &"lvl3_booth_challenge_matcha"
 
 [node name="ExitArea" type="Area2D" parent="." unique_id=639965763]
@@ -687,7 +697,7 @@ script = ExtResource("14_ym3yy")
 destination_level_index = 2
 
 [node name="ExitShape" type="CollisionShape2D" parent="ExitArea" unique_id=1024062455]
-position = Vector2(2384, 13)
+position = Vector2(2122, 558)
 shape = SubResource("RectangleShape2D_elj72")
 
 [node name="FadeLayer" type="CanvasLayer" parent="ExitArea" unique_id=1904451958]
@@ -715,8 +725,13 @@ dialogue = Array[ExtResource("17_6sqhk")]([SubResource("Resource_31p0e"), SubRes
 camera_target_path = NodePath("CollisionShape2D/CameraFocusPoint")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="DialogueArea2D" unique_id=1749557279]
-position = Vector2(71, 554)
+position = Vector2(170, 557)
 shape = SubResource("RectangleShape2D_8cv2l")
 
 [node name="CameraFocusPoint" type="Marker2D" parent="DialogueArea2D/CollisionShape2D" unique_id=1218643650]
-position = Vector2(263, -99)
+position = Vector2(328, 5)
+
+[node name="Lvl3Bck" type="Sprite2D" parent="." unique_id=82489700]
+position = Vector2(1085, 309)
+scale = Vector2(1.0760549, 1.1060311)
+texture = ExtResource("29_e8ud8")
