@@ -1,0 +1,339 @@
+[gd_scene format=3 uid="uid://c22sg05t6cmmt"]
+
+[ext_resource type="Script" uid="uid://80kl10p8d3vr" path="res://player.gd" id="1_player"]
+[ext_resource type="Script" uid="uid://cjvko70j23u0k" path="res://Levels/BombShelter/bomb_shelter_controller.gd" id="2_controller"]
+[ext_resource type="Texture2D" uid="uid://d32r1g03tq7r1" path="res://PlayerModels/PlayerModel.png" id="2_pidle"]
+[ext_resource type="Script" uid="uid://cc6k1h1lm2cbd" path="res://Levels/Common/objective_console.gd" id="3_console"]
+[ext_resource type="Texture2D" uid="uid://c53cyepyuk0e" path="res://PlayerModels/pixel-art_by_filereadynow_ai_2026-07-20 22_54_07.png" id="3_pcw2"]
+[ext_resource type="PackedScene" uid="uid://bl88onnvv263j" path="res://Enemies/The Bomber (lvl1)/Bomb/bomb.tscn" id="4_bomb"]
+[ext_resource type="Texture2D" uid="uid://d1om6pjvcs2ag" path="res://PlayerModels/pixel-art_by_filereadynow_ai_2026-07-17 15_24_26.png" id="4_pjump"]
+[ext_resource type="Script" uid="uid://dkc7jukn7kfw2" path="res://Levels/exit_area.gd" id="5_exit"]
+[ext_resource type="Texture2D" uid="uid://bvtuhkne65jh4" path="res://PlayerModels/pixel-art_by_filereadynow_ai_2026-07-20 22_54_07 (1).png" id="5_pcrouch"]
+[ext_resource type="PackedScene" uid="uid://bk5cub14yf6d" path="res://DialogueSystem/dialogue_area_2d.tscn" id="6_dialogue_area"]
+[ext_resource type="Texture2D" uid="uid://celkaehf2l7st" path="res://PlayerModels/pixel-art_by_filereadynow_ai_2026-07-16 20_09_05.png" id="6_prun1"]
+[ext_resource type="Script" uid="uid://q2hfxekwglu3" path="res://DialogueSystem/DialogueTextResource.gd" id="7_dialogue_text"]
+[ext_resource type="Texture2D" uid="uid://bv5q2k3obwci6" path="res://PlayerModels/pixel-art_by_filereadynow_ai_2026-07-15 21_43_59.png" id="7_prun2"]
+[ext_resource type="Script" uid="uid://dueid5yb1nun7" path="res://DialogueSystem/DialogueChoiceResource.gd" id="8_dialogue_choice"]
+[ext_resource type="Texture2D" uid="uid://d25vhlnyjljan" path="res://PlayerModels/pixel-art_by_filereadynow_ai_2026-07-16 20_09_05 (1).png" id="8_prun3"]
+[ext_resource type="Script" uid="uid://cwga5b5d18k0w" path="res://DialogueSystem/DialogueFunctionResource.gd" id="9_dialogue_function"]
+[ext_resource type="Texture2D" uid="uid://c4bu5o4cshtbn" path="res://PlayerModels/pixel-art_by_filereadynow_ai_2026-07-15 21_43_59 (1).png" id="9_prun4"]
+[ext_resource type="Script" uid="uid://be53l74160rtt" path="res://Levels/camera_2d.gd" id="10_cam"]
+[ext_resource type="Texture2D" uid="uid://di3aa2tou5axn" path="res://REAL_exclamation-removebg-preview.png" id="10_real"]
+[ext_resource type="Texture2D" uid="uid://u6sh1dsfitnv" path="res://Enemies/The Bomber (lvl1)/Models/pixel-art_by_filereadynow_ai_2026-07-17 15_24_26 (6).png" id="11_bomber"]
+[ext_resource type="Script" uid="uid://dho5u66n3qum8" path="res://Health.gd" id="11_health"]
+[ext_resource type="Script" uid="uid://dkpwxghjd7ry8" path="res://DialogueSystem/DialogueExportResource.gd" id="12_dialogue_entry"]
+[ext_resource type="AudioStream" uid="uid://b1iyperftamvw" path="res://DialogueSystem/talk.wav" id="20_talk"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_puymp"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("5_pcrouch")
+}],
+"loop": 1,
+"name": &"crouch_idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("5_pcrouch")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_pcw2")
+}],
+"loop": 1,
+"name": &"crouch_walk",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_pidle")
+}],
+"loop": 1,
+"name": &"idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("4_pjump")
+}],
+"loop": 1,
+"name": &"jump",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("6_prun1")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_prun2")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_prun3")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_prun4")
+}],
+"loop": 1,
+"name": &"run",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_fhxb7"]
+size = Vector2(34, 77)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_cwjos"]
+size = Vector2(34, 51)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_16x42"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_gsvg5"]
+size = Vector2(20, 820.25)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_224l6"]
+size = Vector2(4058.5, 20)
+
+[sub_resource type="RectangleShape2D" id="FloorEntry"]
+size = Vector2(920, 48)
+
+[sub_resource type="RectangleShape2D" id="FloorControlWing"]
+size = Vector2(940, 48)
+
+[sub_resource type="RectangleShape2D" id="FloorMaintenance"]
+size = Vector2(920, 48)
+
+[sub_resource type="RectangleShape2D" id="FloorConfrontation"]
+size = Vector2(1040, 48)
+
+[sub_resource type="RectangleShape2D" id="ConsoleShape"]
+size = Vector2(54, 84)
+
+[sub_resource type="RectangleShape2D" id="DoorShape"]
+size = Vector2(40, 280)
+
+[sub_resource type="Resource" id="ConfrontationText"]
+script = ExtResource("7_dialogue_text")
+speaker_img = ExtResource("10_real")
+text = "He's still in there. You cannot undo what happened, but you can stop what happens next."
+text_speed = 20.0
+
+[sub_resource type="Resource" id="BoundaryFunction"]
+script = ExtResource("9_dialogue_function")
+target_path = NodePath("../BombShelterController")
+function_name = "choose_boundary"
+
+[sub_resource type="Resource" id="ConnectionFunction"]
+script = ExtResource("9_dialogue_function")
+target_path = NodePath("../BombShelterController")
+function_name = "choose_connection"
+
+[sub_resource type="Resource" id="ConfrontationChoice"]
+script = ExtResource("8_dialogue_choice")
+speaker_img = ExtResource("10_real")
+text = "The final bomb is armed. What do you say?"
+choice_text = Array[String](["What you did hurt people. Stop this now.", "You do not have to keep proving you matter this way."])
+choice_function_call = Array[ExtResource("9_dialogue_function")]([SubResource("BoundaryFunction"), SubResource("ConnectionFunction")])
+
+[sub_resource type="RectangleShape2D" id="DialogueShape"]
+size = Vector2(90, 260)
+
+[sub_resource type="RectangleShape2D" id="ExitShape"]
+size = Vector2(70, 220)
+
+[sub_resource type="Resource" id="EntryDialogue"]
+script = ExtResource("7_dialogue_text")
+speaker_img = ExtResource("10_real")
+text = "Your classmate sealed himself in the maintenance shelter. Shut down the controls before you approach him."
+text_speed = 14.0
+text_sound = ExtResource("20_talk")
+
+[node name="Lvl5" type="Node" unique_id=748909445]
+
+[node name="BombShelterController" type="Node" parent="." unique_id=608421432]
+script = ExtResource("2_controller")
+bomb_scene = ExtResource("4_bomb")
+spawn_point_paths = Array[NodePath]([NodePath(""), NodePath(""), NodePath("")])
+
+[node name="BombTimer" type="Timer" parent="BombShelterController" unique_id=1443547228]
+wait_time = 3.5
+
+[node name="Player(Lvl5)" type="CharacterBody2D" parent="." unique_id=652294636 groups=["player"]]
+position = Vector2(1, 1)
+script = ExtResource("1_player")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Player(Lvl5)" unique_id=1895633434]
+z_index = 1
+position = Vector2(93.56249, 584.43756)
+scale = Vector2(0.25781247, 0.2421877)
+sprite_frames = SubResource("SpriteFrames_puymp")
+animation = &"crouch_walk"
+
+[node name="StandingCollision" type="CollisionShape2D" parent="Player(Lvl5)" unique_id=1088704206]
+z_index = 1
+position = Vector2(87.06249, 577.43756)
+shape = SubResource("RectangleShape2D_fhxb7")
+
+[node name="CrouchingCollision" type="CollisionShape2D" parent="Player(Lvl5)" unique_id=861245731]
+z_index = 1
+position = Vector2(87.06249, 590.43756)
+shape = SubResource("RectangleShape2D_cwjos")
+disabled = true
+
+[node name="StandingClearance" type="ShapeCast2D" parent="Player(Lvl5)" unique_id=370671375]
+z_index = 1
+position = Vector2(81.06249, 554.93756)
+shape = SubResource("RectangleShape2D_16x42")
+target_position = Vector2(13, -6)
+
+[node name="Camera2D" type="Camera2D" parent="Player(Lvl5)" unique_id=1437157749]
+position = Vector2(208, 514)
+zoom = Vector2(2.5, 2.5)
+limit_left = 2
+limit_top = -89
+limit_right = 2436
+limit_bottom = 642
+position_smoothing_enabled = true
+position_smoothing_speed = 7.0
+script = ExtResource("10_cam")
+
+[node name="Health" type="Node" parent="Player(Lvl5)" unique_id=1034195095]
+script = ExtResource("11_health")
+use_player_data = true
+
+[node name="WorldBorders" type="StaticBody2D" parent="." unique_id=2044664734]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="WorldBorders" unique_id=234537723]
+position = Vector2(-9, 301)
+shape = SubResource("RectangleShape2D_gsvg5")
+
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="WorldBorders" unique_id=1858124100]
+position = Vector2(4072, 220)
+shape = SubResource("RectangleShape2D_gsvg5")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="WorldBorders" unique_id=1685846913]
+position = Vector2(2035.75, -133)
+shape = SubResource("RectangleShape2D_224l6")
+
+[node name="WorldGeometry" type="StaticBody2D" parent="." unique_id=2058756528]
+
+[node name="ShelterEntry" type="CollisionShape2D" parent="WorldGeometry" unique_id=819381520]
+position = Vector2(460, 600)
+shape = SubResource("FloorEntry")
+
+[node name="ControlWing" type="CollisionShape2D" parent="WorldGeometry" unique_id=2142612360]
+position = Vector2(1460, 600)
+shape = SubResource("FloorControlWing")
+
+[node name="MaintenanceWing" type="CollisionShape2D" parent="WorldGeometry" unique_id=1125252118]
+position = Vector2(2480, 600)
+shape = SubResource("FloorMaintenance")
+
+[node name="ConfrontationWing" type="CollisionShape2D" parent="WorldGeometry" unique_id=524857046]
+position = Vector2(3540, 600)
+shape = SubResource("FloorConfrontation")
+
+[node name="BombSpawnA" type="Marker2D" parent="." unique_id=1609940498]
+position = Vector2(480, 430)
+
+[node name="BombSpawnB" type="Marker2D" parent="." unique_id=340606274]
+position = Vector2(1550, 430)
+
+[node name="BombSpawnC" type="Marker2D" parent="." unique_id=682136793]
+position = Vector2(2450, 430)
+
+[node name="SafetyConsoleA" type="Area2D" parent="." unique_id=81224429 groups=["shelter_consoles"]]
+position = Vector2(540, 535)
+script = ExtResource("3_console")
+console_id = &"shelter_console_a"
+prompt_text = "Press Enter: disarm control"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="SafetyConsoleA" unique_id=1266733138]
+shape = SubResource("ConsoleShape")
+
+[node name="Prompt" type="Label" parent="SafetyConsoleA" unique_id=912392420]
+offset_left = -85.0
+offset_top = -85.0
+offset_right = -85.0
+offset_bottom = -85.0
+theme_override_colors/font_color = Color(1, 0.95, 0.55, 1)
+
+[node name="SafetyConsoleB" type="Area2D" parent="." unique_id=413149029 groups=["shelter_consoles"]]
+position = Vector2(1650, 535)
+script = ExtResource("3_console")
+console_id = &"shelter_console_b"
+prompt_text = "Press Enter: disarm control"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="SafetyConsoleB" unique_id=710274364]
+shape = SubResource("ConsoleShape")
+
+[node name="Prompt" type="Label" parent="SafetyConsoleB" unique_id=1603408019]
+offset_left = -85.0
+offset_top = -85.0
+offset_right = -85.0
+offset_bottom = -85.0
+theme_override_colors/font_color = Color(1, 0.95, 0.55, 1)
+
+[node name="SafetyConsoleC" type="Area2D" parent="." unique_id=890388609 groups=["shelter_consoles"]]
+position = Vector2(2600, 535)
+script = ExtResource("3_console")
+console_id = &"shelter_console_c"
+prompt_text = "Press Enter: disarm control"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="SafetyConsoleC" unique_id=1839964961]
+shape = SubResource("ConsoleShape")
+
+[node name="Prompt" type="Label" parent="SafetyConsoleC" unique_id=1338698865]
+offset_left = -85.0
+offset_top = -85.0
+offset_right = -85.0
+offset_bottom = -85.0
+theme_override_colors/font_color = Color(1, 0.95, 0.55, 1)
+
+[node name="BlastDoor" type="StaticBody2D" parent="." unique_id=1883635217]
+position = Vector2(3200, 460)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="BlastDoor" unique_id=2019394703]
+shape = SubResource("DoorShape")
+
+[node name="Bomber" type="Sprite2D" parent="." unique_id=683930394]
+position = Vector2(3500, 520)
+scale = Vector2(0.28, 0.28)
+texture = ExtResource("11_bomber")
+
+[node name="ConfrontationArea" parent="." unique_id=581195361 instance=ExtResource("6_dialogue_area")]
+position = Vector2(3500, 500)
+monitoring = false
+activate_instant = true
+only_activate_once = true
+persistent_once_id = &"lvl5_confrontation"
+dialogue = Array[ExtResource("12_dialogue_entry")]([SubResource("ConfrontationText"), SubResource("ConfrontationChoice")])
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ConfrontationArea" unique_id=1973552725]
+shape = SubResource("DialogueShape")
+
+[node name="ExitArea" type="Area2D" parent="." unique_id=1705296433]
+position = Vector2(4050, 485)
+monitoring = false
+script = ExtResource("5_exit")
+destination_level_index = 6
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ExitArea" unique_id=1177822764]
+shape = SubResource("ExitShape")
+
+[node name="EntryDialogueArea" parent="." unique_id=198465763 instance=ExtResource("6_dialogue_area")]
+position = Vector2(150, 520)
+activate_instant = true
+only_activate_once = true
+persistent_once_id = &"lvl5_entry"
+dialogue = Array[ExtResource("12_dialogue_entry")]([SubResource("EntryDialogue")])
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="EntryDialogueArea" unique_id=1169978462]
+shape = SubResource("ConsoleShape")
+
+[node name="Interface" type="CanvasLayer" parent="." unique_id=1014968997]
+
+[node name="ObjectiveLabel" type="Label" parent="Interface" unique_id=729958664]
+offset_left = 24.0
+offset_top = 24.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/font_size = 20

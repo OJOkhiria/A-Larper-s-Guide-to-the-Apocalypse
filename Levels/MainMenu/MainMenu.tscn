@@ -38,10 +38,13 @@ stream = ExtResource("3_gfug0")
 volume_db = 15.0
 
 [node name="BookPivot" type="Control" parent="." unique_id=1903167568]
+propagate_maximum_size = true
 layout_mode = 1
 anchors_preset = 0
-offset_right = 600.0
-offset_bottom = 600.0
+offset_left = -182.0
+offset_top = 671.0
+offset_right = 418.0
+offset_bottom = 1271.0
 mouse_filter = 2
 
 [node name="BackAndPages" type="Control" parent="BookPivot" unique_id=76183565]

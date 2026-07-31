@@ -4,7 +4,10 @@ extends Node
 const LEVELS: Array[String] = [
 	"res://Levels/Intro/Intro.tscn",
 	"res://Levels/Lvl1/lvl1.tscn",
-	"res://Levels/Lvl2/lvl2.tscn"
+	"res://Levels/Lvl2/lvl2.tscn",
+	"res://Levels/Lvl3/lvl3.tscn",
+	"res://Levels/Lvl4/lvl4.tscn",
+	"res://Levels/Lvl5/lvl5.tscn"
 ]
 const MAIN_MENU_PATH := "res://Levels/MainMenu/MainMenu.tscn"
 const FADE_DURATION := 0.65

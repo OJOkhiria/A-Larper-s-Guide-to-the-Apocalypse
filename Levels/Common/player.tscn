@@ -1,0 +1,74 @@
+[gd_scene format=3]
+
+[ext_resource type="Script" path="res://player.gd" id="1_player"]
+[ext_resource type="Script" path="res://Health.gd" id="2_health"]
+[ext_resource type="Texture2D" path="res://PlayerModels/PlayerModel.png" id="3_texture"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_player"]
+animations = [{
+"frames": [{"duration": 1.0, "texture": ExtResource("3_texture")}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}, {
+"frames": [{"duration": 1.0, "texture": ExtResource("3_texture")}],
+"loop": true,
+"name": &"run",
+"speed": 5.0
+}, {
+"frames": [{"duration": 1.0, "texture": ExtResource("3_texture")}],
+"loop": true,
+"name": &"jump",
+"speed": 5.0
+}, {
+"frames": [{"duration": 1.0, "texture": ExtResource("3_texture")}],
+"loop": true,
+"name": &"crouch_idle",
+"speed": 5.0
+}, {
+"frames": [{"duration": 1.0, "texture": ExtResource("3_texture")}],
+"loop": true,
+"name": &"crouch_walk",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="StandingShape"]
+size = Vector2(34, 77)
+
+[sub_resource type="RectangleShape2D" id="CrouchingShape"]
+size = Vector2(34, 51)
+
+[sub_resource type="RectangleShape2D" id="ClearanceShape"]
+size = Vector2(34, 77)
+
+[node name="Player" type="CharacterBody2D" groups=["player"]]
+script = ExtResource("1_player")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+scale = Vector2(0.25, 0.25)
+sprite_frames = SubResource("SpriteFrames_player")
+animation = &"idle"
+
+[node name="StandingCollision" type="CollisionShape2D" parent="."]
+shape = SubResource("StandingShape")
+
+[node name="CrouchingCollision" type="CollisionShape2D" parent="."]
+position = Vector2(0, 13)
+shape = SubResource("CrouchingShape")
+disabled = true
+
+[node name="StandingClearance" type="ShapeCast2D" parent="."]
+shape = SubResource("ClearanceShape")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+zoom = Vector2(1.5, 1.5)
+position_smoothing_enabled = true
+position_smoothing_speed = 7.0
+limit_left = 0
+limit_top = 0
+limit_right = 2600
+limit_bottom = 720
+
+[node name="Health" type="Node" parent="."]
+script = ExtResource("2_health")
+use_player_data = true

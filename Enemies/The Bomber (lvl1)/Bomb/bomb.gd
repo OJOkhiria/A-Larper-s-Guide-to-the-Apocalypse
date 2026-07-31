@@ -45,6 +45,7 @@ enum BombState {
 var current_state: BombState = BombState.FLYING
 
 func _ready() -> void:
+	add_to_group("bomber_bombs")
 	current_state = BombState.FLYING
 
 	flying_collision.set_deferred("disabled", false)

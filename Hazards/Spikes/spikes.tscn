@@ -3,7 +3,7 @@
 [ext_resource type="Script" uid="uid://c14r305qpjadm" path="res://Hazards/Spikes/spikes.gd" id="1_x3olp"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_spikes"]
-size = Vector2(244, 119)
+size = Vector2(282, 119)
 
 [node name="Spikes" type="Area2D" unique_id=191965331 groups=["spikes"]]
 collision_layer = 0
@@ -17,5 +17,5 @@ region_enabled = true
 region_rect = Rect2(96.628, 1.25, 497, 353.78)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=796632092]
-position = Vector2(0, -10.5)
+position = Vector2(1, -10.5)
 shape = SubResource("RectangleShape2D_spikes")
