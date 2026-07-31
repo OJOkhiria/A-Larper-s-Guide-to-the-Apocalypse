@@ -5,12 +5,16 @@ extends Area2D
 @export var damage: int = 3
 @export var death_source_id: StringName = &"spikes"
 @export var hazard_width: float = 64.0
+@export var spike_texture: Texture2D
 
 @onready var collision_shape: CollisionShape2D = $CollisionShape2D
+@onready var spike_sprite: Sprite2D = $SpikeSprite
 
 
 func _ready() -> void:
 	add_to_group("spikes")
+	if spike_texture != null:
+		spike_sprite.texture = spike_texture
 
 	if not body_entered.is_connected(_on_body_entered):
 		body_entered.connect(_on_body_entered)

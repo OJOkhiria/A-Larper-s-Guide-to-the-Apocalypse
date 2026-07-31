@@ -138,6 +138,7 @@ func _choice_resource(i: DialogueChoice) -> void:
 		$PanelContainer/HBoxContainer/SpeakerMargin/SpeakerParent.visible = true
 		SpeakerSprite.texture = i.speaker_img
 		SpeakerSprite.hframes = i.speaker_img_Hframes
+		SpeakerSprite.scale = Vector2(0.25, 0.25)
 		SpeakerSprite.frame = i.speaker_img_select_frame
 	else:
 		$PanelContainer/HBoxContainer/SpeakerMargin/SpeakerParent.visible = false

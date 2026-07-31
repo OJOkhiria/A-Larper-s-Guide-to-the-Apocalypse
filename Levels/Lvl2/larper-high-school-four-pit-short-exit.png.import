@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cs166tqeindo"
-path="res://.godot/imported/Spikes.png-72435e53284221450b2a7dbd9afeeb88.ctex"
+uid="uid://c1qnvkkldw6k4"
+path="res://.godot/imported/larper-high-school-four-pit-short-exit.png-0d22250726d8a08e6b9938237d5ded30.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Hazards/Spikes/Spikes.png"
-dest_files=["res://.godot/imported/Spikes.png-72435e53284221450b2a7dbd9afeeb88.ctex"]
+source_file="res://Levels/Lvl2/larper-high-school-four-pit-short-exit.png"
+dest_files=["res://.godot/imported/larper-high-school-four-pit-short-exit.png-0d22250726d8a08e6b9938237d5ded30.ctex"]
 
 [params]
 
