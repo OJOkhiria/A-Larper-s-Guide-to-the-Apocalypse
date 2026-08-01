@@ -24,8 +24,8 @@ script = ExtResource("1_xx2bx")
 
 [node name="Background" type="ColorRect" parent="." unique_id=1770003850]
 layout_mode = 0
-offset_right = 1152.0
-offset_bottom = 648.0
+offset_right = 1904.0
+offset_bottom = 986.0
 mouse_filter = 2
 color = Color(0, 0, 0, 1)
 
@@ -109,14 +109,12 @@ expand_mode = 2
 layout_mode = 2
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_fonts/font = ExtResource("8_aw04d")
+theme_override_font_sizes/font_size = 22
 text = "W - Jump
 
 A/D - Movement
 
-S - Crouch
-
-Left Mouse Button -
-Use Items"
+S - Crouch"
 
 [node name="ContinueButton" type="Button" parent="BookPivot/BackAndPages/ControlsPage/MarginContainer/VBoxContainer" unique_id=42815891]
 custom_minimum_size = Vector2(100, 50)

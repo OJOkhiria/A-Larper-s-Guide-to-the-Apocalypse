@@ -21,6 +21,11 @@ DialogueBus="*uid://dxooekuoxjgi0"
 GameOver="*uid://g0t6ca1688hd"
 PlayerData="*uid://chcbegh2t07pm"
 
+[display]
+
+window/size/viewport_width=1800
+window/size/viewport_height=900
+
 [dotnet]
 
 project/assembly_name="A Larper-s Guide to the Apocalypse"

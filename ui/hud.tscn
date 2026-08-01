@@ -26,10 +26,14 @@ offset_bottom = 40.0
 theme_override_constants/separation = 6
 
 [node name="PauseButton" type="Button" parent="." unique_id=812380998]
-offset_left = 925.0
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -328.0
 offset_top = 42.0
-offset_right = 1127.0
-offset_bottom = 133.0
+offset_right = -23.0
+offset_bottom = 204.0
+grow_horizontal = 0
 theme_override_fonts/font = ExtResource("4_pause_font")
-theme_override_font_sizes/font_size = 18
+theme_override_font_sizes/font_size = 40
 text = "PAUSE"
