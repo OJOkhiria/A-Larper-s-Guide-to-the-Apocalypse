@@ -61,9 +61,13 @@ func _show_question() -> void:
 
 
 func answer_correct() -> void:
-	var controller := get_tree().current_scene.get_node_or_null(
-		"BoothChallengeController"
-	)
+	# The Level 3 scene names this controller Lvl3Controller. Keep the legacy
+	# name as a fallback so existing variants of the level remain compatible.
+	var controller := get_tree().current_scene.get_node_or_null("Lvl3Controller")
+	if controller == null:
+		controller = get_tree().current_scene.get_node_or_null(
+			"BoothChallengeController"
+		)
 	if controller != null and controller.has_method("booth_answered_correctly"):
 		controller.call("booth_answered_correctly", booth_id)
 

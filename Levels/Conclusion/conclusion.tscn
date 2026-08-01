@@ -1,0 +1,174 @@
+[gd_scene format=3 uid="uid://brhgjfrptoid4"]
+
+[ext_resource type="Script" uid="uid://di3pade4rqiqw" path="res://Levels/Conclusion/conclusion.gd" id="1_script"]
+[ext_resource type="AudioStream" uid="uid://n4rn5lw6lei1" path="res://Levels/Conclusion/pixelated_audio.wav" id="2_audio"]
+[ext_resource type="FontFile" uid="uid://xaq0o2laqakn" path="res://DialogueSystem/ChiKareGo.ttf" id="4_font"]
+[ext_resource type="Texture2D" uid="uid://b6mklos5jsect" path="res://Levels/MainMenu/pixel-art_by_filereadynow_ai_2026-07-20 14_23_19 (1).png" id="4_inside_cover"]
+[ext_resource type="Texture2D" uid="uid://daukrugch87eg" path="res://Levels/MainMenu/pixel-art_by_filereadynow_ai_2026-07-20 14_23_19 (2).png" id="5_back_cover"]
+[ext_resource type="Texture2D" uid="uid://dlk20x5x6kl1v" path="res://Levels/MainMenu/pixel-art_by_filereadynow_ai_2026-07-20 14_23_19 (4).png" id="6_page"]
+[ext_resource type="FontFile" uid="uid://b7wwpls0rmqff" path="res://Adventurer.ttf" id="7_sstnf"]
+
+[node name="Conclusion" type="Control" unique_id=1636448443]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_script")
+
+[node name="Background" type="ColorRect" parent="." unique_id=1199812098]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.015, 0.012, 0.012, 1)
+
+[node name="ConclusionSong" type="AudioStreamPlayer" parent="." unique_id=1206072482]
+stream = ExtResource("2_audio")
+volume_db = -5.0
+autoplay = true
+
+[node name="Book" type="Control" parent="." unique_id=447135867]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -445.0
+offset_top = -270.0
+offset_right = 445.0
+offset_bottom = 270.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Shadow" type="ColorRect" parent="Book" unique_id=2103765681]
+layout_mode = 0
+offset_left = 24.0
+offset_top = 40.0
+offset_right = 884.0
+offset_bottom = 524.0
+color = Color(0, 0, 0, 0.55)
+
+[node name="LeftInsideCover" type="TextureRect" parent="Book" unique_id=752262959]
+layout_mode = 0
+offset_left = 15.0
+offset_top = 20.0
+offset_right = 425.0
+offset_bottom = 490.0
+texture = ExtResource("4_inside_cover")
+expand_mode = 1
+stretch_mode = 6
+
+[node name="LeftPage" type="TextureRect" parent="Book" unique_id=999416904]
+layout_mode = 0
+offset_left = 53.0
+offset_top = 60.0
+offset_right = 383.0
+offset_bottom = 450.0
+texture = ExtResource("6_page")
+flip_h = true
+
+[node name="MarginContainer" type="MarginContainer" parent="Book/LeftPage" unique_id=203552165]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = -0.097
+anchor_top = -0.178
+anchor_right = -0.097
+anchor_bottom = -0.178
+offset_left = 30.010002
+offset_top = 68.42
+offset_right = 362.00998
+offset_bottom = 460.42004
+theme_override_constants/margin_left = 15
+theme_override_constants/margin_top = 15
+theme_override_constants/margin_right = 15
+theme_override_constants/margin_bottom = 15
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Book/LeftPage/MarginContainer" unique_id=1024259844]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Book/LeftPage/MarginContainer/VBoxContainer" unique_id=1993672170]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("4_font")
+theme_override_font_sizes/font_size = 20
+text = "And that concludes A Larper's Guide to
+the Apocalypse! Regardless of your 
+decision at the end, it's important that 
+you know you matter, you have a voice,
+and that you don't need to sacrifice
+integrity for worth. 
+
+Even if you look
+around and feel cooked, or feel
+overwhelmed by the pressure of your
+future, keep going! If you don't have 
+faith in yourself right now, have faith 
+in who you will be! That is, larp until
+   you make it!!!"
+
+[node name="RightBackCover" type="TextureRect" parent="Book" unique_id=1693938558]
+layout_mode = 0
+offset_left = 465.0
+offset_top = 20.0
+offset_right = 875.0
+offset_bottom = 490.0
+texture = ExtResource("5_back_cover")
+expand_mode = 1
+stretch_mode = 6
+
+[node name="RightPage" type="TextureRect" parent="Book" unique_id=183046776]
+layout_mode = 0
+offset_left = 505.0
+offset_top = 60.0
+offset_right = 835.0
+offset_bottom = 450.0
+texture = ExtResource("6_page")
+
+[node name="MarginContainer" type="MarginContainer" parent="Book/RightPage" unique_id=1484421912]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = -0.097
+anchor_top = -0.178
+anchor_right = -0.097
+anchor_bottom = -0.178
+offset_left = 30.010002
+offset_top = 68.42
+offset_right = 362.00998
+offset_bottom = 460.42004
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 20
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Book/RightPage/MarginContainer" unique_id=1889355782]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Book/RightPage/MarginContainer/VBoxContainer" unique_id=611602922]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("7_sstnf")
+theme_override_font_sizes/font_size = 30
+text = "Credits"
+horizontal_alignment = 1
+
+[node name="Label2" type="Label" parent="Book/RightPage/MarginContainer/VBoxContainer" unique_id=508471979]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("4_font")
+theme_override_font_sizes/font_size = 20
+text = "Credits to Mostly Mad Productions on 
+YouTube for the dialogue system and 
+to Beabadoobee for this song!"
+
+[node name="ReturnToTitle" type="Button" parent="Book/RightPage/MarginContainer" unique_id=1948250634]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_fonts/font = ExtResource("4_font")
+theme_override_font_sizes/font_size = 18
+text = "RETURN TO TITLE"

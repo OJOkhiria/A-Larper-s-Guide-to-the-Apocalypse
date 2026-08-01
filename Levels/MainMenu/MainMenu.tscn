@@ -270,7 +270,7 @@ theme_override_fonts/font = ExtResource("6_twtkn")
 theme_override_font_sizes/font_size = 32
 text = "A Larper's Guide 
 to the Apocalypse
-by OJ"
+"
 horizontal_alignment = 1
 
 [node name="PlayButton" type="Button" parent="BookPivot/FrontCoverPivot/FrontCover/CoverContent/VBoxContainer" unique_id=1430943313]

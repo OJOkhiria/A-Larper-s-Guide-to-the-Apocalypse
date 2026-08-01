@@ -47,7 +47,7 @@ animations = [{
 "duration": 1.0,
 "texture": ExtResource("9_qalwm")
 }],
-"loop": 1,
+"loop": 0,
 "name": &"explode",
 "speed": 5.0
 }, {
@@ -129,3 +129,5 @@ disabled = true
 [node name="FuseTimer" type="Timer" parent="." unique_id=1073886675]
 
 [node name="LifetimeTimer" type="Timer" parent="." unique_id=151973273]
+
+[node name="Explosion" type="AudioStreamPlayer2D" parent="." unique_id=9935960]

@@ -7,7 +7,8 @@ const LEVELS: Array[String] = [
 	"res://Levels/Lvl2/lvl2.tscn",
 	"res://Levels/Lvl3/lvl3.tscn",
 	"res://Levels/Lvl4/lvl4.tscn",
-	"res://Levels/Lvl5/lvl5.tscn"
+	"res://Levels/Lvl5/lvl5.tscn",
+	"res://Levels/Conclusion/conclusion.tscn"
 ]
 const MAIN_MENU_PATH := "res://Levels/MainMenu/MainMenu.tscn"
 const FADE_DURATION := 0.65

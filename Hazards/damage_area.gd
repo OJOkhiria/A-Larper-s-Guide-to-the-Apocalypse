@@ -2,7 +2,7 @@ class_name DamageArea
 extends Area2D
 
 @export var damage: int = 1
-@export var death_source_id: StringName = &"Shock"
+@export var death_source_id: StringName = &"falling_object"
 @export_range(0.1, 10.0, 0.1) var damage_interval := 1.0
 
 var damage_cooldowns: Dictionary = {}
@@ -15,6 +15,9 @@ func _ready() -> void:
 func _physics_process(delta: float) -> void:
 	for body in damage_cooldowns:
 		damage_cooldowns[body] = maxf(float(damage_cooldowns[body]) - delta, 0.0)
+
+	if not monitoring:
+		return
 
 	for body in get_overlapping_bodies():
 		if body.is_in_group("player"):

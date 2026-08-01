@@ -1,4 +1,4 @@
-[gd_scene format=3 uid="uid://c22sg05t6cmmt"]
+[gd_scene format=4 uid="uid://c22sg05t6cmmt"]
 
 [ext_resource type="Script" uid="uid://80kl10p8d3vr" path="res://player.gd" id="1_player"]
 [ext_resource type="Script" uid="uid://cjvko70j23u0k" path="res://Levels/Lvl5/Lvl5Controller.gd" id="2_controller"]
@@ -19,10 +19,17 @@
 [ext_resource type="Texture2D" uid="uid://c4bu5o4cshtbn" path="res://PlayerModels/pixel-art_by_filereadynow_ai_2026-07-15 21_43_59 (1).png" id="9_prun4"]
 [ext_resource type="Script" uid="uid://be53l74160rtt" path="res://Levels/camera_2d.gd" id="10_cam"]
 [ext_resource type="Texture2D" uid="uid://di3aa2tou5axn" path="res://REAL_exclamation-removebg-preview.png" id="10_real"]
-[ext_resource type="Texture2D" uid="uid://u6sh1dsfitnv" path="res://Enemies/The Bomber (lvl1)/Models/pixel-art_by_filereadynow_ai_2026-07-17 15_24_26 (6).png" id="11_bomber"]
 [ext_resource type="Script" uid="uid://dho5u66n3qum8" path="res://Health.gd" id="11_health"]
 [ext_resource type="Script" uid="uid://dkpwxghjd7ry8" path="res://DialogueSystem/DialogueExportResource.gd" id="12_dialogue_entry"]
+[ext_resource type="Texture2D" uid="uid://5wwr3wtoejs7" path="res://Enemies/The Bomber (lvl1)/Models/pixel-art_by_filereadynow_ai_2026-07-17 15_24_26 (2).png" id="18_mgbaf"]
 [ext_resource type="AudioStream" uid="uid://b1iyperftamvw" path="res://DialogueSystem/talk.wav" id="20_talk"]
+[ext_resource type="Texture2D" uid="uid://carxfcfv7s0ut" path="res://Levels/Lvl5/Textures/bomb-shelter-background.png" id="21_background"]
+[ext_resource type="Texture2D" uid="uid://ld36r1nh686t" path="res://Levels/Lvl4/Textures/power-console.png" id="22_console_texture"]
+[ext_resource type="FontFile" uid="uid://xaq0o2laqakn" path="res://DialogueSystem/ChiKareGo.ttf" id="23_font"]
+[ext_resource type="PackedScene" uid="uid://bsusofe1hdgx" path="res://ui/hud.tscn" id="24_hud"]
+[ext_resource type="Texture2D" uid="uid://baa3dj36ytw40" path="res://REAL_neutral.png" id="27_hmu0u"]
+[ext_resource type="Texture2D" uid="uid://ckxwxuv6tdyta" path="res://ui/download (2).png" id="29_hmu0u"]
+[ext_resource type="Script" uid="uid://dxrcy5fon3evh" path="res://Levels/platform_collision_builder.gd" id="30_platform_collision"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_puymp"]
 animations = [{
@@ -80,10 +87,10 @@ animations = [{
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_fhxb7"]
-size = Vector2(34, 77)
+size = Vector2(64, 115.5)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_cwjos"]
-size = Vector2(34, 51)
+size = Vector2(63.468754, 91.06244)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_16x42"]
 
@@ -93,20 +100,8 @@ size = Vector2(20, 820.25)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_224l6"]
 size = Vector2(4058.5, 20)
 
-[sub_resource type="RectangleShape2D" id="FloorEntry"]
-size = Vector2(920, 48)
-
-[sub_resource type="RectangleShape2D" id="FloorControlWing"]
-size = Vector2(940, 48)
-
-[sub_resource type="RectangleShape2D" id="FloorMaintenance"]
-size = Vector2(920, 48)
-
-[sub_resource type="RectangleShape2D" id="FloorConfrontation"]
-size = Vector2(1040, 48)
-
 [sub_resource type="RectangleShape2D" id="ConsoleShape"]
-size = Vector2(54, 84)
+size = Vector2(146.125, 255.9375)
 
 [sub_resource type="RectangleShape2D" id="DoorShape"]
 size = Vector2(40, 280)
@@ -114,8 +109,9 @@ size = Vector2(40, 280)
 [sub_resource type="Resource" id="ConfrontationText"]
 script = ExtResource("7_dialogue_text")
 speaker_img = ExtResource("10_real")
-text = "He's still in there. You cannot undo what happened, but you can stop what happens next."
+text = "Well, here he is."
 text_speed = 20.0
+text_sound = ExtResource("20_talk")
 
 [sub_resource type="Resource" id="BoundaryFunction"]
 script = ExtResource("9_dialogue_function")
@@ -130,32 +126,237 @@ function_name = "choose_connection"
 [sub_resource type="Resource" id="ConfrontationChoice"]
 script = ExtResource("8_dialogue_choice")
 speaker_img = ExtResource("10_real")
-text = "The final bomb is armed. What do you say?"
-choice_text = Array[String](["What you did hurt people. Stop this now.", "You do not have to keep proving you matter this way."])
+text = "You've got one shot at this. What do you wanna tell him?"
+choice_text = Array[String](["This isn't the way.\\nHelping others is more impressive\\nthan hurting them.", "You don't have to prove\\nyour worth like this."])
 choice_function_call = Array[ExtResource("9_dialogue_function")]([SubResource("BoundaryFunction"), SubResource("ConnectionFunction")])
 
 [sub_resource type="RectangleShape2D" id="DialogueShape"]
-size = Vector2(90, 260)
+size = Vector2(326, 260)
 
 [sub_resource type="RectangleShape2D" id="ExitShape"]
-size = Vector2(70, 220)
+size = Vector2(273, 202)
 
 [sub_resource type="Resource" id="EntryDialogue"]
 script = ExtResource("7_dialogue_text")
 speaker_img = ExtResource("10_real")
-text = "Your classmate sealed himself in the maintenance shelter. Shut down the controls before you approach him."
+text = "What... What is this place? This is entirely new data to me. If I had to guess, though, this is probably where your classmate is."
 text_speed = 14.0
 text_sound = ExtResource("20_talk")
+
+[sub_resource type="Resource" id="Resource_yu314"]
+script = ExtResource("7_dialogue_text")
+speaker_img = ExtResource("27_hmu0u")
+text = "Don't worry, you're ready this time!"
+text_speed = 14.0
+text_sound = ExtResource("20_talk")
+metadata/_custom_type_script = "uid://q2hfxekwglu3"
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_sd7af"]
+texture = ExtResource("29_hmu0u")
+0:0/0 = 0
+1:0/0 = 0
+2:0/0 = 0
+3:0/0 = 0
+4:0/0 = 0
+5:0/0 = 0
+6:0/0 = 0
+7:0/0 = 0
+8:0/0 = 0
+9:0/0 = 0
+10:0/0 = 0
+11:0/0 = 0
+12:0/0 = 0
+13:0/0 = 0
+14:0/0 = 0
+15:0/0 = 0
+16:0/0 = 0
+17:0/0 = 0
+0:1/0 = 0
+1:1/0 = 0
+2:1/0 = 0
+3:1/0 = 0
+4:1/0 = 0
+5:1/0 = 0
+6:1/0 = 0
+7:1/0 = 0
+8:1/0 = 0
+9:1/0 = 0
+10:1/0 = 0
+11:1/0 = 0
+12:1/0 = 0
+13:1/0 = 0
+14:1/0 = 0
+15:1/0 = 0
+16:1/0 = 0
+17:1/0 = 0
+0:2/0 = 0
+1:2/0 = 0
+2:2/0 = 0
+3:2/0 = 0
+4:2/0 = 0
+5:2/0 = 0
+6:2/0 = 0
+7:2/0 = 0
+8:2/0 = 0
+9:2/0 = 0
+10:2/0 = 0
+11:2/0 = 0
+12:2/0 = 0
+13:2/0 = 0
+14:2/0 = 0
+15:2/0 = 0
+16:2/0 = 0
+17:2/0 = 0
+0:3/0 = 0
+1:3/0 = 0
+2:3/0 = 0
+3:3/0 = 0
+4:3/0 = 0
+5:3/0 = 0
+6:3/0 = 0
+7:3/0 = 0
+8:3/0 = 0
+9:3/0 = 0
+10:3/0 = 0
+11:3/0 = 0
+12:3/0 = 0
+13:3/0 = 0
+14:3/0 = 0
+15:3/0 = 0
+16:3/0 = 0
+17:3/0 = 0
+0:4/0 = 0
+1:4/0 = 0
+2:4/0 = 0
+3:4/0 = 0
+4:4/0 = 0
+5:4/0 = 0
+6:4/0 = 0
+7:4/0 = 0
+8:4/0 = 0
+9:4/0 = 0
+10:4/0 = 0
+11:4/0 = 0
+12:4/0 = 0
+13:4/0 = 0
+14:4/0 = 0
+15:4/0 = 0
+16:4/0 = 0
+17:4/0 = 0
+0:5/0 = 0
+1:5/0 = 0
+2:5/0 = 0
+3:5/0 = 0
+4:5/0 = 0
+5:5/0 = 0
+6:5/0 = 0
+7:5/0 = 0
+8:5/0 = 0
+9:5/0 = 0
+10:5/0 = 0
+11:5/0 = 0
+12:5/0 = 0
+13:5/0 = 0
+14:5/0 = 0
+15:5/0 = 0
+16:5/0 = 0
+17:5/0 = 0
+0:6/0 = 0
+1:6/0 = 0
+2:6/0 = 0
+3:6/0 = 0
+4:6/0 = 0
+5:6/0 = 0
+6:6/0 = 0
+7:6/0 = 0
+8:6/0 = 0
+9:6/0 = 0
+10:6/0 = 0
+11:6/0 = 0
+12:6/0 = 0
+13:6/0 = 0
+14:6/0 = 0
+15:6/0 = 0
+16:6/0 = 0
+17:6/0 = 0
+0:7/0 = 0
+1:7/0 = 0
+2:7/0 = 0
+3:7/0 = 0
+4:7/0 = 0
+5:7/0 = 0
+6:7/0 = 0
+7:7/0 = 0
+8:7/0 = 0
+9:7/0 = 0
+10:7/0 = 0
+11:7/0 = 0
+12:7/0 = 0
+13:7/0 = 0
+14:7/0 = 0
+15:7/0 = 0
+16:7/0 = 0
+17:7/0 = 0
+0:8/0 = 0
+1:8/0 = 0
+2:8/0 = 0
+3:8/0 = 0
+4:8/0 = 0
+5:8/0 = 0
+6:8/0 = 0
+7:8/0 = 0
+8:8/0 = 0
+9:8/0 = 0
+10:8/0 = 0
+11:8/0 = 0
+12:8/0 = 0
+13:8/0 = 0
+14:8/0 = 0
+15:8/0 = 0
+16:8/0 = 0
+17:8/0 = 0
+0:9/0 = 0
+1:9/0 = 0
+2:9/0 = 0
+3:9/0 = 0
+4:9/0 = 0
+5:9/0 = 0
+6:9/0 = 0
+7:9/0 = 0
+8:9/0 = 0
+9:9/0 = 0
+10:9/0 = 0
+11:9/0 = 0
+12:9/0 = 0
+13:9/0 = 0
+14:9/0 = 0
+15:9/0 = 0
+16:9/0 = 0
+17:9/0 = 0
+
+[sub_resource type="TileSet" id="TileSet_32w47"]
+sources/0 = SubResource("TileSetAtlasSource_sd7af")
 
 [node name="Lvl5" type="Node" unique_id=748909445]
 
 [node name="Lvl5Controller" type="Node" parent="." unique_id=608421432]
 script = ExtResource("2_controller")
 bomb_scene = ExtResource("4_bomb")
-spawn_point_paths = Array[NodePath]([NodePath(""), NodePath(""), NodePath("")])
+spawn_point_paths = Array[NodePath]([NodePath("../BombSpawnA"), NodePath("../BombSpawnB"), NodePath("../BombSpawnC")])
+blast_door_collision_path = NodePath("../BlastDoor/CollisionShape2D")
+confrontation_area_path = NodePath("../ConfrontationArea")
+exit_path = NodePath("../ExitArea")
+objective_label_path = NodePath("../Interface/ObjectiveLabel")
+blast_door_visual_path = NodePath("../BlastDoor/BlastDoorVisual")
 
 [node name="BombTimer" type="Timer" parent="Lvl5Controller" unique_id=1443547228]
 wait_time = 3.5
+
+[node name="BombShelterBackground" type="Sprite2D" parent="." unique_id=895930174]
+z_index = -10
+position = Vector2(2028, 347)
+scale = Vector2(1.98, 0.78)
+texture = ExtResource("21_background")
 
 [node name="Player(Lvl5)" type="CharacterBody2D" parent="." unique_id=652294636 groups=["player"]]
 position = Vector2(1, 1)
@@ -163,34 +364,34 @@ script = ExtResource("1_player")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Player(Lvl5)" unique_id=1895633434]
 z_index = 1
-position = Vector2(93.56249, 584.43756)
-scale = Vector2(0.25781247, 0.2421877)
+position = Vector2(82.99997, 480)
+scale = Vector2(0.35500002, 0.32749996)
 sprite_frames = SubResource("SpriteFrames_puymp")
 animation = &"crouch_walk"
 
 [node name="StandingCollision" type="CollisionShape2D" parent="Player(Lvl5)" unique_id=1088704206]
 z_index = 1
-position = Vector2(87.06249, 577.43756)
+position = Vector2(83.93751, 474.81244)
 shape = SubResource("RectangleShape2D_fhxb7")
 
 [node name="CrouchingCollision" type="CollisionShape2D" parent="Player(Lvl5)" unique_id=861245731]
 z_index = 1
-position = Vector2(87.06249, 590.43756)
+position = Vector2(84.20313, 488.06244)
 shape = SubResource("RectangleShape2D_cwjos")
 disabled = true
 
 [node name="StandingClearance" type="ShapeCast2D" parent="Player(Lvl5)" unique_id=370671375]
 z_index = 1
-position = Vector2(81.06249, 554.93756)
+position = Vector2(56, 433)
 shape = SubResource("RectangleShape2D_16x42")
-target_position = Vector2(13, -6)
+target_position = Vector2(53, -8)
 
 [node name="Camera2D" type="Camera2D" parent="Player(Lvl5)" unique_id=1437157749]
-position = Vector2(208, 514)
+position = Vector2(183, 390)
 zoom = Vector2(2.5, 2.5)
 limit_left = 2
-limit_top = -89
-limit_right = 2436
+limit_top = 54
+limit_right = 4051
 limit_bottom = 642
 position_smoothing_enabled = true
 position_smoothing_speed = 7.0
@@ -214,24 +415,6 @@ shape = SubResource("RectangleShape2D_gsvg5")
 position = Vector2(2035.75, -133)
 shape = SubResource("RectangleShape2D_224l6")
 
-[node name="WorldGeometry" type="StaticBody2D" parent="." unique_id=2058756528]
-
-[node name="ShelterEntry" type="CollisionShape2D" parent="WorldGeometry" unique_id=819381520]
-position = Vector2(460, 600)
-shape = SubResource("FloorEntry")
-
-[node name="ControlWing" type="CollisionShape2D" parent="WorldGeometry" unique_id=2142612360]
-position = Vector2(1460, 600)
-shape = SubResource("FloorControlWing")
-
-[node name="MaintenanceWing" type="CollisionShape2D" parent="WorldGeometry" unique_id=1125252118]
-position = Vector2(2480, 600)
-shape = SubResource("FloorMaintenance")
-
-[node name="ConfrontationWing" type="CollisionShape2D" parent="WorldGeometry" unique_id=524857046]
-position = Vector2(3540, 600)
-shape = SubResource("FloorConfrontation")
-
 [node name="BombSpawnA" type="Marker2D" parent="." unique_id=1609940498]
 position = Vector2(480, 430)
 
@@ -242,13 +425,21 @@ position = Vector2(1550, 430)
 position = Vector2(2450, 430)
 
 [node name="SafetyConsoleA" type="Area2D" parent="." unique_id=81224429 groups=["shelter_consoles"]]
-position = Vector2(540, 535)
+position = Vector2(791, 388)
 script = ExtResource("3_console")
 console_id = &"shelter_console_a"
 prompt_text = "Press Enter: disarm control"
+use_reaction_minigame = true
+interaction_radius = 180.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="SafetyConsoleA" unique_id=1266733138]
+position = Vector2(5.25, 10.75)
 shape = SubResource("ConsoleShape")
+
+[node name="ConsoleTexture" type="Sprite2D" parent="SafetyConsoleA" unique_id=947113837]
+position = Vector2(0, 4)
+scale = Vector2(0.06, 0.06)
+texture = ExtResource("22_console_texture")
 
 [node name="Prompt" type="Label" parent="SafetyConsoleA" unique_id=912392420]
 offset_left = -85.0
@@ -256,15 +447,24 @@ offset_top = -85.0
 offset_right = -85.0
 offset_bottom = -85.0
 theme_override_colors/font_color = Color(1, 0.95, 0.55, 1)
+theme_override_fonts/font = ExtResource("23_font")
 
 [node name="SafetyConsoleB" type="Area2D" parent="." unique_id=413149029 groups=["shelter_consoles"]]
-position = Vector2(1650, 535)
+position = Vector2(1714, 357)
 script = ExtResource("3_console")
 console_id = &"shelter_console_b"
 prompt_text = "Press Enter: disarm control"
+use_reaction_minigame = true
+interaction_radius = 180.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="SafetyConsoleB" unique_id=710274364]
+position = Vector2(4.375, 31.03125)
 shape = SubResource("ConsoleShape")
+
+[node name="ConsoleTexture" type="Sprite2D" parent="SafetyConsoleB" unique_id=47418129]
+position = Vector2(0, 4)
+scale = Vector2(0.06, 0.06)
+texture = ExtResource("22_console_texture")
 
 [node name="Prompt" type="Label" parent="SafetyConsoleB" unique_id=1603408019]
 offset_left = -85.0
@@ -272,15 +472,25 @@ offset_top = -85.0
 offset_right = -85.0
 offset_bottom = -85.0
 theme_override_colors/font_color = Color(1, 0.95, 0.55, 1)
+theme_override_fonts/font = ExtResource("23_font")
+metadata/_edit_use_anchors_ = true
 
 [node name="SafetyConsoleC" type="Area2D" parent="." unique_id=890388609 groups=["shelter_consoles"]]
-position = Vector2(2600, 535)
+position = Vector2(2908, 338)
 script = ExtResource("3_console")
 console_id = &"shelter_console_c"
 prompt_text = "Press Enter: disarm control"
+use_reaction_minigame = true
+interaction_radius = 180.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="SafetyConsoleC" unique_id=1839964961]
+position = Vector2(-60.0625, 47.1875)
 shape = SubResource("ConsoleShape")
+
+[node name="ConsoleTexture" type="Sprite2D" parent="SafetyConsoleC" unique_id=853262172]
+position = Vector2(-60.999996, 4.000001)
+scale = Vector2(0.06, 0.06)
+texture = ExtResource("22_console_texture")
 
 [node name="Prompt" type="Label" parent="SafetyConsoleC" unique_id=1338698865]
 offset_left = -85.0
@@ -288,36 +498,48 @@ offset_top = -85.0
 offset_right = -85.0
 offset_bottom = -85.0
 theme_override_colors/font_color = Color(1, 0.95, 0.55, 1)
+theme_override_fonts/font = ExtResource("23_font")
+metadata/_edit_use_anchors_ = true
 
 [node name="BlastDoor" type="StaticBody2D" parent="." unique_id=1883635217]
 position = Vector2(3200, 460)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="BlastDoor" unique_id=2019394703]
+position = Vector2(-265, -77)
 shape = SubResource("DoorShape")
 
+[node name="BlastDoorVisual" type="Polygon2D" parent="BlastDoor" unique_id=561100478]
+position = Vector2(-268, -75)
+color = Color(0.09, 0.07, 0.055, 1)
+polygon = PackedVector2Array(-20, -140, 20, -140, 20, 140, -20, 140)
+
 [node name="Bomber" type="Sprite2D" parent="." unique_id=683930394]
-position = Vector2(3500, 520)
+position = Vector2(3417, 437)
 scale = Vector2(0.28, 0.28)
-texture = ExtResource("11_bomber")
+texture = ExtResource("18_mgbaf")
 
 [node name="ConfrontationArea" parent="." unique_id=581195361 instance=ExtResource("6_dialogue_area")]
-position = Vector2(3500, 500)
+position = Vector2(3417, 417)
 monitoring = false
 activate_instant = true
 only_activate_once = true
 persistent_once_id = &"lvl5_confrontation"
+box_placement = 3
 dialogue = Array[ExtResource("12_dialogue_entry")]([SubResource("ConfrontationText"), SubResource("ConfrontationChoice")])
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="ConfrontationArea" unique_id=1973552725]
+position = Vector2(-109, -4)
 shape = SubResource("DialogueShape")
 
 [node name="ExitArea" type="Area2D" parent="." unique_id=1705296433]
-position = Vector2(4050, 485)
+position = Vector2(3870, 485)
 monitoring = false
 script = ExtResource("5_exit")
 destination_level_index = 6
+start_locked = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="ExitArea" unique_id=1177822764]
+position = Vector2(-71.5, -124)
 shape = SubResource("ExitShape")
 
 [node name="EntryDialogueArea" parent="." unique_id=198465763 instance=ExtResource("6_dialogue_area")]
@@ -325,9 +547,11 @@ position = Vector2(150, 520)
 activate_instant = true
 only_activate_once = true
 persistent_once_id = &"lvl5_entry"
-dialogue = Array[ExtResource("12_dialogue_entry")]([SubResource("EntryDialogue")])
+box_placement = 3
+dialogue = Array[ExtResource("12_dialogue_entry")]([SubResource("EntryDialogue"), SubResource("Resource_yu314")])
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="EntryDialogueArea" unique_id=1169978462]
+position = Vector2(296, -95)
 shape = SubResource("ConsoleShape")
 
 [node name="Interface" type="CanvasLayer" parent="." unique_id=1014968997]
@@ -336,4 +560,14 @@ shape = SubResource("ConsoleShape")
 offset_left = 24.0
 offset_top = 24.0
 theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("23_font")
 theme_override_font_sizes/font_size = 20
+
+[node name="HUD" parent="." unique_id=771463904 instance=ExtResource("24_hud")]
+heart_size = Vector2(48, 48)
+
+[node name="TileMapLayer" type="TileMapLayer" parent="." unique_id=1099688716]
+visible = false
+tile_map_data = PackedByteArray("AAAAACEAAAAJAAYAAAABACEAAAAJAAYAAAACACEAAAAJAAYAAAADACEAAAAJAAYAAAAEACEAAAAJAAYAAAAFACEAAAAJAAYAAAAGACEAAAAJAAYAAAAHACEAAAAJAAYAAAAIACEAAAAJAAYAAAAJACEAAAAJAAYAAAAKACEAAAAJAAYAAAALACEAAAAJAAYAAAAMACEAAAAJAAYAAAANACEAAAAJAAYAAAAOACEAAAAJAAYAAAAPACEAAAAJAAYAAAAQACEAAAAJAAYAAAARACEAAAAJAAYAAAASACEAAAAJAAYAAAATACEAAAAJAAYAAAAUACEAAAAJAAYAAAAVACEAAAAJAAYAAAAWACEAAAAJAAYAAAAXACEAAAAJAAYAAAAYACEAAAAJAAYAAAAZACEAAAAJAAYAAAAaACEAAAAJAAYAAAAbACEAAAAJAAYAAAAcACEAAAAJAAYAAAAdACEAAAAJAAYAAAAeACEAAAAJAAYAAAAfACEAAAAJAAYAAAAgACEAAAAJAAYAAAAhACEAAAAJAAYAAAAiACEAAAAJAAYAAAAjACEAAAAJAAYAAAAkACEAAAAJAAYAAAAlACEAAAAJAAYAAAAmACEAAAAJAAYAAAAnACEAAAAJAAYAAAAoACEAAAAJAAYAAAApACEAAAAJAAYAAAAqACEAAAAJAAYAAAArACEAAAAJAAYAAAAsACEAAAAJAAYAAAAtACEAAAAJAAYAAAAuACEAAAAJAAYAAAAvACEAAAAJAAYAAAAwACEAAAAJAAYAAAAxACEAAAAJAAYAAAAyACEAAAAJAAYAAAAzACEAAAAJAAYAAAA0ACEAAAAJAAYAAAA1ACEAAAAJAAYAAAA2ACEAAAAJAAYAAAA3ACEAAAAJAAYAAAA4ACEAAAAJAAYAAAA5ACEAAAAJAAYAAAA6ACEAAAAJAAYAAAA7ACEAAAAJAAYAAAA8ACEAAAAJAAYAAAA9ACEAAAAJAAYAAAA+ACEAAAAJAAYAAAA/ACEAAAAJAAYAAABAACEAAAAJAAYAAABBACEAAAAJAAYAAABCACEAAAAJAAYAAABDACEAAAAJAAYAAABEACEAAAAJAAYAAABFACEAAAAJAAYAAABGACEAAAAJAAYAAABHACEAAAAJAAYAAABIACEAAAAJAAYAAABJACEAAAAJAAYAAABKACEAAAAJAAYAAABLACEAAAAJAAYAAABMACEAAAAJAAYAAABNACEAAAAJAAYAAABOACEAAAAJAAYAAABPACEAAAAJAAYAAABQACEAAAAJAAYAAABRACEAAAAJAAYAAABSACEAAAAJAAYAAABTACEAAAAJAAYAAABUACEAAAAJAAYAAABVACEAAAAJAAYAAABWACEAAAAJAAYAAABXACEAAAAJAAYAAABYACEAAAAJAAYAAABZACEAAAAJAAYAAABaACEAAAAJAAYAAABbACEAAAAJAAYAAABcACEAAAAJAAYAAABdACEAAAAJAAYAAABeACEAAAAJAAYAAABfACEAAAAJAAYAAABgACEAAAAJAAYAAABhACEAAAAJAAYAAABiACEAAAAJAAYAAABjACEAAAAJAAYAAABkACEAAAAJAAYAAABlACEAAAAJAAYAAABmACEAAAAJAAYAAABnACEAAAAJAAYAAABoACEAAAAJAAYAAABpACEAAAAJAAYAAABqACEAAAAJAAYAAABrACEAAAAJAAYAAABsACEAAAAJAAYAAABtACEAAAAJAAYAAABuACEAAAAJAAYAAABvACEAAAAJAAYAAABwACEAAAAJAAYAAABxACEAAAAJAAYAAAByACEAAAAJAAYAAABzACEAAAAJAAYAAAB0ACEAAAAJAAYAAAB1ACEAAAAJAAYAAAB2ACEAAAAJAAYAAAB3ACEAAAAJAAYAAAB4ACEAAAAJAAYAAAB5ACEAAAAJAAYAAAB6ACEAAAAJAAYAAAB7ACEAAAAJAAYAAAB8ACEAAAAJAAYAAAB9ACEAAAAJAAYAAAB+ACEAAAAJAAYAAAB/ACEAAAAJAAYAAACAACEAAAAJAAYAAACBACEAAAAJAAYAAACCACEAAAAJAAYAAACDACEAAAAJAAYAAACEACEAAAAJAAYAAACFACEAAAAJAAYAAACGACEAAAAJAAYAAACHACEAAAAJAAYAAACIACEAAAAJAAYAAACJACEAAAAJAAYAAACKACEAAAAJAAYAAACLACEAAAAJAAYAAACMACEAAAAJAAYAAACNACEAAAAJAAYAAACOACEAAAAJAAYAAACPACEAAAAJAAYAAACQACEAAAAJAAYAAACRACEAAAAJAAYAAACSACEAAAAJAAYAAACTACEAAAAJAAYAAACUACEAAAAJAAYAAACVACEAAAAJAAYAAACWACEAAAAJAAYAAACXACEAAAAJAAYAAACYACEAAAAJAAYAAACZACEAAAAJAAYAAACaACEAAAAJAAYAAACbACEAAAAJAAYAAACcACEAAAAJAAYAAACdACEAAAAJAAYAAACeACEAAAAJAAYAAACfACEAAAAJAAYAAACgACEAAAAJAAYAAAChACEAAAAJAAYAAACiACEAAAAJAAYAAACjACEAAAAJAAYAAACkACEAAAAJAAYAAAClACEAAAAJAAYAAACmACEAAAAJAAYAAACnACEAAAAJAAYAAACoACEAAAAJAAYAAACpACEAAAAJAAYAAACqACEAAAAJAAYAAACrACEAAAAJAAYAAACsACEAAAAJAAYAAACtACEAAAAJAAYAAACuACEAAAAJAAYAAACvACEAAAAJAAYAAACwACEAAAAJAAYAAACxACEAAAAJAAYAAACyACEAAAAJAAYAAACzACEAAAAJAAYAAAC0ACEAAAAJAAYAAAC1ACEAAAAJAAYAAAC2ACEAAAAJAAYAAAC3ACEAAAAJAAYAAAC4ACEAAAAJAAYAAAC5ACEAAAAJAAYAAAC6ACEAAAAJAAYAAAC7ACEAAAAJAAYAAAC8ACEAAAAJAAYAAAC9ACEAAAAJAAYAAAC+ACEAAAAJAAYAAAC/ACEAAAAJAAYAAADAACEAAAAJAAYAAADBACEAAAAJAAYAAADCACEAAAAJAAYAAADDACEAAAAJAAYAAADEACEAAAAJAAYAAADFACEAAAAJAAYAAADGACEAAAAJAAYAAADHACEAAAAJAAYAAADIACEAAAAJAAYAAADJACEAAAAJAAYAAADKACEAAAAJAAYAAADLACEAAAAJAAYAAADMACEAAAAJAAYAAADNACEAAAAJAAYAAADOACEAAAAJAAYAAADPACEAAAAJAAYAAADQACEAAAAJAAYAAADRACEAAAAJAAYAAADSACEAAAAJAAYAAADTACEAAAAJAAYAAADUACEAAAAJAAYAAADVACEAAAAJAAYAAADWACEAAAAJAAYAAADXACEAAAAJAAYAAADYACEAAAAJAAYAAADZACEAAAAJAAYAAADaACEAAAAJAAYAAADbACEAAAAJAAYAAADcACEAAAAJAAYAAADdACEAAAAJAAYAAADeACEAAAAJAAYAAADfACEAAAAJAAYAAADgACEAAAAJAAYAAADhACEAAAAJAAYAAADiACEAAAAJAAYAAADjACEAAAAJAAYAAADkACEAAAAJAAYAAADlACEAAAAJAAYAAADmACEAAAAJAAYAAADnACEAAAAJAAYAAADoACEAAAAJAAYAAADpACEAAAAJAAYAAADqACEAAAAJAAYAAADrACEAAAAJAAYAAADsACEAAAAJAAYAAADtACEAAAAJAAYAAADuACEAAAAJAAYAAADvACEAAAAJAAYAAADwACEAAAAJAAYAAADxACEAAAAJAAYAAADyACEAAAAJAAYAAADzACEAAAAJAAYAAAD0ACEAAAAJAAYAAAD1ACEAAAAJAAYAAAD2ACEAAAAJAAYAAAD3ACEAAAAJAAYAAAD4ACEAAAAJAAYAAAD5ACEAAAAJAAYAAAD6ACEAAAAJAAYAAAD7ACEAAAAJAAYAAAD8ACEAAAAJAAYAAAD9ACEAAAAJAAYAAAA=")
+tile_set = SubResource("TileSet_32w47")
+script = ExtResource("30_platform_collision")

@@ -147,7 +147,9 @@ func _choice_resource(i: DialogueChoice) -> void:
 
 	for item in i.choice_text.size():
 		var DialogueButtonVar = DialogueButtonPreload.instantiate()
-		DialogueButtonVar.text = i.choice_text[item]
+		# Choice resources store explicit line-break markers so authored options
+		# can stay readable in the inspector. Convert them before rendering.
+		DialogueButtonVar.text = i.choice_text[item].replace("\\n", "\n")
 
 		var function_resource: DialogueFunction = i.choice_function_call[item]
 		if function_resource:
@@ -241,13 +243,23 @@ func _text_resource(i: DialogueText) -> void:
 
 			character_timer = 0.0
 
-		await get_tree().process_frame
+		var typing_tree := get_tree()
+		if typing_tree == null:
+			return
+		await typing_tree.process_frame
+		if not is_inside_tree():
+			return
 	
 	DialogueLabel.visible_characters = total_characters
 	SpeakerSprite.frame = min(i.speaker_img_rest_frame, i.speaker_img_Hframes - 1)
 
 	while true:
-		await get_tree().process_frame
+		var input_tree := get_tree()
+		if input_tree == null:
+			return
+		await input_tree.process_frame
+		if not is_inside_tree():
+			return
 		if DialogueLabel.visible_characters == total_characters:
 			if Input.is_action_just_pressed("ui_accept"):
 				current_dialogue_item += 1

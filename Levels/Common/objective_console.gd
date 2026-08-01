@@ -55,7 +55,12 @@ func _process(_delta: float) -> void:
 
 
 func _unhandled_key_input(event: InputEvent) -> void:
-	if not reaction_active or not player_in_range:
+	if is_activated or not reaction_active or not player_in_range:
+		return
+	# A key event can still arrive during the frame that completes the sequence.
+	# Ignore it instead of indexing past the final reaction key.
+	if reaction_sequence.is_empty() or reaction_index >= reaction_sequence.size():
+		reaction_active = false
 		return
 
 	var key_event := event as InputEventKey
@@ -79,6 +84,7 @@ func activate() -> void:
 		return
 
 	is_activated = true
+	reaction_active = false
 	prompt.visible = false
 	reaction_display.visible = false
 	monitoring = false
@@ -196,9 +202,15 @@ func _refresh_player_proximity() -> void:
 		interaction_origin = collision_shape.global_position
 
 	for candidate in get_tree().get_nodes_in_group("player"):
-		if candidate is Node2D and candidate.global_position.distance_to(interaction_origin) <= interaction_radius:
-			nearby_player = candidate
-			break
+		if candidate is Node2D:
+			var player_position: Vector2 = candidate.global_position
+			var player_collision := candidate.get_node_or_null("StandingCollision") as CollisionShape2D
+			if player_collision != null:
+				player_position = player_collision.global_position
+
+			if player_position.distance_to(interaction_origin) <= interaction_radius:
+				nearby_player = candidate
+				break
 
 	if nearby_player != null:
 		active_player = nearby_player

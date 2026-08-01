@@ -1,6 +1,8 @@
 extends Area2D
 
 @export var destination_level_index: int = -1
+@export var return_to_main_menu := false
+@export var start_locked := false
 
 var transition_started: bool = false
 
@@ -11,7 +13,7 @@ func _ready() -> void:
 	if not body_entered.is_connected(_on_body_entered):
 		body_entered.connect(_on_body_entered)
 
-	monitoring = true
+	monitoring = not start_locked
 
 
 func _on_body_entered(body: Node2D) -> void:
@@ -21,7 +23,9 @@ func _on_body_entered(body: Node2D) -> void:
 	transition_started = true
 	set_deferred("monitoring", false)
 
-	if destination_level_index >= 0:
+	if return_to_main_menu:
+		LvlManager.load_main_menu()
+	elif destination_level_index >= 0:
 		LvlManager.load_level(destination_level_index)
 	else:
 		LvlManager.load_next_level()

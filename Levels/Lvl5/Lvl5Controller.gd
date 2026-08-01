@@ -7,6 +7,8 @@ extends Node
 @export var confrontation_area_path: NodePath
 @export var exit_path: NodePath
 @export var objective_label_path: NodePath
+@export var blast_door_visual_path: NodePath
+@export_range(0.0, 15.0, 0.5) var bomb_start_delay := 5.0
 
 var consoles_activated := 0
 var required_consoles := 3
@@ -28,8 +30,10 @@ func _ready() -> void:
 			console.activated.connect(_on_console_activated)
 
 	bomb_timer.timeout.connect(_spawn_bomb)
-	bomb_timer.start()
 	_update_objective("Disarm the shelter controls: 0 / %d" % required_consoles)
+	await get_tree().create_timer(bomb_start_delay).timeout
+	if encounter_active:
+		bomb_timer.start()
 
 
 func _spawn_bomb() -> void:
@@ -62,6 +66,10 @@ func _unlock_confrontation() -> void:
 	var door_collision := get_node_or_null(blast_door_collision_path) as CollisionShape2D
 	if door_collision != null:
 		door_collision.set_deferred("disabled", true)
+
+	var door_visual := get_node_or_null(blast_door_visual_path) as CanvasItem
+	if door_visual != null:
+		door_visual.hide()
 
 	var confrontation_area := get_node_or_null(confrontation_area_path) as Area2D
 	if confrontation_area != null:

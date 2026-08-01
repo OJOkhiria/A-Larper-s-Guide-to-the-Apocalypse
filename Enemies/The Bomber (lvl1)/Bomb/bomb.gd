@@ -11,9 +11,11 @@ extends CharacterBody2D
 @export var explosion_duration: float = 0.15
 @export var death_source_id: StringName = &"bomber_bomb"
 
+
 @onready var sprite: AnimatedSprite2D = $AnimatedSprite2D
 @onready var fuse_timer: Timer = $FuseTimer
 @onready var lifetime_timer: Timer = $LifetimeTimer
+@onready var explosion: AudioStreamPlayer2D = $Explosion
 
 @onready var flying_collision: CollisionShape2D = \
 	$FlyingCollision
@@ -105,15 +107,18 @@ func _physics_process(delta: float) -> void:
 
 
 func explode() -> void:
-	if current_state == BombState.EXPLODING:
+	if has_exploded or current_state == BombState.EXPLODING:
 		return
-
+	explosion.play()
+	has_exploded = true
+	fuse_timer.stop()
 	_set_bomb_state(BombState.EXPLODING)
 
 	velocity = Vector2.ZERO
 	damaged_bodies.clear()
 
 	explosion_shape.radius = starting_explosion_radius
+	explosion.play()
 	sprite.play("explode")
 
 	await get_tree().physics_frame
