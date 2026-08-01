@@ -22,8 +22,8 @@
 [ext_resource type="AudioStream" uid="uid://b1iyperftamvw" path="res://DialogueSystem/talk.wav" id="20_f3u4g"]
 [ext_resource type="Texture2D" uid="uid://baa3dj36ytw40" path="res://REAL_neutral.png" id="21_esiih"]
 [ext_resource type="PackedScene" uid="uid://bk5cub14yf6d" path="res://DialogueSystem/dialogue_area_2d.tscn" id="22_e1yul"]
-[ext_resource type="PackedScene" path="res://Levels/Booths/conference_booth.tscn" id="23_booth"]
-[ext_resource type="Script" uid="uid://do6dxh7p7fgr" path="res://Levels/Booths/booth_challenge_controller.gd" id="24_booth_controller"]
+[ext_resource type="PackedScene" path="res://Levels/Lvl3/Booths/conference_booth.tscn" id="23_booth"]
+[ext_resource type="Script" uid="uid://do6dxh7p7fgr" path="res://Levels/Lvl3/Booths/booth_challenge_controller.gd" id="24_booth_controller"]
 [ext_resource type="PackedScene" uid="uid://d3b8evtp2ukbr" path="res://Items/matcha.tscn" id="25_matcha"]
 [ext_resource type="Texture2D" uid="uid://cfu7io7yc3fe2" path="res://Assets/Booths/conference_booth_red_96.png" id="26_booth_red"]
 [ext_resource type="Texture2D" uid="uid://di3aa2tou5axn" path="res://REAL_exclamation-removebg-preview.png" id="27_115rh"]
@@ -615,7 +615,7 @@ shape = SubResource("RectangleShape2D_lwis1")
 [node name="HUD" parent="." unique_id=665291530 instance=ExtResource("13_x42gp")]
 heart_size = Vector2(128, 128)
 
-[node name="BoothChallengeController" type="Node" parent="." unique_id=965070662]
+[node name="Lvl3Controller" type="Node" parent="." unique_id=965070662]
 script = ExtResource("24_booth_controller")
 
 [node name="Booth1" parent="." unique_id=1804958507 instance=ExtResource("23_booth")]

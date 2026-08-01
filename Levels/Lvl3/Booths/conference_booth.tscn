@@ -1,7 +1,7 @@
 [gd_scene format=3]
 
-[ext_resource type="Script" path="res://Levels/Booths/conference_booth.gd" id="1_script"]
-[ext_resource type="Texture2D" path="res://Assets/Booths/conference_booth_blue_96.png" id="2_texture"]
+[ext_resource type="Script" uid="uid://dd48hqk0maxrf" path="res://Levels/Lvl3/Booths/conference_booth.gd" id="1_script"]
+[ext_resource type="Texture2D" uid="uid://bp6vv7ewj563g" path="res://Assets/Booths/conference_booth_blue_96.png" id="2_texture"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_trigger"]
 size = Vector2(176, 128)

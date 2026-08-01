@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://c22sg05t6cmmt"]
 
 [ext_resource type="Script" uid="uid://80kl10p8d3vr" path="res://player.gd" id="1_player"]
-[ext_resource type="Script" uid="uid://cjvko70j23u0k" path="res://Levels/BombShelter/bomb_shelter_controller.gd" id="2_controller"]
+[ext_resource type="Script" uid="uid://cjvko70j23u0k" path="res://Levels/Lvl5/Lvl5Controller.gd" id="2_controller"]
 [ext_resource type="Texture2D" uid="uid://d32r1g03tq7r1" path="res://PlayerModels/PlayerModel.png" id="2_pidle"]
 [ext_resource type="Script" uid="uid://cc6k1h1lm2cbd" path="res://Levels/Common/objective_console.gd" id="3_console"]
 [ext_resource type="Texture2D" uid="uid://c53cyepyuk0e" path="res://PlayerModels/pixel-art_by_filereadynow_ai_2026-07-20 22_54_07.png" id="3_pcw2"]
@@ -119,12 +119,12 @@ text_speed = 20.0
 
 [sub_resource type="Resource" id="BoundaryFunction"]
 script = ExtResource("9_dialogue_function")
-target_path = NodePath("../BombShelterController")
+target_path = NodePath("../Lvl5Controller")
 function_name = "choose_boundary"
 
 [sub_resource type="Resource" id="ConnectionFunction"]
 script = ExtResource("9_dialogue_function")
-target_path = NodePath("../BombShelterController")
+target_path = NodePath("../Lvl5Controller")
 function_name = "choose_connection"
 
 [sub_resource type="Resource" id="ConfrontationChoice"]
@@ -149,12 +149,12 @@ text_sound = ExtResource("20_talk")
 
 [node name="Lvl5" type="Node" unique_id=748909445]
 
-[node name="BombShelterController" type="Node" parent="." unique_id=608421432]
+[node name="Lvl5Controller" type="Node" parent="." unique_id=608421432]
 script = ExtResource("2_controller")
 bomb_scene = ExtResource("4_bomb")
 spawn_point_paths = Array[NodePath]([NodePath(""), NodePath(""), NodePath("")])
 
-[node name="BombTimer" type="Timer" parent="BombShelterController" unique_id=1443547228]
+[node name="BombTimer" type="Timer" parent="Lvl5Controller" unique_id=1443547228]
 wait_time = 3.5
 
 [node name="Player(Lvl5)" type="CharacterBody2D" parent="." unique_id=652294636 groups=["player"]]

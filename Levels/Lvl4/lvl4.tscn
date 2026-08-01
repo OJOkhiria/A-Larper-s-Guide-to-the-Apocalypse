@@ -1,7 +1,8 @@
 [gd_scene format=4 uid="uid://dyqqbkv3xb0t6"]
 
+[ext_resource type="Texture2D" uid="uid://cl31vw3gx3xwo" path="res://Levels/Lvl4/8c316b4d-2ac3-4b4d-9610-907557a21b7d.png" id="1_cp3wb"]
 [ext_resource type="Script" uid="uid://80kl10p8d3vr" path="res://player.gd" id="1_player"]
-[ext_resource type="Script" uid="uid://bae82dig1hsm7" path="res://Levels/AcademicWing/academic_wing_controller.gd" id="2_controller"]
+[ext_resource type="Script" uid="uid://bae82dig1hsm7" path="res://Levels/Lvl4/academic_wing_controller.gd" id="2_controller"]
 [ext_resource type="Texture2D" uid="uid://d32r1g03tq7r1" path="res://PlayerModels/PlayerModel.png" id="2_pidle"]
 [ext_resource type="Script" uid="uid://cc6k1h1lm2cbd" path="res://Levels/Common/objective_console.gd" id="3_console"]
 [ext_resource type="Texture2D" uid="uid://c53cyepyuk0e" path="res://PlayerModels/pixel-art_by_filereadynow_ai_2026-07-20 22_54_07.png" id="3_pcw2"]
@@ -20,7 +21,12 @@
 [ext_resource type="Script" uid="uid://be53l74160rtt" path="res://Levels/camera_2d.gd" id="10_cam"]
 [ext_resource type="Script" uid="uid://dho5u66n3qum8" path="res://Health.gd" id="11_health"]
 [ext_resource type="Texture2D" uid="uid://ddglx5b8cep2p" path="res://download (2).png" id="13_u08j3"]
+[ext_resource type="FontFile" uid="uid://xaq0o2laqakn" path="res://DialogueSystem/ChiKareGo.ttf" id="19_dxwmu"]
 [ext_resource type="AudioStream" uid="uid://b1iyperftamvw" path="res://DialogueSystem/talk.wav" id="23_talk"]
+[ext_resource type="Texture2D" uid="uid://ld36r1nh686t" path="res://Levels/Lvl4/Textures/power-console.png" id="25_console_texture"]
+[ext_resource type="Texture2D" uid="uid://8i214bhoty8b" path="res://Levels/Lvl4/Textures/fallen-lockers.png" id="26_lockers_texture"]
+[ext_resource type="PackedScene" uid="uid://bsusofe1hdgx" path="res://ui/hud.tscn" id="27_w0223"]
+[ext_resource type="Texture2D" uid="uid://bjf7pbsmq7d5v" path="res://Levels/Lvl4/Textures/electrical-fault.png" id="28_electrical_texture"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_omrmv"]
 animations = [{
@@ -89,7 +95,7 @@ size = Vector2(34, 51)
 size = Vector2(20, 820.25)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ecodq"]
-size = Vector2(3516.5, 20)
+size = Vector2(2901.25, 20)
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_g0kxn"]
 texture = ExtResource("13_u08j3")
@@ -458,42 +464,32 @@ texture = ExtResource("13_u08j3")
 physics_layer_0/collision_layer = 1
 sources/0 = SubResource("TileSetAtlasSource_g0kxn")
 
-[sub_resource type="RectangleShape2D" id="FloorEarly"]
-size = Vector2(620, 48)
-
-[sub_resource type="RectangleShape2D" id="FloorMidA"]
-size = Vector2(520, 48)
-
-[sub_resource type="RectangleShape2D" id="FloorMidB"]
-size = Vector2(560, 48)
-
-[sub_resource type="RectangleShape2D" id="FloorLate"]
-size = Vector2(680, 48)
-
-[sub_resource type="RectangleShape2D" id="FloorExit"]
-size = Vector2(580, 48)
-
-[sub_resource type="RectangleShape2D" id="GateShape"]
-size = Vector2(36, 260)
+[sub_resource type="RectangleShape2D" id="ElectricalHazardShape"]
+size = Vector2(62, 130)
 
 [sub_resource type="RectangleShape2D" id="ConsoleShape"]
-size = Vector2(54, 84)
+size = Vector2(59, 131)
 
 [sub_resource type="RectangleShape2D" id="HazardShape"]
 size = Vector2(140, 50)
 
-[sub_resource type="RectangleShape2D" id="FallShape"]
-size = Vector2(3500, 120)
-
 [sub_resource type="RectangleShape2D" id="ExitShape"]
-size = Vector2(70, 220)
+size = Vector2(97, 147)
 
 [sub_resource type="Resource" id="EntryDialogue"]
 script = ExtResource("7_dialogue_text")
 speaker_img = ExtResource("8_real")
-text = "Looks like the STEM wing is still standing (somehow), but the emergency route is locked down. Restore the power panels and find your way through."
+text = "Wow, this wing is still standing? Looks like there's been an electrical fault, though."
 text_speed = 14.0
 text_sound = ExtResource("23_talk")
+
+[sub_resource type="Resource" id="Resource_cp3wb"]
+script = ExtResource("7_dialogue_text")
+speaker_img = ExtResource("8_real")
+text = "Fix the electrical panels before we try to exit, or else we'll be more fried than CS majors after graduation."
+text_speed = 14.0
+text_sound = ExtResource("23_talk")
+metadata/_custom_type_script = "uid://q2hfxekwglu3"
 
 [sub_resource type="Resource" id="MidDialogue"]
 script = ExtResource("7_dialogue_text")
@@ -504,10 +500,17 @@ text_sound = ExtResource("23_talk")
 
 [node name="Lvl4" type="Node" unique_id=1966665184]
 
-[node name="AcademicWingController" type="Node" parent="." unique_id=1923935569]
+[node name="Lvl4Bck" type="Sprite2D" parent="." unique_id=2051314531]
+z_index = 1
+position = Vector2(1434, 361)
+scale = Vector2(1.4272461, 0.9005637)
+texture = ExtResource("1_cp3wb")
+
+[node name="Lvl4Controller" type="Node" parent="." unique_id=1923935569]
 script = ExtResource("2_controller")
 
 [node name="Player(Lvl4)" type="CharacterBody2D" parent="." unique_id=197059508 groups=["player"]]
+z_index = 1
 position = Vector2(1, 1)
 script = ExtResource("1_player")
 
@@ -539,8 +542,8 @@ target_position = Vector2(13, -6)
 position = Vector2(208, 514)
 zoom = Vector2(2.5, 2.5)
 limit_left = 2
-limit_top = -89
-limit_right = 2436
+limit_top = 11
+limit_right = 2848
 limit_bottom = 642
 position_smoothing_enabled = true
 position_smoothing_speed = 7.0
@@ -557,53 +560,55 @@ position = Vector2(-9, 301)
 shape = SubResource("RectangleShape2D_i74fe")
 
 [node name="CollisionShape2D3" type="CollisionShape2D" parent="WorldBorders" unique_id=1488033056]
-position = Vector2(3533, 284)
+position = Vector2(2833, 296)
 shape = SubResource("RectangleShape2D_i74fe")
 
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="WorldBorders" unique_id=1007233859]
-position = Vector2(1764.75, -133)
+position = Vector2(1456.375, 2)
 shape = SubResource("RectangleShape2D_ecodq")
 
 [node name="TileMapLayer" type="TileMapLayer" parent="." unique_id=271994838]
-tile_map_data = PackedByteArray("AAAAACcAAAAFAAUAAAABACcAAAAFAAUAAAACACcAAAAFAAUAAAADACcAAAAFAAUAAAAEACcAAAAFAAUAAAAFACcAAAAFAAUAAAAGACcAAAAFAAUAAAAHACcAAAAFAAUAAAAIACcAAAAFAAUAAAAJACcAAAAFAAUAAAAKACcAAAAFAAUAAAALACcAAAAFAAUAAAAMACcAAAAFAAUAAAANACcAAAAFAAUAAAAOACcAAAAFAAUAAAAPACcAAAAFAAUAAAAQACcAAAAFAAUAAAARACcAAAAFAAUAAAASACcAAAAFAAUAAAATACcAAAAFAAUAAAAUACcAAAAFAAUAAAAVACcAAAAFAAUAAAAWACcAAAAFAAUAAAAXACcAAAAFAAUAAAAYACcAAAAFAAUAAAAZACcAAAAFAAUAAAAaACcAAAAFAAUAAAAbACcAAAAFAAUAAAAcACcAAAAFAAUAAAAdACcAAAAFAAUAAAAeACcAAAAFAAUAAAAfACcAAAAFAAUAAAAgACcAAAAFAAUAAAAhACcAAAAFAAUAAAAiACcAAAAFAAUAAAAjACcAAAAFAAUAAAAkACcAAAAFAAUAAAAlACcAAAAFAAUAAAAmACcAAAAFAAUAAAAnACcAAAAFAAUAAAAoACcAAAAFAAUAAAApACcAAAAFAAUAAAAqACcAAAAFAAUAAAArACcAAAAFAAUAAAAsACcAAAAFAAUAAAAtACcAAAAFAAUAAAAuACcAAAAFAAUAAAAvACcAAAAFAAUAAAAwACcAAAAFAAUAAAAxACcAAAAFAAUAAAAyACcAAAAFAAUAAAAzACcAAAAFAAUAAAA0ACcAAAAFAAUAAAA1ACcAAAAFAAUAAAA2ACcAAAAFAAUAAAA3ACcAAAAFAAUAAAA4ACcAAAAFAAUAAAA5ACcAAAAFAAUAAAA6ACcAAAAFAAUAAAA7ACcAAAAFAAUAAAA8ACcAAAAFAAUAAAA9ACcAAAAFAAUAAAA+ACcAAAAFAAUAAAA/ACcAAAAFAAUAAABAACcAAAAFAAUAAABBACcAAAAFAAUAAABCACcAAAAFAAUAAABDACcAAAAFAAUAAABEACcAAAAFAAUAAABFACcAAAAFAAUAAABGACcAAAAFAAUAAABHACcAAAAFAAUAAABIACcAAAAFAAUAAABJACcAAAAFAAUAAABKACcAAAAFAAUAAABLACcAAAAFAAUAAABMACcAAAAFAAUAAABNACcAAAAFAAUAAABOACcAAAAFAAUAAABPACcAAAAFAAUAAABQACcAAAAFAAUAAABRACcAAAAFAAUAAABSACcAAAAFAAUAAABTACcAAAAFAAUAAABUACcAAAAFAAUAAABVACcAAAAFAAUAAABWACcAAAAFAAUAAABXACcAAAAFAAUAAABYACcAAAAFAAUAAABZACcAAAAFAAUAAABaACcAAAAFAAUAAABbACcAAAAFAAUAAABcACcAAAAFAAUAAABdACcAAAAFAAUAAABeACcAAAAFAAUAAABfACcAAAAFAAUAAABgACcAAAAFAAUAAABhACcAAAAFAAUAAABiACcAAAAFAAUAAABjACcAAAAFAAUAAABkACcAAAAFAAUAAABlACcAAAAFAAUAAABmACcAAAAFAAUAAABnACcAAAAFAAUAAABoACcAAAAFAAUAAABpACcAAAAFAAUAAABqACcAAAAFAAUAAABrACcAAAAFAAUAAABsACcAAAAFAAUAAABtACcAAAAFAAUAAABuACcAAAAFAAUAAABvACcAAAAFAAUAAABwACcAAAAFAAUAAABxACcAAAAFAAUAAAByACcAAAAFAAUAAABzACcAAAAFAAUAAAB0ACcAAAAFAAUAAAB1ACcAAAAFAAUAAAB2ACcAAAAFAAUAAAB3ACcAAAAFAAUAAAB4ACcAAAAFAAUAAAB5ACcAAAAFAAUAAAB6ACcAAAAFAAUAAAB7ACcAAAAFAAUAAAB8ACcAAAAFAAUAAACDACcAAAAFAAUAAAB9ACcAAAAFAAUAAAB+ACcAAAAFAAUAAAB/ACcAAAAFAAUAAACAACcAAAAFAAUAAACBACcAAAAFAAUAAACCACcAAAAFAAUAAACEACcAAAAFAAUAAACFACcAAAAFAAUAAACGACcAAAAFAAUAAACHACcAAAAFAAUAAACIACcAAAAFAAUAAACJACcAAAAFAAUAAACKACcAAAAFAAUAAACLACcAAAAFAAUAAACMACcAAAAFAAUAAACNACcAAAAFAAUAAACOACcAAAAFAAUAAACPACcAAAAFAAUAAACQACcAAAAFAAUAAACRACcAAAAFAAUAAACSACcAAAAFAAUAAACTACcAAAAFAAUAAACUACcAAAAFAAUAAACVACcAAAAFAAUAAACWACcAAAAFAAUAAACXACcAAAAFAAUAAACYACcAAAAFAAUAAACZACcAAAAFAAUAAACaACcAAAAFAAUAAACbACcAAAAFAAUAAACcACcAAAAFAAUAAACdACcAAAAFAAUAAACeACcAAAAFAAUAAACfACcAAAAFAAUAAACgACcAAAAFAAUAAAChACcAAAAFAAUAAACiACcAAAAFAAUAAACjACcAAAAFAAUAAACkACcAAAAFAAUAAAClACcAAAAFAAUAAACmACcAAAAFAAUAAACnACcAAAAFAAUAAACoACcAAAAFAAUAAACpACcAAAAFAAUAAACqACcAAAAFAAUAAACrACcAAAAFAAUAAACsACcAAAAFAAUAAACtACcAAAAFAAUAAACuACcAAAAFAAUAAACvACcAAAAFAAUAAACwACcAAAAFAAUAAACxACcAAAAFAAUAAACyACcAAAAFAAUAAACzACcAAAAFAAUAAAC0ACcAAAAFAAUAAAC1ACcAAAAFAAUAAAC2ACcAAAAFAAUAAAC3ACcAAAAFAAUAAAC4ACcAAAAFAAUAAAC5ACcAAAAFAAUAAAC6ACcAAAAFAAUAAAC7ACcAAAAFAAUAAAC8ACcAAAAFAAUAAAC9ACcAAAAFAAUAAAC+ACcAAAAFAAUAAAC/ACcAAAAFAAUAAADAACcAAAAFAAUAAADBACcAAAAFAAUAAADCACcAAAAFAAUAAADDACcAAAAFAAUAAADEACcAAAAFAAUAAADFACcAAAAFAAUAAADGACcAAAAFAAUAAADHACcAAAAFAAUAAADIACcAAAAFAAUAAADJACcAAAAFAAUAAADKACcAAAAFAAUAAADLACcAAAAFAAUAAADMACcAAAAFAAUAAADNACcAAAAFAAUAAADOACcAAAAFAAUAAADPACcAAAAFAAUAAADQACcAAAAFAAUAAADRACcAAAAFAAUAAADSACcAAAAFAAUAAADTACcAAAAFAAUAAADUACcAAAAFAAUAAADVACcAAAAFAAUAAADWACcAAAAFAAUAAADXACcAAAAFAAUAAADYACcAAAAFAAUAAADZACcAAAAFAAUAAADaACcAAAAFAAUAAADbACcAAAAFAAUAAAA=")
+z_index = 1
+tile_map_data = PackedByteArray("AAAAACcAAAAFAAUAAAABACcAAAAFAAUAAAACACcAAAAFAAUAAAADACcAAAAFAAUAAAAEACcAAAAFAAUAAAAFACcAAAAFAAUAAAAGACcAAAAFAAUAAAAHACcAAAAFAAUAAAAIACcAAAAFAAUAAAAJACcAAAAFAAUAAAAKACcAAAAFAAUAAAALACcAAAAFAAUAAAAMACcAAAAFAAUAAAANACcAAAAFAAUAAAAOACcAAAAFAAUAAAAPACcAAAAFAAUAAAAQACcAAAAFAAUAAAARACcAAAAFAAUAAAASACcAAAAFAAUAAAATACcAAAAFAAUAAAAUACcAAAAFAAUAAAAVACcAAAAFAAUAAAAWACcAAAAFAAUAAAAXACcAAAAFAAUAAAAYACcAAAAFAAUAAAAZACcAAAAFAAUAAAAaACcAAAAFAAUAAAAbACcAAAAFAAUAAAAcACcAAAAFAAUAAAAiACMAAAAJAAQAAAAjACMAAAAJAAQAAAAkACMAAAAJAAQAAAAlACMAAAAJAAQAAAAmACMAAAAJAAQAAAAnACMAAAAJAAQAAAAoACMAAAAJAAQAAAAGAB0AAAAIAAcAAAAHAB0AAAAIAAcAAAAIAB0AAAAIAAcAAAAJAB0AAAAIAAcAAAAKAB0AAAAIAAcAAAALAB0AAAAIAAcAAAAMAB0AAAAIAAcAAAANAB0AAAAIAAcAAAAOAB0AAAAIAAcAAAAPAB0AAAAIAAcAAAAQAB0AAAAIAAcAAAARAB0AAAAIAAcAAAASAB0AAAAIAAcAAAATAB0AAAAIAAcAAAAUAB0AAAAIAAcAAAAVAB0AAAAIAAcAAAAWAB0AAAAIAAcAAAAJABYAAAAIAAcAAAAKABYAAAAIAAcAAAALABYAAAAIAAcAAAAMABYAAAAIAAcAAAANABYAAAAIAAcAAAAOABYAAAAIAAcAAAAPABYAAAAIAAcAAAAQABYAAAAIAAcAAAARABYAAAAIAAcAAAASABYAAAAIAAcAAAATABYAAAAIAAcAAAAUABYAAAAIAAcAAAAVABYAAAAIAAcAAAAWABYAAAAIAAcAAAAXABYAAAAIAAcAAAAYABYAAAAIAAcAAAAZABYAAAAIAAcAAAB1ACQAAAAGAAUAAACDACQAAAAGAAUAAAB2ACQAAAAGAAUAAAB3ACQAAAAGAAUAAAB4ACQAAAAGAAUAAAB5ACQAAAAGAAUAAAB6ACQAAAAGAAUAAAB7ACQAAAAGAAUAAAB8ACQAAAAGAAUAAAB9ACQAAAAGAAUAAAB+ACQAAAAGAAUAAAB/ACQAAAAGAAUAAACAACQAAAAGAAUAAACBACQAAAAGAAUAAACCACQAAAAGAAUAAACEACQAAAAGAAUAAACFACQAAAAGAAUAAACGACQAAAAGAAUAAACHACQAAAAGAAUAAACIACQAAAAGAAUAAACJACQAAAAGAAUAAACKACQAAAAGAAUAAACLACQAAAAGAAUAAACMACQAAAAGAAUAAACNACQAAAAGAAUAAACOACQAAAAGAAUAAACPACQAAAAGAAUAAACQACQAAAAGAAUAAACRACQAAAAGAAUAAACSACQAAAAGAAUAAACTACQAAAAGAAUAAACUACQAAAAGAAUAAACVACQAAAAGAAUAAACWACQAAAAGAAUAAACXACQAAAAGAAUAAACYACQAAAAGAAUAAACZACQAAAAGAAUAAACaACQAAAAGAAUAAACbACQAAAAGAAUAAACcACQAAAAGAAUAAACdACQAAAAGAAUAAACeACQAAAAGAAUAAACfACQAAAAGAAUAAACgACQAAAAGAAUAAAChACQAAAAGAAUAAACiACQAAAAGAAUAAACjACQAAAAGAAUAAACkACQAAAAGAAUAAAClACQAAAAGAAUAAACmACQAAAAGAAUAAACnACQAAAAGAAUAAACoACQAAAAGAAUAAACpACQAAAAGAAUAAACqACQAAAAGAAUAAACrACQAAAAGAAUAAACsACQAAAAGAAUAAACtACQAAAAGAAUAAACuACQAAAAGAAUAAACvACQAAAAGAAUAAACMABMAAAAGAAUAAACNABMAAAAGAAUAAACOABMAAAAGAAUAAACPABMAAAAGAAUAAACQABMAAAAGAAUAAACRABMAAAAGAAUAAACSABMAAAAGAAUAAACTABMAAAAGAAUAAACUABMAAAAGAAUAAACVABMAAAAGAAUAAACWABMAAAAGAAUAAACXABMAAAAGAAUAAACYABMAAAAGAAUAAAB3ABMAAAAGAAUAAAB4ABMAAAAGAAUAAAB5ABMAAAAGAAUAAAB6ABMAAAAGAAUAAAB7ABMAAAAGAAUAAAB8ABMAAAAGAAUAAAB9ABMAAAAGAAUAAAB+ABMAAAAGAAUAAAB/ABMAAAAGAAUAAABOAB0AAAAGAAUAAABPAB0AAAAGAAUAAABQABwAAAAGAAUAAABQAB0AAAAGAAUAAABRABwAAAAGAAUAAABRABsAAAAGAAUAAABSABsAAAAGAAUAAABTABsAAAAGAAUAAABTABoAAAAGAAUAAABUABoAAAAGAAUAAABUABkAAAAGAAUAAABVABkAAAAGAAUAAABWABkAAAAGAAUAAABWABgAAAAGAAUAAABXABgAAAAGAAUAAABYABgAAAAGAAUAAABYABcAAAAGAAUAAABZABcAAAAGAAUAAABZABYAAAAGAAUAAABaABYAAAAGAAUAAABbABYAAAAGAAUAAABbABUAAAAGAAUAAABcABUAAAAGAAUAAABcABQAAAAGAAUAAABdABQAAAAGAAUAAABdABMAAAAGAAUAAABeABMAAAAGAAUAAABfABMAAAAGAAUAAABgABMAAAAGAAUAAABhABMAAAAGAAUAAABiABMAAAAGAAUAAABjABMAAAAGAAUAAABkABMAAAAGAAUAAABlABMAAAAGAAUAAABmABMAAAAGAAUAAABnABMAAAAGAAUAAABoABMAAAAGAAUAAABpABMAAAAGAAUAAABqABMAAAAGAAUAAABrABMAAAAGAAUAAABsABMAAAAGAAUAAAAoACcAAAAGAAUAAAAnACcAAAAGAAUAAAAmACcAAAAGAAUAAAAlACcAAAAGAAUAAAAkACcAAAAGAAUAAAAjACcAAAAGAAUAAAAiACcAAAAGAAUAAAAhACcAAAAGAAUAAAAgACcAAAAGAAUAAAAfACcAAAAGAAUAAAAeACcAAAAGAAUAAAAdACcAAAAGAAUAAAApACMAAAAGAAUAAAAqACMAAAAGAAUAAAArACMAAAAGAAUAAAAsACMAAAAGAAUAAAAtACMAAAAGAAUAAAAuACMAAAAGAAUAAAAvACMAAAAGAAUAAAAwACMAAAAGAAUAAAAxACMAAAAGAAUAAAAyACMAAAAGAAUAAAAzACMAAAAGAAUAAAA0ACMAAAAGAAUAAAA1ACMAAAAGAAUAAAA2ACMAAAAGAAUAAAA3ACMAAAAGAAUAAAA4ACMAAAAGAAUAAAA5ACMAAAAGAAUAAAA6ACMAAAAGAAUAAAA7ACMAAAAGAAUAAAA8ACMAAAAGAAUAAAA9ACMAAAAGAAUAAAA+ACMAAAAGAAUAAAA/ACMAAAAGAAUAAABAACMAAAAGAAUAAABBACMAAAAGAAUAAABCACMAAAAGAAUAAABDACMAAAAGAAUAAABEACMAAAAGAAUAAAAGABwAAAAGAAMAAAAFABwAAAAGAAMAAAAFABsAAAAGAAMAAAAEABsAAAAGAAMAAAADABsAAAAGAAMAAAADABoAAAAGAAMAAAACABoAAAAGAAMAAAACABkAAAAGAAMAAAABABkAAAAGAAMAAAAAABkAAAAGAAMAAAAnABMAAAAFAAUAAAAmABMAAAAFAAUAAAAoABMAAAAFAAUAAAApABMAAAAFAAUAAAAqABMAAAAFAAUAAAArABMAAAAFAAUAAAAsABMAAAAFAAUAAAAtABMAAAAFAAUAAAAuABMAAAAFAAUAAAAvABMAAAAFAAUAAAAwABMAAAAFAAUAAAAxABMAAAAFAAUAAAAyABMAAAAFAAUAAAAzABMAAAAFAAUAAAA0ABMAAAAFAAUAAAA1ABMAAAAFAAUAAAA2ABMAAAAFAAUAAAA3ABMAAAAFAAUAAAA4ABMAAAAFAAUAAAA5ABMAAAAFAAUAAAA6ABMAAAAFAAUAAAA7ABMAAAAFAAUAAAA8ABMAAAAFAAUAAAA9ABMAAAAFAAUAAAA+ABMAAAAFAAUAAAA/ABMAAAAFAAUAAABAABMAAAAFAAUAAABBABMAAAAFAAUAAABCABMAAAAFAAUAAABDABMAAAAFAAUAAABEABMAAAAFAAUAAABFABMAAAAFAAUAAABGABMAAAAFAAUAAAApACkAAAAMAAYAAAAqACkAAAAMAAYAAAArACkAAAAMAAYAAAAsACkAAAAMAAYAAAAtACkAAAAMAAYAAAAuACkAAAAMAAYAAAAvACkAAAAMAAYAAAAwACkAAAAMAAYAAAAxACkAAAAMAAYAAAAyACkAAAAMAAYAAAAzACkAAAAMAAYAAAA0ACkAAAAMAAYAAAA1ACkAAAAMAAYAAAA2ACkAAAAMAAYAAAA3ACkAAAAMAAYAAAA4ACkAAAAMAAYAAAA5ACkAAAAMAAYAAAA6ACkAAAAMAAYAAAA7ACkAAAAMAAYAAAA8ACkAAAAMAAYAAAA9ACkAAAAMAAYAAAA+ACkAAAAMAAYAAAA/ACkAAAAMAAYAAABAACkAAAAMAAYAAABBACkAAAAMAAYAAABCACkAAAAMAAYAAABDACkAAAAMAAYAAABEACkAAAAMAAYAAABFACkAAAAMAAYAAABGACkAAAAMAAYAAABHACkAAAAMAAYAAABIACkAAAAMAAYAAABJACkAAAAMAAYAAABKACkAAAAMAAYAAABLACkAAAAMAAYAAABMACkAAAAMAAYAAABNACkAAAAMAAYAAABOACkAAAAMAAYAAABPACkAAAAMAAYAAABQACkAAAAMAAYAAABRACkAAAAMAAYAAABSACkAAAAMAAYAAABTACkAAAAMAAYAAABUACkAAAAMAAYAAABVACkAAAAMAAYAAABWACkAAAAMAAYAAABXACkAAAAMAAYAAABYACkAAAAMAAYAAABZACkAAAAMAAYAAABaACkAAAAMAAYAAABbACkAAAAMAAYAAABcACkAAAAMAAYAAABdACkAAAAMAAYAAABeACkAAAAMAAYAAABfACkAAAAMAAYAAABgACkAAAAMAAYAAABhACkAAAAMAAYAAABiACkAAAAMAAYAAABjACkAAAAMAAYAAABkACkAAAAMAAYAAABlACkAAAAMAAYAAABmACkAAAAMAAYAAABnACkAAAAMAAYAAABoACkAAAAMAAYAAABpACkAAAAMAAYAAABqACkAAAAMAAYAAABrACkAAAAMAAYAAABsACkAAAAMAAYAAABtACkAAAAMAAYAAABuACkAAAAMAAYAAABvACkAAAAMAAYAAABwACkAAAAMAAYAAABxACkAAAAMAAYAAAByACkAAAAMAAYAAABzACkAAAAMAAYAAAB0ACkAAAAMAAYAAAB1ACkAAAAMAAYAAAAfACMAAAAPAAcAAAAgACMAAAAPAAcAAAAhACMAAAAPAAcAAAAXAB0AAAAPAAcAAAA=")
 tile_set = SubResource("TileSet_los65")
 
-[node name="WorldGeometry" type="StaticBody2D" parent="." unique_id=1532404071]
+[node name="ElectricalFault" type="Area2D" parent="." unique_id=1736207052]
+z_index = 5
+position = Vector2(3110, 470)
+script = ExtResource("4_damage")
 
-[node name="EarlyHall" type="CollisionShape2D" parent="WorldGeometry" unique_id=2098302083]
-position = Vector2(310, 600)
-shape = SubResource("FloorEarly")
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ElectricalFault" unique_id=191091639]
+position = Vector2(-596, 27)
+shape = SubResource("ElectricalHazardShape")
 
-[node name="ScienceHall" type="CollisionShape2D" parent="WorldGeometry" unique_id=698400428]
-position = Vector2(980, 600)
-shape = SubResource("FloorMidA")
+[node name="ElectricalFaultTexture" type="Sprite2D" parent="ElectricalFault" unique_id=2077704836]
+position = Vector2(-601, 30.000015)
+scale = Vector2(0.15, 0.1735677)
+texture = ExtResource("28_electrical_texture")
 
-[node name="LibraryHall" type="CollisionShape2D" parent="WorldGeometry" unique_id=2086185100]
-position = Vector2(1650, 600)
-shape = SubResource("FloorMidB")
+[node name="ElectricalBarrier" type="StaticBody2D" parent="." unique_id=1231211830]
+position = Vector2(3110, 470)
 
-[node name="CounselingHall" type="CollisionShape2D" parent="WorldGeometry" unique_id=684465885]
-position = Vector2(2410, 600)
-shape = SubResource("FloorLate")
-
-[node name="ShelterApproach" type="CollisionShape2D" parent="WorldGeometry" unique_id=1354826463]
-position = Vector2(3210, 600)
-shape = SubResource("FloorExit")
-
-[node name="EmergencyGate" type="StaticBody2D" parent="." unique_id=996796301]
-position = Vector2(3000, 470)
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="EmergencyGate" unique_id=1594953232]
-shape = SubResource("GateShape")
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ElectricalBarrier" unique_id=1579935492]
+position = Vector2(-596, 26)
+shape = SubResource("ElectricalHazardShape")
 
 [node name="PowerPanelA" type="Area2D" parent="." unique_id=818709293 groups=["academic_consoles"]]
-position = Vector2(350, 535)
+z_index = 1
+position = Vector2(650, 365)
 script = ExtResource("3_console")
 console_id = &"academic_panel_a"
-prompt_text = "Press Enter: restore power"
+prompt_text = "Press Enter: start circuit test"
+use_reaction_minigame = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="PowerPanelA" unique_id=430677197]
+position = Vector2(-212.92004, -75.880035)
 shape = SubResource("ConsoleShape")
+
+[node name="ConsoleTexture" type="Sprite2D" parent="PowerPanelA" unique_id=779262143]
+position = Vector2(-209.92001, -72.88001)
+scale = Vector2(0.09, 0.09)
+texture = ExtResource("25_console_texture")
 
 [node name="Prompt" type="Label" parent="PowerPanelA" unique_id=1716933011]
 offset_left = -80.0
@@ -611,15 +616,25 @@ offset_top = -85.0
 offset_right = -80.0
 offset_bottom = -85.0
 theme_override_colors/font_color = Color(1, 0.95, 0.55, 1)
+theme_override_fonts/font = ExtResource("19_dxwmu")
+metadata/_edit_use_anchors_ = true
 
 [node name="PowerPanelB" type="Area2D" parent="." unique_id=1358241608 groups=["academic_consoles"]]
-position = Vector2(1100, 535)
+z_index = 1
+position = Vector2(1600, 260)
 script = ExtResource("3_console")
 console_id = &"academic_panel_b"
-prompt_text = "Press Enter: restore power"
+prompt_text = "Press Enter: start circuit test"
+use_reaction_minigame = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="PowerPanelB" unique_id=1461278095]
+position = Vector2(143, 9)
 shape = SubResource("ConsoleShape")
+
+[node name="ConsoleTexture" type="Sprite2D" parent="PowerPanelB" unique_id=1614903030]
+position = Vector2(147.00002, 8.000008)
+scale = Vector2(0.09, 0.09)
+texture = ExtResource("25_console_texture")
 
 [node name="Prompt" type="Label" parent="PowerPanelB" unique_id=1913160728]
 offset_left = -80.0
@@ -627,15 +642,24 @@ offset_top = -85.0
 offset_right = -80.0
 offset_bottom = -85.0
 theme_override_colors/font_color = Color(1, 0.95, 0.55, 1)
+theme_override_fonts/font = ExtResource("19_dxwmu")
 
 [node name="PowerPanelC" type="Area2D" parent="." unique_id=966105571 groups=["academic_consoles"]]
-position = Vector2(2030, 535)
+z_index = 1
+position = Vector2(2870, 180)
 script = ExtResource("3_console")
 console_id = &"academic_panel_c"
-prompt_text = "Press Enter: restore power"
+prompt_text = "Press Enter: start circuit test"
+use_reaction_minigame = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="PowerPanelC" unique_id=623652988]
+position = Vector2(-526, 61)
 shape = SubResource("ConsoleShape")
+
+[node name="ConsoleTexture" type="Sprite2D" parent="PowerPanelC" unique_id=1164339420]
+position = Vector2(-531.00006, 79.999954)
+scale = Vector2(0.09, 0.09)
+texture = ExtResource("25_console_texture")
 
 [node name="Prompt" type="Label" parent="PowerPanelC" unique_id=1457929368]
 offset_left = -80.0
@@ -643,42 +667,58 @@ offset_top = -85.0
 offset_right = -80.0
 offset_bottom = -85.0
 theme_override_colors/font_color = Color(1, 0.95, 0.55, 1)
+theme_override_fonts/font = ExtResource("19_dxwmu")
 
 [node name="FallenLockerA" type="Area2D" parent="." unique_id=1645249959]
+z_index = 1
 position = Vector2(700, 565)
 script = ExtResource("4_damage")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="FallenLockerA" unique_id=590870731]
+position = Vector2(173, -287)
 shape = SubResource("HazardShape")
 
+[node name="LockerTexture" type="Sprite2D" parent="FallenLockerA" unique_id=694933091]
+position = Vector2(173, -279)
+scale = Vector2(0.08, 0.08)
+texture = ExtResource("26_lockers_texture")
+
 [node name="FallenLockerB" type="Area2D" parent="." unique_id=155349866]
+z_index = 1
 position = Vector2(1880, 565)
 script = ExtResource("4_damage")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="FallenLockerB" unique_id=1880298315]
+position = Vector2(-1040, -29)
 shape = SubResource("HazardShape")
 
+[node name="LockerTexture" type="Sprite2D" parent="FallenLockerB" unique_id=2031518207]
+position = Vector2(-1039, -23)
+scale = Vector2(0.08, 0.08)
+texture = ExtResource("26_lockers_texture")
+
 [node name="FallenLockerC" type="Area2D" parent="." unique_id=299862050]
+z_index = 1
 position = Vector2(2700, 565)
 script = ExtResource("4_damage")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="FallenLockerC" unique_id=903468279]
+position = Vector2(-532, -16)
 shape = SubResource("HazardShape")
 
-[node name="FallZone" type="Area2D" parent="." unique_id=1028096725]
-position = Vector2(1750, 760)
-script = ExtResource("4_damage")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="FallZone" unique_id=809124879]
-shape = SubResource("FallShape")
+[node name="LockerTexture" type="Sprite2D" parent="FallenLockerC" unique_id=2038207499]
+position = Vector2(-531, -7)
+scale = Vector2(0.08, 0.08)
+texture = ExtResource("26_lockers_texture")
 
 [node name="ExitArea" type="Area2D" parent="." unique_id=1169301434]
-position = Vector2(3320, 485)
+position = Vector2(3120, 485)
 monitoring = false
 script = ExtResource("5_exit")
 destination_level_index = 5
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="ExitArea" unique_id=987867603]
+position = Vector2(-431.5, 11.5)
 shape = SubResource("ExitShape")
 
 [node name="DialogueArea" parent="." unique_id=1119955833 instance=ExtResource("6_dialogue_area")]
@@ -687,9 +727,10 @@ activate_instant = true
 only_activate_once = true
 persistent_once_id = &"lvl4_entry"
 box_placement = 3
-dialogue = Array[ExtResource("9_dialogue_entry")]([SubResource("EntryDialogue")])
+dialogue = Array[ExtResource("9_dialogue_entry")]([SubResource("EntryDialogue"), SubResource("Resource_cp3wb")])
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="DialogueArea" unique_id=1671302751]
+position = Vector2(2, 36)
 shape = SubResource("ConsoleShape")
 
 [node name="ReflectionDialogueArea" parent="." unique_id=558349507 instance=ExtResource("6_dialogue_area")]
@@ -700,6 +741,7 @@ persistent_once_id = &"lvl4_reflection"
 dialogue = Array[ExtResource("9_dialogue_entry")]([SubResource("MidDialogue")])
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="ReflectionDialogueArea" unique_id=1594470452]
+position = Vector2(40, -22)
 shape = SubResource("ConsoleShape")
 
 [node name="Interface" type="CanvasLayer" parent="." unique_id=1442148830]
@@ -709,3 +751,9 @@ offset_left = 24.0
 offset_top = 24.0
 theme_override_colors/font_color = Color(1, 1, 1, 1)
 theme_override_font_sizes/font_size = 20
+
+[node name="CameraFocusPoint" type="Marker2D" parent="." unique_id=770247581]
+position = Vector2(2471, 479)
+
+[node name="HUD" parent="." unique_id=665291530 instance=ExtResource("27_w0223")]
+heart_size = Vector2(128, 128)
